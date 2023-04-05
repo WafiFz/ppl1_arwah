@@ -1,0 +1,13 @@
+{
+    "name": "Wedding",
+    "alias": "wedding",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Wedding\\Providers\\WeddingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

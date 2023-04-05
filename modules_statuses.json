@@ -1,5 +1,10 @@
 {
     "Article": true,
     "Tag": true,
-    "Comment": true
+    "Comment": true,
+    "Package": true,
+    "Theme": true,
+    "Invitation": true,
+    "Order": true,
+    "Wedding": true
 }
