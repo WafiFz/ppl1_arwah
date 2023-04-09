@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Order\database\seeders;
+namespace Modules\Invitation\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Order\Entities\Order;
+use Modules\Invitation\Entities\Rsvp;
 
-class OrderDatabaseSeeder extends Seeder
+class RsvpSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,16 +19,16 @@ class OrderDatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         /*
-         * Orders Seed
+         * rsvps Seed
          * ------------------
          */
 
-        // DB::table('orders')->truncate();
-        // echo "Truncate: orders \n";
+        // DB::table('rsvps')->truncate();
+        // echo "Truncate: rsvps \n";
 
-        Order::factory()->count(50)->create();
-        $rows = Order::all();
-        echo " Insert: orders \n\n";
+        Rsvp::factory()->count(100)->create();
+        $rows = Rsvp::all();
+        echo " Insert: rsvps \n\n";
 
         // Enable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

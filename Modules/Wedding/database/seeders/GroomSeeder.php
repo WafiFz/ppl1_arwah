@@ -6,10 +6,10 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 // Entities
+use Modules\Wedding\Entities\Groom;
 use Modules\Wedding\Entities\Wedding;
-use Modules\Invitation\Entities\Invitation;
 
-class WeddingDatabaseSeeder extends Seeder
+class GroomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,19 +22,19 @@ class WeddingDatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         /*
-         * Weddings Seed
+         * Grooms Seed
          * ------------------
          */
 
-        // DB::table('weddings')->truncate();
-        // echo "Truncate: weddings \n";
+        // DB::table('grooms')->truncate();
+        // echo "Truncate: grooms \n";
 
-        $invitations = Invitation::all();
-        foreach ($invitations as $invitaion) {
-            Wedding::factory()->create(['invitation_id' => $invitaion->id]);
+        $weddings = Wedding::all();
+        foreach ($weddings as $wedding) {
+            Groom::factory()->create(['wedding_id' => $wedding->id]);
         }
-        $rows = Wedding::all();
-        echo " Insert: weddings \n\n";
+        $rows = Groom::all();
+        echo " Insert: grooms \n\n";
 
         // Enable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
