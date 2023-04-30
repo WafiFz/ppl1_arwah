@@ -4,7 +4,9 @@ namespace Modules\Invitation\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\Invitation;
+// Entities
+use Modules\Invitation\Entities\Invitation;
+use Modules\Order\Entities\Order;
 
 class InvitationDatabaseSeeder extends Seeder
 {
@@ -26,7 +28,10 @@ class InvitationDatabaseSeeder extends Seeder
         // DB::table('invitations')->truncate();
         // echo "Truncate: invitations \n";
 
-        Invitation::factory()->count(20)->create();
+        $orders = Order::all();
+        foreach ($orders as $order) {
+            Invitation::factory()->create(['order_id' => $order ->id]);
+        }
         $rows = Invitation::all();
         echo " Insert: invitations \n\n";
 

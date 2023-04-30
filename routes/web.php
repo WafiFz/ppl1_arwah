@@ -3,6 +3,8 @@
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +22,42 @@ require __DIR__.'/auth.php';
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
-Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index')->name('dashboard');
+Route::get('/', 'App\Http\Controllers\PageController@index')->name('home');
+
+/*
+*
+*  Order Routes
+*
+* ---------------------------------------------------------------------
+*/
+Route::prefix('order')->name('order.')->group(function () {
+    Route::view('/', 'user/order/index')->name('index');
+    Route::view('/theme', 'user/order/theme')->name('theme');
+    Route::view('/summary', 'user/order/summary')->name('summary');
+    Route::view('/detail', 'user/order/detail')->name('detail');
+});
+
+Route::prefix('client')->name('client.')->group(function () {
+    $controller_profile = 'App\Http\Controllers\ProfileController';
+    $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
+
+    Route::get('/orders', $controller_order . '@index')->name('orders');
+    Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
+    Route::view('/invitation', 'client/invitation')->name('invitation');
+    Route::get('/{id}', $controller_profile  . '@show')->name('index');
+    Route::post('/{id}', $controller_profile . '@edit')->name('editProfile');
+    // Route::view('/orders', 'client/orders')->name('orders');
+    // Route::view('/orders', 'client/orders')->name('orders');
+});
+
+
+
+
+/* 
+* ||========================== LARAVEL STARTER ROUTES ==========================||
+*/
+
+
 /*
 *
 * Frontend Routes
@@ -28,7 +65,7 @@ Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index'
 * --------------------------------------------------------------------
 */
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
-    Route::get('/', 'FrontendController@index')->name('index');
+    Route::get('blog/', 'FrontendController@index')->name('index');
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
@@ -59,6 +96,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
 * --------------------------------------------------------------------
 */
 Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
+
     /**
      * Backend Dashboard
      * Namespaces indicate folder structure.

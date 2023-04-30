@@ -2,6 +2,7 @@
 
 namespace Modules\Package\database\factories;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +16,7 @@ class PackageFactory extends Factory
      *
      * @var string
      */
-    protected $model = \Modules\Package\Models\Package::class;
+    protected $model = \Modules\Package\Entities\Package::class;
 
     /**
      * Define the model's default state.
@@ -26,9 +27,9 @@ class PackageFactory extends Factory
     {
         return [
             'name'              => substr($this->faker->text(15), 0, -1),
-            'slug'              => '',
+            'price'             => 'Rp. 100.000 - Rp.200.000',
             'description'       => $this->faker->paragraph,
-            'status'            => 1,
+            'features'          => $this->faker->paragraph,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
         ];

@@ -1,7 +1,7 @@
 @extends ('backend.layouts.app')
 
 <?php
-$module_icon = "fa-solid fa-list-check";
+$module_icon = "c-icon cil-list-rich";
 ?>
 
 @section('title') {{ __('Log Viewer Dashboard') }} @endsection
@@ -84,8 +84,8 @@ $module_icon = "fa-solid fa-list-check";
 @endpush
 
 @push('after-scripts')
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script type="module">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
     $(function() {
         new Chart(document.getElementById("stats-doughnut-chart"), {
             type: 'doughnut',

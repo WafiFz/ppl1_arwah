@@ -21,9 +21,7 @@
 
     @stack('before-styles')
 
-    <script src="{{ asset('vendor/jquery/jquery-3.6.4.min.js') }}"></script>
-
-    @vite(['resources/sass/app-backend.scss', 'resources/js/app-backend.js'])
+    <link rel="stylesheet" href="{{ mix('css/backend.css') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
@@ -76,8 +74,10 @@
     <!-- Scripts -->
     @stack('before-scripts')
 
+    <script src="{{ mix('js/backend.js') }}"></script>
+
     @livewireScripts
-    
+
     @stack('after-scripts')
     <!-- / Scripts -->
 

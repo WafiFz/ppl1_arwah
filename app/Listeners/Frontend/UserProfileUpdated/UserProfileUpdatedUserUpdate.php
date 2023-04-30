@@ -21,6 +21,7 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
     /**
      * Handle the event.
      *
+     * @param  UserProfileUpdated  $event
      * @return void
      */
     public function handle(UserProfileUpdated $event)

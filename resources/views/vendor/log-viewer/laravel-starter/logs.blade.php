@@ -1,7 +1,7 @@
 @extends ('backend.layouts.app')
 
 <?php
-$module_icon = "fa-solid fa-list-check";
+$module_icon = "c-icon cil-list-rich";
 ?>
 @section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
@@ -145,7 +145,7 @@ $module_icon = "fa-solid fa-list-check";
 
 
 @push('after-scripts')
-<script type="module">
+<script>
     $(function() {
         var deleteLogModal = $('div#delete-log-modal'),
             deleteLogForm = $('form#delete-log-form'),

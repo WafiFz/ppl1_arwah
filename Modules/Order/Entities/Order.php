@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Order\Models;
+namespace Modules\Order\Entities;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,4 +22,42 @@ class Order extends BaseModel
     {
         return \Modules\Order\database\factories\OrderFactory::new();
     }
+
+    /**
+    *
+    *  RELATION
+    *
+    * ---------------------------------------------------------------------
+    */
+
+    // User
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    // Package
+    public function package()
+    {
+        return $this->belongsTo('Modules\Package\Entities\Package');
+    }
+
+    // Theme
+    public function theme()
+    {
+        return $this->belongsTo('Modules\Theme\Entities\Theme');
+    }
+
+    // Invitation
+    public function invitation()
+    {
+        return $this->hasOne('Modules\Invitation\Entities\Invitation');
+    }
+
+    /**
+    *
+    *  METHOD
+    *
+    * ---------------------------------------------------------------------
+    */
 }

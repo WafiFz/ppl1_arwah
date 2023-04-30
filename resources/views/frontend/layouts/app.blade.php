@@ -22,8 +22,7 @@
 
     @stack('before-styles')
 
-    @vite(['resources/css/app-frontend.css'])
-    @vite(['resources/js/app-frontend.js'])
+    <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
 
     @stack('after-styles')
 
@@ -46,6 +45,7 @@
 <!-- Scripts -->
 @stack('before-scripts')
 
+<script src="{{ mix('js/frontend.js') }}"></script>
 
 @stack('after-scripts')
 

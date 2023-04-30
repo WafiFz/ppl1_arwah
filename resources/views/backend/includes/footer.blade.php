@@ -1,6 +1,6 @@
-<footer class="footer text-sm text-muted">
+<footer class="footer text-sm">
     <div>
-        <a href="/" class="text-muted">{{app_name()}}</a>.
+        <a href="/">{{app_name()}}</a>.
         @if(setting('show_copyright'))
         @lang('Copyright') &copy; {{ date('Y') }}
         @endif

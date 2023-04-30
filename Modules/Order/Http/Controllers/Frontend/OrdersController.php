@@ -33,21 +33,25 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        // $module_title = $this->module_title;
+        // $module_name = $this->module_name;
+        // $module_path = $this->module_path;
+        // $module_icon = $this->module_icon;
+        // $module_model = $this->module_model;
+        // $module_name_singular = Str::singular($module_name);
 
-        $module_action = 'List';
+        // $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate();
+        // $$module_name = $module_model::latest()->paginate();
 
-        return view(
-            "order::frontend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
-        );
+        // return view(
+        //     "order::frontend.$module_path.index",
+        //     compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
+        // );
+
+        return view('client/orders');
+
+        
     }
 
     /**

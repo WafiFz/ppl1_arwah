@@ -1,21 +1,13 @@
-<x-auth-layout>
-    <x-slot name="title">
-        @lang('Login')
-    </x-slot>
-
+<x-app-layout title="Login">
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Social Login -->
-        <x-auth-social-login />
-
+        <x-slot name="header">
+            <h1 class="text-3xl font-bold">Masuk</h1>
+            <p>Belum punya akun? <a href=" {{ route('register') }} " class="font-bold ">Daftar Sekarang!</a></p>
+        </x-slot>
+        
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -24,45 +16,34 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" placeholder="Email" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-input id="password" class="block w-full mt-1" type="password" name="password" placeholder="Password" required autocomplete="current-password" />
             </div>
 
             <!-- Remember Me -->
-            <div class="block mt-4">
+            <div class="flex justify-between mt-4">
+                @if (Route::has('password.request'))
+                <a class="text-sm" href="{{ route('password.request') }}">Lupa Password?</a>
+                @endif
+
                 <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <input id="remember_me" type="checkbox" class="text-indigo-600 border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
+            <div class="mt-4">
+                <x-button class="block w-full font-bold bg-white hover:bg-gray-100 active:bg-gray-200">
+                    Masuk
                 </x-button>
             </div>
         </form>
 
-        <x-slot name="extra">
-            @if (Route::has('register'))
-            <p class="text-center text-gray-600 mt-4">
-                Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
-            </p>
-            @endif
-        </x-slot>
+        <!-- Social Login -->
+        <x-auth-social-login />
     </x-auth-card>
-</x-auth-layout>
+</x-app-layout>

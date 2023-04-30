@@ -9,17 +9,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use HasFactory;
-    use HasHashedMediaTrait;
     use HasRoles;
     use Notifiable;
     use SoftDeletes;
+    use HasHashedMediaTrait;
     use UserPresenter;
 
     protected $guarded = [
@@ -30,10 +29,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'password_confirmation',
     ];
 
-    protected $casts = [
-        'deleted_at' => 'datetime',
-        'date_of_birth' => 'datetime',
-        'email_verified_at' => 'datetime',
+    protected $dates = [
+        'deleted_at',
+        'date_of_birth',
+        'email_verified_at',
     ];
 
     /**
@@ -45,31 +44,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-        });
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        static::saving(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-            $table->save();
-        });
-    }
+    /**
+    *
+    *  RELATION
+    *
+    * ---------------------------------------------------------------------
+    */
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -94,6 +74,25 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     {
         return $this->hasOne('App\Models\Userprofile');
     }
+
+    // Order
+    public function order()
+    {
+        return $this->hasMany('Modules\Order\Entities\Order');
+    }
+
+    // Invitation
+    public function invitation()
+    {
+        return $this->hasMany('Modules\Invitation\Entities\Invitation');
+    }
+
+    /**
+    *
+    *  METHOD
+    *
+    * ---------------------------------------------------------------------
+    */
 
     /**
      * Get the list of users related to the current User.

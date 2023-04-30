@@ -4,7 +4,7 @@ namespace Modules\Package\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\Package;
+use Modules\Package\Entities\Package;
 
 class PackageDatabaseSeeder extends Seeder
 {
@@ -26,7 +26,7 @@ class PackageDatabaseSeeder extends Seeder
         // DB::table('packages')->truncate();
         // echo "Truncate: packages \n";
 
-        Package::factory()->count(20)->create();
+        Package::factory()->count(5)->create();
         $rows = Package::all();
         echo " Insert: packages \n\n";
 

@@ -17,7 +17,7 @@
 
     <!-- Styles -->
     @stack('before-styles')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="css/app.css">
     @stack('after-styles')
 
     <!-- Analytics -->
@@ -25,12 +25,12 @@
 </head>
 
 <body>
-    <div class="font-sans text-gray-900 antialiased">
+    <div class="font-sans antialiased text-gray-900">
         {{ $slot }}
     </div>
 
     <!-- Scripts -->
-    <script type="module" src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 
 </html>

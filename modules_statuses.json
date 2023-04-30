@@ -2,9 +2,9 @@
     "Article": true,
     "Tag": true,
     "Comment": true,
-    "Package": true,
-    "Theme": true,
-    "Invitation": true,
     "Order": true,
-    "Wedding": true
+    "Invitation": true,
+    "Wedding": true,
+    "Package": true,
+    "Theme": true
 }

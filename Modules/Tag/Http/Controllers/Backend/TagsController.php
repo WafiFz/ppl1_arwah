@@ -11,16 +11,6 @@ class TagsController extends BackendBaseController
 {
     use Authorizable;
 
-    public $module_title;
-
-    public $module_name;
-
-    public $module_path;
-
-    public $module_icon;
-
-    public $module_model;
-
     public function __construct()
     {
         // Page Title
@@ -42,6 +32,7 @@ class TagsController extends BackendBaseController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -107,6 +98,7 @@ class TagsController extends BackendBaseController
     /**
      * Update the specified resource in storage.
      *
+     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */

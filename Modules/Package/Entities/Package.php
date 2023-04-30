@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Package\Models;
+namespace Modules\Package\Entities;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,4 +22,30 @@ class Package extends BaseModel
     {
         return \Modules\Package\database\factories\PackageFactory::new();
     }
+
+    /**
+    *
+    *  RELATION
+    *
+    * ---------------------------------------------------------------------
+    */
+
+    // Order
+    public function order()
+    {
+        return $this->hasMany('Modules\Order\Entities\Order');
+    }
+
+    // Theme
+    public function theme()
+    {
+        return $this->hasMany('Modules\Theme\Entities\Theme');
+    }
+
+    /**
+    *
+    *  METHOD
+    *
+    * ---------------------------------------------------------------------
+    */
 }

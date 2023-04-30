@@ -9,8 +9,8 @@ class Notification extends Model
 {
     protected $table = 'notifications';
 
-    protected $casts = [
-        'read_at' => 'datetime',
+    protected $dates = [
+        'read_at',
     ];
 
     /**

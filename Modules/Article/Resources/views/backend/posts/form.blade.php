@@ -181,9 +181,14 @@
             <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
                 <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
-                    <span class="input-group-text">&nbsp;<i class="fas fa-calendar-alt"></i>&nbsp;</span>
+                    <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
                 </div>
             </div>
+            <!-- <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+            </div> -->
+
         </div>
     </div>
 </div>
@@ -265,6 +270,8 @@
         </div>
     </div>
 </div>
+<div></div>
+
 
 <!-- Select2 Library -->
 <x-library.select2 />
@@ -273,54 +280,10 @@
 @push('after-styles')
 <!-- File Manager -->
 <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
-<style>
-    .note-editor.note-frame :after {
-        display: none;
-    }
-
-    .note-editor .note-toolbar .note-dropdown-menu,
-    .note-popover .popover-content .note-dropdown-menu {
-        min-width: 180px;
-    }
-</style>
 @endpush
 
 @push ('after-scripts')
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
-<script type="module">
-    const FMButton = function(context) {
-        const ui = $.summernote.ui;
-        const button = ui.button({
-            contents: '<i class="note-icon-picture"></i> ',
-            tooltip: 'File Manager',
-            click: function() {
-                window.open('/file-manager/summernote', 'fm', 'width=1000,height=800');
-            }
-        });
-        return button.render();
-    };
-
-    $('#content').summernote({
-        height: 120,
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['fontname', 'fontsize', 'bold', 'underline', 'clear']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'fm', 'video']],
-            ['view', ['codeview', 'undo', 'redo', 'help']],
-        ],
-        buttons: {
-            fm: FMButton
-        }
-    });
-</script>
-
-
-<script type="module">
+<script type="text/javascript">
     $(document).ready(function() {
         $(document).on('select2:open', () => {
             document.querySelector('.select2-search__field').focus();
@@ -371,13 +334,50 @@
             }
         });
     });
+</script>
 
-    // Date Time Picker
-    $('.datetime').tempusDominus({
-        localization: {
-            locale: 'en',
-            format: 'yyyy-MM-dd HH:mm:ss'
-        }
+<!-- Date Time Picker & Moment Js-->
+<script type="text/javascript">
+    $(function() {
+        $('.datetime').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar-alt',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check',
+                clear: 'far fa-trash-alt',
+                close: 'fas fa-times'
+            }
+        });
     });
+</script>
+
+<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+
+<script type="text/javascript">
+    CKEDITOR.replace('content', {
+        filebrowserImageBrowseUrl: '/file-manager/ckeditor',
+        language: '{{App::getLocale()}}',
+        defaultLanguage: 'en'
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        document.getElementById('button-image').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+        });
+    });
+
+    // set file link
+    function fmSetLink($url) {
+        document.getElementById('featured_image').value = $url;
+    }
 </script>
 @endpush

@@ -4,7 +4,10 @@ namespace Modules\Wedding\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\Wedding;
+
+// Entities
+use Modules\Wedding\Entities\Wedding;
+use Modules\Invitation\Entities\Invitation;
 
 class WeddingDatabaseSeeder extends Seeder
 {
@@ -26,7 +29,10 @@ class WeddingDatabaseSeeder extends Seeder
         // DB::table('weddings')->truncate();
         // echo "Truncate: weddings \n";
 
-        Wedding::factory()->count(20)->create();
+        $invitations = Invitation::all();
+        foreach ($invitations as $invitaion) {
+            Wedding::factory()->create(['invitation_id' => $invitaion->id]);
+        }
         $rows = Wedding::all();
         echo " Insert: weddings \n\n";
 

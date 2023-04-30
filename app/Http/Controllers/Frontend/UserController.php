@@ -20,16 +20,6 @@ class UserController extends Controller
 {
     use Authorizable;
 
-    public $module_title;
-
-    public $module_name;
-
-    public $module_path;
-
-    public $module_icon;
-
-    public $module_model;
-
     public function __construct()
     {
         // Page Title
@@ -155,6 +145,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -174,8 +165,8 @@ class UserController extends Controller
 
         $this->validate($request, [
             'first_name' => 'required|string|max:191',
-            'last_name' => 'required|string|max:191',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'last_name'  => 'required|string|max:191',
+            'avatar'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $module_name = $this->module_name;
@@ -199,7 +190,7 @@ class UserController extends Controller
             $$module_name_singular->avatar = $media->getUrl();
 
             $$module_name_singular->save();
-        }
+        } 
 
         $data_array = $request->except('avatar');
         $data_array['avatar'] = $$module_name_singular->avatar;
@@ -247,6 +238,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -309,6 +301,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

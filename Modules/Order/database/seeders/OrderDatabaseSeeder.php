@@ -4,7 +4,7 @@ namespace Modules\Order\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\Order;
+use Modules\Order\Entities\Order;
 
 class OrderDatabaseSeeder extends Seeder
 {
@@ -26,7 +26,7 @@ class OrderDatabaseSeeder extends Seeder
         // DB::table('orders')->truncate();
         // echo "Truncate: orders \n";
 
-        Order::factory()->count(20)->create();
+        Order::factory()->count(50)->create();
         $rows = Order::all();
         echo " Insert: orders \n\n";
 

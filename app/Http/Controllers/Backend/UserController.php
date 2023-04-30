@@ -27,16 +27,6 @@ class UserController extends Controller
 {
     use Authorizable;
 
-    public $module_title;
-
-    public $module_name;
-
-    public $module_path;
-
-    public $module_icon;
-
-    public $module_model;
-
     public function __construct()
     {
         // Page Title
@@ -49,7 +39,7 @@ class UserController extends Controller
         $this->module_path = 'users';
 
         // module icon
-        $this->module_icon = 'fa-solid fa-user-group';
+        $this->module_icon = 'c-icon cil-people';
 
         // module model name, path
         $this->module_model = "App\Models\User";
@@ -164,7 +154,7 @@ class UserController extends Controller
 
         foreach ($query_data as $row) {
             $$module_name[] = [
-                'id' => $row->id,
+                'id'   => $row->id,
                 'text' => $row->name.' (Email: '.$row->email.')',
             ];
         }
@@ -200,6 +190,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -214,10 +205,10 @@ class UserController extends Controller
         $module_action = 'Details';
 
         $request->validate([
-            'first_name' => 'required|min:3|max:191',
+            'first_name'=> 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
-            'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
-            'password' => 'required|confirmed|min:4',
+            'email'     => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
+            'password'  => 'required|confirmed|min:4',
         ]);
 
         $data_array = $request->except('_token', 'roles', 'permissions', 'password_confirmation');
@@ -368,6 +359,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -383,10 +375,10 @@ class UserController extends Controller
         $module_action = 'Edit Profile';
 
         $this->validate($request, [
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'first_name' => 'required|min:3|max:191',
+            'avatar'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'first_name'=> 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
-            'email' => 'email',
+            'email'     => 'email',
         ]);
 
         if (! auth()->user()->can('edit_users')) {
@@ -451,6 +443,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -518,6 +511,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -590,6 +584,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -741,10 +736,7 @@ class UserController extends Controller
         $module_action = 'Restore';
 
         $$module_name_singular = $module_model::withTrashed()->find($id);
-
         $$module_name_singular->restore();
-
-        $$module_name_singular->userprofile()->withTrashed()->restore();
 
         event(new UserUpdated($$module_name_singular));
 

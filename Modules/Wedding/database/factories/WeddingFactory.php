@@ -15,7 +15,7 @@ class WeddingFactory extends Factory
      *
      * @var string
      */
-    protected $model = \Modules\Wedding\Models\Wedding::class;
+    protected $model = \Modules\Wedding\Entities\Wedding::class;
 
     /**
      * Define the model's default state.
@@ -24,11 +24,10 @@ class WeddingFactory extends Factory
      */
     public function definition()
     {
+    
         return [
-            'name'              => substr($this->faker->text(15), 0, -1),
-            'slug'              => '',
-            'description'       => $this->faker->paragraph,
-            'status'            => 1,
+            'title'             => substr($this->faker->text(15), 0, -1),
+            'location'          => $this->faker->address(),
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
         ];

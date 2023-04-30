@@ -1,29 +1,19 @@
 @if(env('FACEBOOK_ACTIVE') || env('GITHUB_ACTIVE') || env('GOOGLE_ACTIVE'))
 <div class="mb-4">
-    <div class="text-center mt-2 mb-4">
-        Sign in with social profiles
+    <div class="flex items-center my-6 text-center">
+        <hr class="w-1/2 border-black"> 
+        <p class="w-full"> Masuk dengan cara lain </p>
+        <hr class="w-1/2 border-black">
     </div>
 
     <div class="pb-4 text-center">
-        @if(env('FACEBOOK_ACTIVE'))
-        <x-button-a href="{{route('social.login', 'facebook')}}" class="bg-blue-600 hover:bg-blue-700">
-            <span class="">Facebook</span>
+        <x-button-a href="{{route('social.login', 'facebook')}}" class="w-full mb-3 text-white bg-blue-600 hover:bg-blue-700">
+            <span class="">Masuk Melalui Facebook</span>
         </x-button-a>
-        @endif
 
-        @if(env('GITHUB_ACTIVE'))
-        <x-button-a href="{{route('social.login', 'github')}}" class="bg-gray-600 hover:bg-gray-700">
-            <span class="">Github</span>
+        <x-button-a href="{{route('social.login', 'google')}}" class="w-full text-white bg-red-600 hover:bg-red-700">
+            <span class="">Masuk Melalui Google</span>
         </x-button-a>
-        @endif
-
-        @if(env('GOOGLE_ACTIVE'))
-        <x-button-a href="{{route('social.login', 'google')}}" class="bg-red-600 hover:bg-red-700">
-            <span class="">Google</span>
-        </x-button-a>
-        @endif
     </div>
-
-    <hr>
 </div>
 @endif

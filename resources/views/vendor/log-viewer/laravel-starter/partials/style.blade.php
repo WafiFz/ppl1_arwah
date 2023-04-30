@@ -6,6 +6,7 @@
 
     body {
         font-size: .875rem;
+        margin-bottom: 60px;
     }
 
     .main-footer {

@@ -28,7 +28,7 @@
 
         <hr>
 
-        <div class="row mb-3">
+        <div class="row">
             <div class="col">
                 <strong>
                     @lang('Name'):
@@ -46,7 +46,7 @@
             <div class="col">
                 {{ html()->form('PATCH', route('backend.users.changePasswordUpdate', $$module_name_singular->id))->class('form-horizontal')->open() }}
 
-                <div class="form-group row mb-3">
+                <div class="form-group row">
                     {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                     <div class="col-md-10">
@@ -56,8 +56,9 @@
                             ->required() }}
                     </div>
                 </div>
+                <!--form-group-->
 
-                <div class="form-group row mb-3">
+                <div class="form-group row">
                     {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
 
                     <div class="col-md-10">
@@ -67,6 +68,7 @@
                             ->required() }}
                     </div>
                 </div>
+                <!--form-group-->
 
                 <div class="row">
                     <div class="col">

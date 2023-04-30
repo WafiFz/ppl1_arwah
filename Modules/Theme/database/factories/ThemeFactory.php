@@ -4,6 +4,10 @@ namespace Modules\Theme\database\factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+// Entities
+use Modules\Package\Entities\Package;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -15,7 +19,7 @@ class ThemeFactory extends Factory
      *
      * @var string
      */
-    protected $model = \Modules\Theme\Models\Theme::class;
+    protected $model = \Modules\Theme\Entities\Theme::class;
 
     /**
      * Define the model's default state.
@@ -24,11 +28,18 @@ class ThemeFactory extends Factory
      */
     public function definition()
     {
+        $name = substr($this->faker->text(10), 0, -1);
+        $slug = Str::slug($name, '-');
+        $package = Package::inRandomOrder()->first();
+        $package_id = $package->id;
+
+
         return [
-            'name'              => substr($this->faker->text(15), 0, -1),
-            'slug'              => '',
+            'package_id'        => $package_id,
+            'name'              => $name,
+            'slug'              => $slug,
             'description'       => $this->faker->paragraph,
-            'status'            => 1,
+            'price'             => $this->faker->numberBetween(50000, 500000),
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
         ];

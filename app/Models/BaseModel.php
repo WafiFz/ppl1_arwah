@@ -4,10 +4,10 @@ namespace App\Models;
 
 use App\Models\Traits\HasHashedMediaTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -23,9 +23,9 @@ class BaseModel extends Model implements HasMedia
         '_method',
     ];
 
-    protected $casts = [
-        'deleted_at' => 'datetime',
-        'published_at' => 'datetime',
+    protected $dates = [
+        'deleted_at',
+        'published_at',
     ];
 
     protected static function boot()
@@ -34,23 +34,23 @@ class BaseModel extends Model implements HasMedia
 
         // create a event to happen on creating
         static::creating(function ($table) {
-            $table->created_by = Auth::id();
+            if(property_exists($table, 'created_by')) $table->created_by = Auth::id();
             $table->created_at = Carbon::now();
         });
 
         // create a event to happen on updating
         static::updating(function ($table) {
-            $table->updated_by = Auth::id();
+            if(property_exists($table, 'updated_by')) $table->updated_by = Auth::id();
         });
 
         // create a event to happen on saving
         static::saving(function ($table) {
-            $table->updated_by = Auth::id();
+            if(property_exists($table, 'updated_by')) $table->updated_by = Auth::id();
         });
 
         // create a event to happen on deleting
         static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
+            if(property_exists($table, 'deleted_by')) $table->deleted_by = Auth::id();
             $table->save();
         });
     }
@@ -78,9 +78,9 @@ class BaseModel extends Model implements HasMedia
      */
     public function getTableColumns()
     {
-        $columns = DB::select('SHOW COLUMNS FROM '.$this->getTable());
+        $table_info_columns = DB::select(DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
 
-        return $columns;
+        return $table_info_columns;
     }
 
     /**

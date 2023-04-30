@@ -15,16 +15,6 @@ use Modules\Comment\Notifications\NewCommentAdded;
 
 class CommentsController extends Controller
 {
-    public $module_title;
-
-    public $module_name;
-
-    public $module_path;
-
-    public $module_icon;
-
-    public $module_model;
-
     public function __construct()
     {
         // Page Title
@@ -110,9 +100,9 @@ class CommentsController extends Controller
         $module_action = 'Store';
 
         $data = [
-            'name' => $request->name,
-            'comment' => $request->comment,
-            'user_id' => (isset($request->user_id)) ? decode_id($request->user_id) : null,
+            'name'      => $request->name,
+            'comment'   => $request->comment,
+            'user_id'   => (isset($request->user_id)) ? decode_id($request->user_id) : null,
             'parent_id' => (isset($request->parent_id)) ? decode_id($request->parent_id) : null,
         ];
 

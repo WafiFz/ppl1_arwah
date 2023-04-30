@@ -4,7 +4,7 @@ namespace Modules\Theme\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\Theme;
+use Modules\Theme\Entities\Theme;
 
 class ThemeDatabaseSeeder extends Seeder
 {

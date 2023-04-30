@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Theme\Models;
+namespace Modules\Theme\Entities;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,5 +21,24 @@ class Theme extends BaseModel
     protected static function newFactory()
     {
         return \Modules\Theme\database\factories\ThemeFactory::new();
+    }
+
+    /**
+    *
+    *  RELATION
+    *
+    * ---------------------------------------------------------------------
+    */
+
+    // Package
+    public function package()
+    {
+        return $this->belongTo('Modules\Package\Entities\Package');
+    }
+
+    // Order
+    public function order()
+    {
+        return $this->hasMany('Modules\Order\Entities\Order');
     }
 }

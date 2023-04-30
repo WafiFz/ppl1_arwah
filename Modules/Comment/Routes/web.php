@@ -7,6 +7,7 @@
 * --------------------------------------------------------------------
 */
 Route::group(['namespace' => '\Modules\Comment\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => ''], function () {
+
     /*
      *
      *  Comments Routes

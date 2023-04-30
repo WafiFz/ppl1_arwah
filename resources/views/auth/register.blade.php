@@ -1,74 +1,54 @@
-<x-auth-layout>
-    <x-slot name="title">
-        @lang('Register')
-    </x-slot>
-
+<x-app-layout title="Register">
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+        <x-slot name="header">
+            <h1 class="text-3xl font-bold">Daftar</h1>
+            <p>Sudah punya akun? <a href=" {{ route('register') }} " class="font-bold ">Masuk!</a></p>
         </x-slot>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <!-- Social login -->
-        <x-auth-social-login />
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <!-- First Name -->
             <div class="mt-4">
-                <x-label for="first_name" :value="__('First Name')" />
-
-                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
+                <x-input id="first_name" class="block w-full mt-1" type="text" name="first_name" :value="old('first_name')" placeholder="Nama Depan" required autofocus />
             </div>
 
-            <!-- Last Name -->
+            <!-- First Name -->
             <div class="mt-4">
-                <x-label for="last_name" :value="__('Last Name')" />
+                <x-input id="last_name" class="block w-full mt-1" type="text" name="last_name" :value="old('last_name')" placeholder="Nama Belakang" required/>
+            </div>
 
-                <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
+            <!-- Phone -->
+            <div class="mt-4">
+                <x-input id="mobile" class="block w-full mt-1" type="text" name="mobile" placeholder="No. Telepon" required />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" placeholder="Email" required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-input id="password" class="block w-full mt-1" type="password" name="password" placeholder="Password" required autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
+                <x-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" placeholder="Konfirmasi Password" required autocomplete="new-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <!-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a> -->
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
+            <div class="mt-4">
+                <x-button class="block w-full font-bold bg-white hover:bg-gray-100 active:bg-gray-200">
+                    Daftar
                 </x-button>
             </div>
         </form>
 
-        <x-slot name="extra">
-            <p class="text-center text-gray-600 mt-4">
-                Already have an account? <a href="{{ route('login') }}" class="underline hover:text-gray-900">Login</a>.
-            </p>
-        </x-slot>
+        <!-- Social login -->
+        <x-auth-social-login />
     </x-auth-card>
-</x-auth-layout>
+</x-app-layout>

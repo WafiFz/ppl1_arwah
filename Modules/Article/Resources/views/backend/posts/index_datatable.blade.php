@@ -92,9 +92,9 @@
 
 @push ('after-scripts')
 <!-- DataTables Core and Extensions -->
-<script type="module" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
 
-<script type="module">
+<script type="text/javascript">
     $('#datatable').DataTable({
         processing: true,
         serverSide: true,
