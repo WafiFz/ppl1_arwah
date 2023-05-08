@@ -114,7 +114,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function changePassword(Request $request, $id)
+    public function editPassword(Request $request, $id)
     {
         $id = decode_id($id);
 
@@ -128,7 +128,7 @@ class ProfileController extends Controller
             'user' => $user
         ];
 
-        return view("client.changePassword", compact('data'));
+        return view("client.editPassword", compact('data'));
     }
 
     /**

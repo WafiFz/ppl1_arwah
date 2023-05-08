@@ -46,8 +46,8 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::view('/invitation', 'client/invitation')->name('invitation');
     Route::get('/{id}', $controller_profile  . '@show')->name('index');
     Route::post('/{id}', $controller_profile . '@edit')->name('editProfile');
-    Route::get('/{id}/changePassword', $controller_profile  . '@changePassword')->name('changePassword');
-    Route::post('/{id}/changePassword', $controller_profile . '@changePassword')->name('changePassword');
+    Route::get('/{id}/changePassword', $controller_profile  . '@editPassword')->name('editPassword');
+    Route::post('/{id}/changePassword', $controller_profile . '@updatePassword')->name('updatePassword');
     // Route::view('/orders', 'client/orders')->name('orders');
     // Route::view('/orders', 'client/orders')->name('orders');
 });

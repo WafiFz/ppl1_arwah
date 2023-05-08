@@ -1,4 +1,4 @@
-<div class=" xl:container flex py-3 text-gray-700 bg-white border-b border-gray-300">
+<div class=" fluid:container flex py-3 text-gray-700 bg-white border-b border-gray-300">
     <div x-show="!isOpen()" class="flex">
         <a
             x-show="!isOpen()"

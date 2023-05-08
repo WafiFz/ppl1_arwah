@@ -174,7 +174,7 @@
                         <p class="m-0">Update account information.</p>
                     </div>
                     <div class="flex items-center sm:w-2/3">
-                        <x-button-a href="{{ route('client.changePassword', encode_id(auth()->user()->id)) }}" class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
+                        <x-button-a href="{{ route('client.editPassword', encode_id(auth()->user()->id)) }}" class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
                             <span class="mx-1">Ubah Kata Sandi</span>
                         </x-button-a>
                     </div>
