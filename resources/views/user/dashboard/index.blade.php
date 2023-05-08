@@ -1,4 +1,5 @@
 <x-app-layout title="Home">
+    {{--
     <section class="flex items-center h-screen">
         <div class="container flex items-center gap-4">
             <div class="w-full">
@@ -302,5 +303,6 @@
             </div>
         </div>
     </section>
+    --}}
 </x-app-layout>
 

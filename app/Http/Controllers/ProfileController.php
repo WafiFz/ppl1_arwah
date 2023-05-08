@@ -114,6 +114,23 @@ class ProfileController extends Controller
         }
     }
 
+    public function changePassword(Request $request, $id)
+    {
+        $id = decode_id($id);
+
+        if ($id != auth()->user()->id) {
+            return redirect()->route('home');
+        }
+
+        $user = User::where('id', $id)->first();
+
+        $data = [
+            'user' => $user
+        ];
+
+        return view("client.changePassword", compact('data'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
