@@ -4,12 +4,17 @@ namespace Modules\Order\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 // Entities
+use Modules\Order\Entities\Order;
+use Modules\Order\Entities\Payment;
 use Modules\Package\Entities\Package;
 use Modules\Theme\Entities\Theme;
+use App\Models\User;
 
 class OrdersController extends Controller
 {
@@ -142,6 +147,62 @@ class OrdersController extends Controller
 
         return view('user/order/summary',  compact('data'));
     }
+
+     /**
+     * Checkout to Make Order
+     *
+     * @return 
+     */
+    public function makeOrder(Request $request)
+    {
+        try {
+            $user = User::getByid(auth()->user()->id);
+            $theme_id = decode_id($request->theme_id);
+            $theme = Theme::where('id', $theme_id)->first();
+            
+            DB::beginTransaction();
+            
+            // Create Order
+            $order = [
+                "status" => "UNPAID",
+                "user_id" => $user->id,
+                "package_id" => $theme->package_id,
+                "theme_id" => $theme->id,
+            ];
+            
+            $order = Order::create($order);
+
+            // Create Payment
+            $payment = [
+                "total_price" => $theme->price,
+                "user_id" => auth()->user()->id,
+                "order_id" => $order->id
+            ];
+
+            $payment = Payment::create($payment);
+
+            $payment_midtrans = Payment::midtrans($user, $order, $payment);
+                
+            DB::commit();
+            
+            $data = [
+                "theme" => $theme,
+                "payment_midtrans" => $payment_midtrans,
+            ];
+    
+            return view('user/order/checkout',  compact('data'));
+
+        } catch (Exception $e) {
+            DB::rollback();
+            dd($e);
+            return redirect()->back()->with("error", "Order failed");
+        }
+
+        
+    }
+
+     
+    
 
 
 }

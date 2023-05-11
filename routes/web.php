@@ -37,6 +37,7 @@ Route::prefix('order')->name('order.')->group(function () {
     Route::get('/',  $controller_order . '@makeOrderSelectPackage')->name('index');
     Route::get('/theme/{package_id}',  $controller_order . '@makeOrderSelectTheme')->name('theme');
     Route::get('/summary/{theme_id}',  $controller_order . '@makeOrderSummary')->name('summary');
+    Route::post('/make',  $controller_order . '@makeOrder')->name('make');
     Route::view('/detail', 'user/order/detail')->name('detail');
 });
 

@@ -59,9 +59,17 @@
                 {{-- <x-button-a href="{{ route('order.theme') }}" class="w-full py-3 tracking-wide transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                     <span class="mx-1">Prev</span>
                 </x-button-a> --}}
-                <x-button-a href="{{ route('order.detail') }}" class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                {{-- <x-button-a href="{{ route('order.checkout') }}" class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                     <span class="mx-1">Buat Undangan</span>
-                </x-button-a>
+                </x-button-a> --}}
+
+                <form action="{{route('order.make')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="theme_id" value={{ encode_id($data['theme']->id) }}>
+                    <button type="submit" class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                        <span class="mx-1">Buat Undangan</span>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
