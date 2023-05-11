@@ -5,6 +5,11 @@ namespace Modules\Order\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
+// Entities
+use Modules\Package\Entities\Package;
+use Modules\Theme\Entities\Theme;
 
 class OrdersController extends Controller
 {
@@ -80,4 +85,63 @@ class OrdersController extends Controller
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
         );
     }
+
+    /**
+     * Select Package to Make Order
+     *
+     * @return 
+     */
+    public function makeOrderSelectPackage()
+    {
+        // Get all package
+        $packages = Package::all();
+
+        $data = [
+            "packages" => $packages
+        ];
+
+        return view('user/order/index',  compact('data'));
+    }
+
+    /**
+     * Select Theme to Make Order
+     *
+     * @return 
+     */
+    public function makeOrderSelectTheme($package_id)
+    {
+        
+        // Get all theme by package id
+        $package_id = decode_id($package_id);
+        $themes = Theme::where('package_id', $package_id)->get();
+
+        $data = [
+            "themes" => $themes
+        ];
+
+        return view('user/order/theme',  compact('data'));
+    }
+    
+     /**
+     * Summary to Make Order
+     *
+     * @return 
+     */
+    public function makeOrderSummary($theme_id)
+    {
+        if (!Auth::check()) {
+            return view('auth.login');
+        }
+
+        $theme_id = decode_id($theme_id);
+        $theme = Theme::where('id', $theme_id)->first();
+
+        $data = [
+            "theme" => $theme
+        ];
+
+        return view('user/order/summary',  compact('data'));
+    }
+
+
 }

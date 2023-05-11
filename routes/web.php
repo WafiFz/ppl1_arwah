@@ -31,9 +31,12 @@ Route::get('/', 'App\Http\Controllers\PageController@index')->name('home');
 * ---------------------------------------------------------------------
 */
 Route::prefix('order')->name('order.')->group(function () {
-    Route::view('/', 'user/order/index')->name('index');
-    Route::view('/theme', 'user/order/theme')->name('theme');
-    Route::view('/summary', 'user/order/summary')->name('summary');
+    $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
+    
+    // Route::view('/', 'user/order/index')->name('index');
+    Route::get('/',  $controller_order . '@makeOrderSelectPackage')->name('index');
+    Route::get('/theme/{package_id}',  $controller_order . '@makeOrderSelectTheme')->name('theme');
+    Route::get('/summary/{theme_id}',  $controller_order . '@makeOrderSummary')->name('summary');
     Route::view('/detail', 'user/order/detail')->name('detail');
 });
 
@@ -41,7 +44,7 @@ Route::prefix('client')->name('client.')->group(function () {
     $controller_profile = 'App\Http\Controllers\ProfileController';
     $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
 
-    Route::get('/orders', $controller_order . '@index')->name('orders');
+    Route::get('/orders', $controller_order . '@show')->name('orders');
     Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
     Route::view('/invitation', 'client/invitation')->name('invitation');
     Route::get('/{id}', $controller_profile  . '@show')->name('index');

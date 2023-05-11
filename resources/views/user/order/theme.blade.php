@@ -6,11 +6,12 @@
                 <div class="w-1/2 h-2 mx-auto rounded-md bg-brand-purple-500"></div>
             </div>
             <div class="grid gap-4 mt-8 xl:gap-8 place-items-center place-content-between sm:grid-cols-2 lg:grid-cols-3">
+                @foreach ($data["themes"] as $theme )
                 <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                    <a href="{{  route('order.summary', encode_id($theme->id)) }}" class="relative">
+                        <img class="rounded-t-lg" src="{{ $theme->img_preview }}" alt=""/>
                         <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
+                            {{ $theme->package->name }}
                         </div>
                     </a>
                     <div class="text-center">
@@ -20,54 +21,19 @@
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div>
                         </div>
                         <div class="w-full py-3 rounded-b-lg">
-                            <span class="font-bold">Nama Tema</span> 
+                            <span class="font-bold">{{ $theme->name }}</span> 
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
-                        <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
-                        </div>
-                    </a>
-                    <div class="text-center">
-                        <div class="flex gap-1.5 justify-center pt-5 pb-3">
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                        </div>
-                        <div class="w-full py-3 rounded-b-lg">
-                            <span class="font-bold">Nama Tema</span> 
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
-                        <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
-                        </div>
-                    </a>
-                    <div class="text-center">
-                        <div class="flex gap-1.5 justify-center pt-5 pb-3">
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                        </div>
-                        <div class="w-full py-3 rounded-b-lg">
-                            <span class="font-bold">Nama Tema</span> 
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="flex justify-end gap-2 mt-8">
-                <x-button-a href="{{ route('order.index') }}" class="w-full py-3 tracking-wide transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                {{-- <x-button-a href="{{ route('order.index') }}" class="w-full py-3 tracking-wide transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                     <span class="mx-1">Prev</span>
-                </x-button-a>
-                <x-button-a href="{{ route('order.summary') }}" class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                </x-button-a> --}}
+                {{-- <x-button-a href="{{ route('order.summary') }}" class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                     <span class="mx-1">Next</span>
-                </x-button-a>
+                </x-button-a> --}}
             </div>
         </div>
     </section>
