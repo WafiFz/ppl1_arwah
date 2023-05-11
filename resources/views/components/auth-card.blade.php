@@ -7,5 +7,4 @@
         </div>
         {{ $slot }}
     </div>
-    {{ $slot }}
 </div>

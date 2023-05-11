@@ -42,4 +42,16 @@ class FrontendController extends Controller
 
         return view('frontend.terms', compact('body_class'));
     }
+
+    /**
+     * Help Centre Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function help()
+    {
+        $body_class = '';
+
+        return view('frontend.help', compact('body_class'));
+    }
 }
