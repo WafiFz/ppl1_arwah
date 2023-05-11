@@ -5,6 +5,7 @@ namespace Modules\Order\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Modules\Order\Entities\Order;
 
 class OrdersController extends Controller
 {
@@ -33,6 +34,10 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        // Get All Data From Table Order
+        $datas = Order::all();
+
+        // dd($datas);
         // $module_title = $this->module_title;
         // $module_name = $this->module_name;
         // $module_path = $this->module_path;
@@ -49,9 +54,7 @@ class OrdersController extends Controller
         //     compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         // );
 
-        return view('client/orders');
-
-        
+        return view('client/orders', ['datas' => $datas]);
     }
 
     /**

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth Routes
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
@@ -40,10 +40,18 @@ Route::prefix('order')->name('order.')->group(function () {
 Route::prefix('client')->name('client.')->group(function () {
     $controller_profile = 'App\Http\Controllers\ProfileController';
     $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
+    $controller_invitation = 'Modules\Invitation\Http\Controllers\Backend\InvitationsController';
+
 
     Route::get('/orders', $controller_order . '@index')->name('orders');
-    Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
+
+
+    // Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
+    Route::get('/editInvitation', $controller_invitation . '@index')->name(('editInvitation'));
+
     Route::view('/invitation', 'client/invitation')->name('invitation');
+
+
     Route::get('/{id}', $controller_profile  . '@show')->name('index');
     Route::post('/{id}', $controller_profile . '@edit')->name('editProfile');
     // Route::view('/orders', 'client/orders')->name('orders');
