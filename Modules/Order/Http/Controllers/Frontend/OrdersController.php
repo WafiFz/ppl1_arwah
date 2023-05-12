@@ -210,11 +210,12 @@ class OrdersController extends Controller
     public function makeOrderMidtransCallback(Request $request)
     {
         $server_key = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$server_key);
         if($hashed == $request->signature_key){
             if($request->transaction_status == 'capture'){
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'PAID']);
+                dd("OK");
             }
         }
     }
