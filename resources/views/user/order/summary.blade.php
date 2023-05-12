@@ -7,21 +7,19 @@
             </div>
             <div class="py-5 mt-8 rounded-md px-7 bg-brand-purple-100">
                 <div>
-                    <strong>Nama</strong>
-                    <p>{{ auth()->user()->name }}</p>
-                </div>
-                <div>
-                    <strong>Email</strong>
-                    <p>{{ auth()->user()->email }}</p>
-                </div>
-                <div>
                     <strong>Pilihan Paket</strong>
                     <div>
                         <p class="mb-1">{{ $data['theme']->package->name }}</p>
                     </div>
                 </div>
+                <div>
+                    <strong>Pilihan Tema</strong>
+                    <div>
+                        <p class="mb-1">{{ $data['theme']->name }}</p>
+                    </div>
+                </div>
             </div>
-            <div class="mt-5" x-data="{open: false}">
+            {{-- <div class="mt-5" x-data="{open: false}">
                 <div class="flex gap-3 py-4 rounded-md px-7 bg-brand-purple-100" :class="open && 'rounded-b-none border-b border-gray-400'" @click="open = !open">
                     <div class="flex justify-between grow">
                         <strong>Metode Pembayaran</strong>
@@ -49,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="flex flex-col justify-between py-4 mt-5 font-bold rounded-md px-7 sm:flex-row bg-brand-purple-100">
                 <span>Total</span>
                 <span>@rupiah($data['theme']->price)</span>
@@ -63,7 +61,7 @@
                     <span class="mx-1">Buat Undangan</span>
                 </x-button-a> --}}
 
-                <form action="{{route('order.make')}}" method="post">
+                <form action="{{route('order.checkout')}}" method="post">
                     @csrf
                     <input type="hidden" name="theme_id" value={{ encode_id($data['theme']->id) }}>
                     <button type="submit" class="w-full py-3 tracking-wide text-white transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
