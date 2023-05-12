@@ -2772,6 +2772,9 @@ video {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
+.faqItem-cascaded > i{
+  transform: rotate(180deg);
+}
 .faqItem-cascaded + div{
   display: none;
 }

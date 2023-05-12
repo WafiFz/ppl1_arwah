@@ -68,8 +68,8 @@
                 Frequently Ask Question
             </div>
             <div>
-                <button onclick="this.classList.toggle('faqItem-cascaded')" class="faqItem-cascaded rounded-t-lg w-full text-start font-medium text-xl py-3 px-11 mt-6 tracking-wide text-white bg-brand-purple-500 focus:outline-none">
-                    <span>Bagaimana cara membuat undangan?</span>
+                <button onclick="this.classList.toggle('faqItem-cascaded')" class="rounded-t-lg w-full text-start font-medium text-xl py-3 px-11 mt-6 tracking-wide text-white bg-brand-purple-500 focus:outline-none flex items-center justify-between faqItem-cascaded">
+                    <span>Bagaimana cara membuat undangan?</span><i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
                 </button>
                 <div class="bg-brand-purple-100 px-11 py-3 rounded-b-lg text-base font-medium tracking-wide text-black">
                     <p>
@@ -78,8 +78,8 @@
                 </div>
             </div>
             <div>
-                <button onclick="this.classList.toggle('faqItem-cascaded')" class="faqItem-cascaded rounded-t-lg w-full text-start font-medium text-xl py-3 px-11 mt-6 tracking-wide text-white bg-brand-purple-500 focus:outline-none">
-                    <span>Bagaimana cara membuat undangan?</span>
+                <button onclick="this.classList.toggle('faqItem-cascaded')" class="rounded-t-lg w-full text-start font-medium text-xl py-3 px-11 mt-6 tracking-wide text-white bg-brand-purple-500 focus:outline-none flex items-center justify-between faqItem-cascaded">
+                    <span>Bagaimana cara membuat undangan?</span><i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
                 </button>
                 <div class="bg-brand-purple-100 px-11 py-3 rounded-b-lg text-base font-medium tracking-wide text-black">
                     <p>
