@@ -46,20 +46,20 @@
                     </h5>
                 </x-button>
                 <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
-                    <i class=" fa-solid fa-cogs" style="font-size:5rem"></i>
-                    <h5 class="mt-5 text-xl font-medium text-gray-900">
+                    <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
+                    <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
                 </x-button>
                 <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
-                    <i class=" fa-solid fa-cogs" style="font-size:5rem"></i>
-                    <h5 class="mt-5 text-xl font-medium text-gray-900">
+                    <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
+                    <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
                 </x-button>
                 <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
-                    <i class=" fa-solid fa-cogs" style="font-size:5rem"></i>
-                    <h5 class="mt-5 text-xl font-medium text-gray-900">
+                    <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
+                    <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
                 </x-button>
