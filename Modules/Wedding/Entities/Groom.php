@@ -16,7 +16,7 @@ class Groom extends BaseModel
     
     protected static function newFactory()
     {
-        return \Modules\Wedding\Database\factories\GroomFactory::new();
+        return \Modules\Wedding\database\factories\GroomFactory::new();
     }
 
     /**
