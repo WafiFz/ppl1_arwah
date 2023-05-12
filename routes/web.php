@@ -38,7 +38,6 @@ Route::prefix('order')->name('order.')->group(function () {
     Route::get('/theme/{package_id}',  $controller_order . '@makeOrderSelectTheme')->name('theme');
     Route::get('/summary/{theme_id}',  $controller_order . '@makeOrderSummary')->name('summary');
     Route::post('/checkout',  $controller_order . '@makeOrder')->name('checkout');
-    Route::post('/midtrans-callback',  $controller_order . '@makeOrderMidtransCallback')->name('midtransCallback');
     Route::view('/detail', 'user/order/detail')->name('detail');
 });
 
