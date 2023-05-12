@@ -16,7 +16,7 @@ class WeddingGallery extends BaseModel
     
     protected static function newFactory()
     {
-        return \Modules\Wedding\Database\factories\WeddingGalleryFactory::new();
+        return \Modules\Wedding\database\factories\WeddingGalleryFactory::new();
     }
 
     /**
