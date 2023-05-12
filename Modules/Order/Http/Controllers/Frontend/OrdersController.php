@@ -149,7 +149,7 @@ class OrdersController extends Controller
      *
      * @return 
      */
-    public function makeOrder(Request $request)
+    public function makeOrder($theme_id)
     {
         try {
             
@@ -158,7 +158,7 @@ class OrdersController extends Controller
             }
 
             $user = User::getByid(auth()->user()->id);
-            $theme_id = decode_id($request->theme_id);
+            $theme_id = decode_id($theme_id);
             $theme = Theme::where('id', $theme_id)->first();
             
             DB::beginTransaction();
