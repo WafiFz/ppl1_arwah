@@ -16,7 +16,7 @@ class WeddingEvent extends BaseModel
     
     protected static function newFactory()
     {
-        return \Modules\Wedding\Database\factories\WeddingEventFactory::new();
+        return \Modules\Wedding\database\factories\WeddingEventFactory::new();
     }
 
     /**

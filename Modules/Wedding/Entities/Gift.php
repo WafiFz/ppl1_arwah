@@ -15,7 +15,7 @@ class Gift extends BaseModel
     
     protected static function newFactory()
     {
-        return \Modules\Wedding\Database\factories\GiftFactory::new();
+        return \Modules\Wedding\database\factories\GiftFactory::new();
     }
 
     /**

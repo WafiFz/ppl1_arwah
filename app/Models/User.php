@@ -114,4 +114,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     {
         return env('SLACK_NOTIFICATION_WEBHOOK');
     }
+
+     /**
+     * Get by user id
+     *
+     * @return User
+     */
+    public static function getByid($id)
+    {
+        return User::where('id', $id)->first();
+    }
 }

@@ -33,7 +33,7 @@ class Theme extends BaseModel
     // Package
     public function package()
     {
-        return $this->belongTo('Modules\Package\Entities\Package');
+        return $this->belongsTo('Modules\Package\Entities\Package');
     }
 
     // Order

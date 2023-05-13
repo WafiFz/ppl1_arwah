@@ -16,7 +16,7 @@ class Wish extends BaseModel
     
     protected static function newFactory()
     {
-        return \Modules\Wedding\Database\factories\WishFactory::new();
+        return \Modules\Wedding\database\factories\WishFactory::new();
     }
 
     /**

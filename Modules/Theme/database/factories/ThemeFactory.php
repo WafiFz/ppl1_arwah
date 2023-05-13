@@ -38,6 +38,7 @@ class ThemeFactory extends Factory
             'package_id'        => $package_id,
             'name'              => $name,
             'slug'              => $slug,
+            'img_preview'       => "https://mdbootstrap.com/img/new/standard/nature/184.jpg",
             'description'       => $this->faker->paragraph,
             'price'             => $this->faker->numberBetween(50000, 500000),
             'created_at'        => Carbon::now(),

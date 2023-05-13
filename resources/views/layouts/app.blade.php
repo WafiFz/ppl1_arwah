@@ -22,6 +22,10 @@
         
         <!-- Analytics -->
         <x-google-analytics config="{{ setting('google_analytics') }}" />
+
+        <!-- Payment Midtrans -->
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="flex flex-col min-h-screen bg-[#FCFCFC]">
