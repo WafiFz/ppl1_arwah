@@ -4,6 +4,7 @@ namespace Modules\Invitation\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Backend\BackendBaseController;
+use Illuminate\Database\Query\IndexHint;
 
 class InvitationsController extends BackendBaseController
 {
@@ -27,4 +28,8 @@ class InvitationsController extends BackendBaseController
         $this->module_model = "Modules\Invitation\Models\Invitation";
     }
 
+    public function index()
+    {
+        return view("client.editInvitation");
+    }
 }
