@@ -6,19 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
 use Modules\Order\Entities\Order;
-=======
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
-// Entities
-use Modules\Order\Entities\Order;
-use Modules\Order\Entities\Payment;
-use Modules\Package\Entities\Package;
-use Modules\Theme\Entities\Theme;
-use App\Models\User;
->>>>>>> d74e22cceec45641f6565b9cb6847ff4dd056288
 
 class OrdersController extends Controller
 {
@@ -76,26 +64,26 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
-        $id = decode_id($id);
+    // public function show($id)
+    // {
+    //     $id = decode_id($id);
 
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+    //     $module_title = $this->module_title;
+    //     $module_name = $this->module_name;
+    //     $module_path = $this->module_path;
+    //     $module_icon = $this->module_icon;
+    //     $module_model = $this->module_model;
+    //     $module_name_singular = Str::singular($module_name);
 
-        $module_action = 'Show';
+    //     $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+    //     $$module_name_singular = $module_model::findOrFail($id);
 
-        return view(
-            "order::frontend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
-        );
-    }
+    //     return view(
+    //         "order::frontend.$module_name.show",
+    //         compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
+    //     );
+    // }
 
     /**
      * Select Package to Make Order
@@ -121,7 +109,7 @@ class OrdersController extends Controller
      */
     public function makeOrderSelectTheme($package_id)
     {
-        
+
         // Get all theme by package id
         $package_id = decode_id($package_id);
         $themes = Theme::where('package_id', $package_id)->get();
@@ -132,8 +120,8 @@ class OrdersController extends Controller
 
         return view('user/order/theme',  compact('data'));
     }
-    
-     /**
+
+    /**
      * Summary to Make Order
      *
      * @return 
@@ -150,7 +138,7 @@ class OrdersController extends Controller
         return view('user/order/summary',  compact('data'));
     }
 
-     /**
+    /**
      * Checkout to Make Order
      *
      * @return 
@@ -158,7 +146,7 @@ class OrdersController extends Controller
     public function makeOrder($theme_id)
     {
         try {
-            
+
             if (!Auth::check()) {
                 return view('auth.login');
             }
@@ -166,9 +154,9 @@ class OrdersController extends Controller
             $user = User::getByid(auth()->user()->id);
             $theme_id = decode_id($theme_id);
             $theme = Theme::where('id', $theme_id)->first();
-            
+
             DB::beginTransaction();
-            
+
             // Create Order
             $order = [
                 "status" => "UNPAID",
@@ -176,7 +164,7 @@ class OrdersController extends Controller
                 "package_id" => $theme->package_id,
                 "theme_id" => $theme->id,
             ];
-            
+
             $order = Order::create($order);
 
             // Create Payment
@@ -189,23 +177,20 @@ class OrdersController extends Controller
             $payment = Payment::create($payment);
 
             $payment_midtrans = Payment::midtrans($user, $order, $payment);
-                
+
             DB::commit();
-            
+
             $data = [
                 "theme" => $theme,
                 "payment_midtrans" => $payment_midtrans,
             ];
-    
-            return view('user/order/checkout',  compact('data'));
 
+            return view('user/order/checkout',  compact('data'));
         } catch (Exception $e) {
             DB::rollback();
             dd($e);
             return redirect()->back()->with("error", "Order failed");
         }
-
-        
     }
 
     /**
@@ -216,17 +201,13 @@ class OrdersController extends Controller
     public function makeOrderMidtransCallback(Request $request)
     {
         $server_key = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$server_key);
-        if($hashed == $request->signature_key){
-            if($request->transaction_status == 'capture'){
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $server_key);
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'capture') {
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'PAID']);
                 dd("OK");
             }
         }
     }
-     
-    
-
-
 }

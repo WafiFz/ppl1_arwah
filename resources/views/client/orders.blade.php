@@ -87,7 +87,10 @@
                                         class="font-medium text-brand-pink hover:underline">Details</a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('client.editInvitation') }}"
+                                    {{-- <a href="{{ route('client.editInvitation') }}"
+                                        class="font-medium text-brand-purple-500 hover:underline">Details</a> --}}
+
+                                    <a href="{{ route('client.editInvitation', $data->id) }}"
                                         class="font-medium text-brand-purple-500 hover:underline">Details</a>
                                 </td>
                             </tr>

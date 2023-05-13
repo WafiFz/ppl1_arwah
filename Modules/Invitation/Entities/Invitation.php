@@ -24,11 +24,11 @@ class Invitation extends BaseModel
     }
 
     /**
-    *
-    *  RELATION
-    *
-    * ---------------------------------------------------------------------
-    */
+     *
+     *  RELATION
+     *
+     * ---------------------------------------------------------------------
+     */
 
     // User
     public function user()
@@ -47,7 +47,7 @@ class Invitation extends BaseModel
     {
         return $this->belongsTo('Modules\Invitation\Entities\InvitationType');
     }
-    
+
     // Wedding
     public function wedding()
     {
@@ -67,9 +67,9 @@ class Invitation extends BaseModel
     }
 
     /**
-    *
-    *  METHOD
-    *
-    * ---------------------------------------------------------------------
-    */
+     *
+     *  METHOD
+     *
+     * ---------------------------------------------------------------------
+     */
 }

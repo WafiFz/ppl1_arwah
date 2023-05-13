@@ -5,6 +5,8 @@ namespace Modules\Invitation\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Modules\Invitation\Entities\Invitation;
+use Modules\Order\Entities\Order;
 
 class InvitationsController extends Controller
 {
@@ -56,24 +58,30 @@ class InvitationsController extends Controller
      * @param  int  $id
      * @return Response
      */
+    // public function show($id)
+    // {
+    //     $id = decode_id($id);
+
+    //     $module_title = $this->module_title;
+    //     $module_name = $this->module_name;
+    //     $module_path = $this->module_path;
+    //     $module_icon = $this->module_icon;
+    //     $module_model = $this->module_model;
+    //     $module_name_singular = Str::singular($module_name);
+
+    //     $module_action = 'Show';
+
+    //     $$module_name_singular = $module_model::findOrFail($id);
+
+    //     return view(
+    //         "invitation::frontend.$module_name.show",
+    //         compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
+    //     );
+    // }
     public function show($id)
     {
-        $id = decode_id($id);
+        $data = Order::find($id);
 
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'Show';
-
-        $$module_name_singular = $module_model::findOrFail($id);
-
-        return view(
-            "invitation::frontend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
-        );
+        return view('client/editInvitation', ['data' => $data]);
     }
 }
