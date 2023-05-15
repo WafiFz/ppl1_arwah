@@ -6,7 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+// Entities
 use Modules\Order\Entities\Order;
+use Modules\Order\Entities\Payment;
+use Modules\Package\Entities\Package;
+use Modules\Theme\Entities\Theme;
+use App\Models\User;
 
 class OrdersController extends Controller
 {
