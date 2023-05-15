@@ -44,7 +44,8 @@ class OrdersController extends Controller
     public function index()
     {
         // Get All Data From Table Order
-        $datas = Order::all();
+        // dd(auth());
+        $datas = Order::where('user_id', auth()->user()->id)->get();
 
         // dd($datas);
         // $module_title = $this->module_title;
@@ -214,7 +215,8 @@ class OrdersController extends Controller
             if ($request->transaction_status == 'capture') {
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'PAID']);
-                dd("OK");
+
+                // Create invitation
             }
         }
     }
