@@ -20,11 +20,12 @@
                                     <div>
                                         <h5 class="text-xl font-bold text-gray-900">{{ $package->name }}</h5>
                                         <span class="text-xl text-brand-yellow-600">{{ $package->price }}</span>
-                                        <ul class="my-4">
-                                            <li>{{ $package->description }}</li>
+                                        {{-- <div>{{ $package->description }}</div> --}}
+                                        <ul class="my-4 text-left">
+                                            <?= $package->features; ?>
                                         </ul>
                                     </div>
-                                    <button type="button" class="inline-block px-10 py-2.5 text-white bg-brand-purple-500 font-medium text-xs rounded-full hover:bg-brand-purple-100 focus:bg-brand-purple-100 active:bg-brand-purple-100 mt-4">Button</button>
+                                    <button type="button" class="inline-block px-10 py-2.5 text-white bg-brand-purple-500 font-medium text-xs rounded-full hover:bg-brand-purple-100 focus:bg-brand-purple-100 active:bg-brand-purple-100 mt-4">Pilih</button>
                                 </div>
                             </li>
                             @endforeach

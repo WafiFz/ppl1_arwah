@@ -9,16 +9,17 @@
                 @foreach ($data["themes"] as $theme )
                 <div class="bg-white rounded-lg shadow-lg">
                     <a href="{{  route('order.summary', encode_id($theme->id)) }}" class="relative">
-                        <img class="rounded-t-lg" src="{{ $theme->img_preview }}" alt=""/>
+                        <img class="rounded-t-lg" src="{{ asset('img/' . $theme->img_preview) }}" alt=""/>
                         <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
                             {{ $theme->package->name }}
                         </div>
                     </a>
                     <div class="text-center">
                         <div class="flex gap-1.5 justify-center pt-5 pb-3">
+                            {{-- <div class="bg-gray-200 rounded-full w-9 h-9"></div>
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
+                            <div class="bg-gray-200 rounded-full w-9 h-9"></div> --}}
+                            <div>@rupiah($theme->price)</div>
                         </div>
                         <div class="w-full py-3 rounded-b-lg">
                             <span class="font-bold">{{ $theme->name }}</span> 

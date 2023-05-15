@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 // Entities
-
 use Modules\Package\Entities\Package;
+use Modules\Theme\Entities\Theme;
 
 class PageController extends Controller
 {
@@ -19,9 +19,11 @@ class PageController extends Controller
     {
         // Get all package
         $packages = Package::all();
+        $themes = Theme::all();
 
         $data = [
-            "packages" => $packages
+            "packages" => $packages,
+            "themes" => $themes,
         ];
 
         return view('user.dashboard.index', compact('data'));

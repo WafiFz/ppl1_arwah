@@ -3,7 +3,7 @@
         <div class="container flex items-center gap-4">
             <div class="w-full">
                 <div>
-                    <h1 class="mt-0 mb-2 text-5xl font-medium leading-tight">Lorem ipsum dolor sit amet, consectetur</h1>
+                    <h1 class="mt-0 mb-2 text-5xl font-medium leading-tight">Digital Invitation</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibus ante at vestibulum.</p>
                 </div>
                 <div class="flex flex-wrap items-center justify-between p-4 mt-12 text-center bg-brand-purple-100">
@@ -72,7 +72,7 @@
                         <img class="rounded-t-lg w-full max-w-[300px] mx-auto" src="{{asset('img/dummy-illustration.svg')}}" alt=""/>
                     </a>
                     <div class="mt-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Reason 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Ramah Lingkungan</h5>
                         <p class="mb-4 text-base text-gray-700">
                             Some quick example text to build on the card title and make up the bulk of the card's
                             content.
@@ -102,82 +102,28 @@
                 <p class="flex items-center">Tersedia berbagai preset yang membantu anda memilih undangan sesuai keinginan.</p>
             </div>
             <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                @foreach ($data["themes"] as $theme )
                 <div class="bg-white rounded-lg shadow-lg">
                     <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                        <img class="rounded-t-lg" src="{{asset('img/' . $theme->img_preview)}}" alt=""/>
                         <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
+                            {{ $theme->package->name }}
                         </div>
                     </a>
                     <div class="text-center">
                         <div class="flex gap-1.5 justify-center pt-5 pb-3">
+                            {{-- <div class="bg-gray-200 rounded-full w-9 h-9"></div>
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
+                            <div class="bg-gray-200 rounded-full w-9 h-9"></div> --}}
+                            <div>@rupiah($theme->price)</div>
                         </div>
                         <x-button class="w-full py-3 text-base font-bold rounded-b-lg hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
                             @click="showModal = true">
-                            Nama Tema
+                            {{ $theme->name }}
                         </x-button>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
-                        <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
-                        </div>
-                    </a>
-                    <div class="text-center">
-                        <div class="flex gap-1.5 justify-center pt-5 pb-3">
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                        </div>
-                        <x-button class="w-full py-3 text-base font-bold rounded-b-lg hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
-                            @click="showModal = true">
-                            Nama Tema
-                        </x-button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
-                        <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
-                        </div>
-                    </a>
-                    <div class="text-center">
-                        <div class="flex gap-1.5 justify-center pt-5 pb-3">
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                        </div>
-                        <x-button class="w-full py-3 text-base font-bold rounded-b-lg hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
-                            @click="showModal = true">
-                            Nama Tema
-                        </x-button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
-                        <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
-                            Luxury
-                        </div>
-                    </a>
-                    <div class="text-center">
-                        <div class="flex gap-1.5 justify-center pt-5 pb-3">
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                            <div class="bg-gray-200 rounded-full w-9 h-9"></div>
-                        </div>
-                        <x-button class="w-full py-3 m-0 text-base font-bold rounded-b-lg hover:bg-brand-purple-500 hover:text-white"
-                            @click="showModal = true">
-                            Nama Tema
-                        </x-button>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="grid mt-10 place-items-center">
                 <x-button-a href="{{ route('order.index') }}" class="w-full py-3 text-base tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-48 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
