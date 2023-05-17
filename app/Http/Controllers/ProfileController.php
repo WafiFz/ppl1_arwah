@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Userprofile;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -18,7 +20,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         //
     }
 
@@ -81,11 +83,11 @@ class ProfileController extends Controller
         }
 
         try {
-            
+
             $input = $request->except('_token');
 
             DB::beginTransaction();
-            
+
             // Update data user
             $user = User::find($id);
             $user->name = $input['first_name'] . ' ' . $input['last_name'];
@@ -98,14 +100,14 @@ class ProfileController extends Controller
             $user->save();
 
             // Update data user_profile
-            $profile = Userprofile::where('user_id', $id);      
+            $profile = Userprofile::where('user_id', $id);
             $profile->update($input);
 
             // Update avatar
             $this->avatarHandle($request, $user, $profile);
 
             DB::commit();
-           
+
             return redirect()->back()->with("flash_success", "Edit success");
         } catch (Exception $e) {
             DB::rollback();
@@ -138,9 +140,32 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updatePassword(Request $request, $id)
     {
-        //
+        // get data user
+        $user = User::where('email', auth()->user()->email)->first();
+
+        // make validation
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    $fail('The current password is incorrect.');
+                }
+            }],
+            'new_password' => 'required | different:password',
+            'new_password_confirmation' => 'required|same:new_password',
+        ]);
+
+        // condition if falidation fails or succes
+        if ($validator->fails()) {
+            dd('tidak memenuhi validasi');
+        } else {
+            $user->update([
+                'password' => bcrypt($request->new_password),
+            ]);
+
+            return redirect()->route('client.index', encode_id($user->id));
+        }
     }
 
     /**
@@ -162,14 +187,14 @@ class ProfileController extends Controller
      */
     public function avatarHandle(Request $request, $user, $profile)
     {
-         // IF User Add New Photo At Form
-         if ($request->avatar != null) {
+        // IF User Add New Photo At Form
+        if ($request->avatar != null) {
 
-            if($user->avatar != null) {
+            if ($user->avatar != null) {
                 // Delete Before Insert New Image
                 // Replace directory
                 $user->avatar = Str::replace('storage', 'public', $user->avatar);
-                
+
                 Storage::disk('local')->delete($user->avatar);
             }
 
@@ -184,8 +209,8 @@ class ProfileController extends Controller
             ]);
 
             $profile->update([
-               'avatar' => $avatar,
-           ]);
+                'avatar' => $avatar,
+            ]);
         }
     }
 }
