@@ -7,15 +7,17 @@ use Illuminate\View\Component;
 class MemberLayout extends Component
 {
     public $title;
+    public $dataFunction;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title)
+    public function __construct($title, $dataFunction = "")
     {
         $this->title = $title;
+        $this->dataFunction  = $dataFunction;
     }
 
     /**

@@ -35,7 +35,7 @@
     @resize.window="handleResize()"
 >
     <!-- Sidebar -->
-    <div class="xl:flex">
+    <div class="xl:flex" x-data={{$dataFunction}}>
         @include('client.layouts._sidebar')
         <!-- /Sidebar -->
         <div class="flex flex-col w-full min-h-screen">

@@ -49,6 +49,10 @@ Route::prefix('client')->name('client.')->group(function () {
 
     Route::get('/orders', $controller_order . '@index')->name('orders');
 
+    Route::prefix('guests')->name('guests.')->group(function(){
+
+        Route::view('/add', 'client/addGuest')->name('add');
+    });
 
     // Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
     Route::get('/editInvitation/{id}', $controller_invitation . '@show')->name(('editInvitation'));
