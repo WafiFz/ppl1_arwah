@@ -46,28 +46,13 @@ class OrdersController extends Controller
     public function index()
     {
         // Get All Data From Table Order
-        // dd(auth());
-        $datas = Order::where('user_id', auth()->user()->id)->get();
-        // $datas = Order::all();
+        $orders = Order::where('user_id', auth()->user()->id)->get();
 
-        // dd($datas);
-        // $module_title = $this->module_title;
-        // $module_name = $this->module_name;
-        // $module_path = $this->module_path;
-        // $module_icon = $this->module_icon;
-        // $module_model = $this->module_model;
-        // $module_name_singular = Str::singular($module_name);
+        $data = [
+            "orders" => $orders
+        ];
 
-        // $module_action = 'List';
-
-        // $$module_name = $module_model::latest()->paginate();
-
-        // return view(
-        //     "order::frontend.$module_path.index",
-        //     compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
-        // );
-
-        return view('client/orders', ['datas' => $datas]);
+        return view('client/orders', compact('data'));
     }
 
     /**

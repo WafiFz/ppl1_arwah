@@ -99,7 +99,13 @@
 						<span>{{ auth()->user()->email }}</span>
 					</div>
 				</div>
-				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+					<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				</a>
+
+				 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                </form>
 			</div>
 		</div>
 	</div>
