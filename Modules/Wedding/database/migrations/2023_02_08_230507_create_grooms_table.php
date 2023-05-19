@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('grooms', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('father');
-            $table->string('mother');
+            $table->string('name')->nullable();
+            $table->string('father')->nullable();
+            $table->string('mother')->nullable();
             $table->text('address')->nullable();
             $table->string('instagram')->nullable();
 

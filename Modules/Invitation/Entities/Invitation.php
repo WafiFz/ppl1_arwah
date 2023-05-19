@@ -2,9 +2,17 @@
 
 namespace Modules\Invitation\Entities;
 
+use Carbon\Carbon;
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+
+// Entities
+use Modules\Wedding\Entities\Wedding;
+use Modules\Wedding\Entities\Bride;
+use Modules\Wedding\Entities\Groom;
+use Modules\Wedding\Entities\WeddingEvent;
 
 class Invitation extends BaseModel
 {
@@ -72,4 +80,45 @@ class Invitation extends BaseModel
      *
      * ---------------------------------------------------------------------
      */
+
+     public static function initWeddingInvitation($order){
+        $invitation = Invitation::create([
+            'user_id'               => auth()->user()->id,
+            'invitation_type_id'    => 1,
+            'status'                => 'INCOMPLETE',
+            'slug'                  => Str::slug(auth()->user()->name . " " . Str::random(10), '-'),
+            'is_custom_domain'      => false,
+            'order_id'              => $order->id,
+            'created_at'            => Carbon::now(),
+            'updated_at'            => Carbon::now(),
+        ]);
+
+        $wedding = Wedding::create([
+            'invitation_id'         => $invitation->id,
+        ]);
+
+        Bride::create([
+            'wedding_id'         => $wedding->id,
+        ]);
+
+        Groom::create([
+            'wedding_id'         => $wedding->id,
+        ]);
+
+        WeddingEvent::create([
+            'wedding_id'         => $wedding->id,
+            'name'               => 'Akad Nikah',
+        ]);
+
+        WeddingEvent::create([
+            'wedding_id'         => $wedding->id,
+            'name'               => 'Resepsi',
+        ]);
+
+        WeddingEvent::create([
+            'wedding_id'         => $wedding->id,
+            'name'               => 'Unduh Mantu',
+        ]);
+
+     }
 }

@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('wedding_events', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->dateTime('date');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->string('place');
+            $table->string('name')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->string('place')->nullable();
 
             // Foreign Key
             $table->foreignId('wedding_id');   $table->foreign('wedding_id')->references('id')->on('weddings');

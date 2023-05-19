@@ -2,6 +2,7 @@
 
 namespace Modules\Order\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use Modules\Order\Entities\Order;
 use Modules\Order\Entities\Payment;
 use Modules\Package\Entities\Package;
 use Modules\Theme\Entities\Theme;
+use Modules\Invitation\Entities\Invitation;
 use App\Models\User;
 
 class OrdersController extends Controller
@@ -46,6 +48,7 @@ class OrdersController extends Controller
         // Get All Data From Table Order
         // dd(auth());
         $datas = Order::where('user_id', auth()->user()->id)->get();
+        // $datas = Order::all();
 
         // dd($datas);
         // $module_title = $this->module_title;
@@ -187,6 +190,9 @@ class OrdersController extends Controller
 
             $payment_midtrans = Payment::midtrans($user, $order, $payment);
 
+            // HANYA UNTUK TESTING
+            // Invitation::initWeddingInvitation($order);
+
             DB::commit();
 
             $data = [
@@ -216,7 +222,21 @@ class OrdersController extends Controller
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'PAID']);
 
+                DB::beginTransaction();
+                
                 // Create invitation
+                Invitation::initWeddingInvitation($order);
+
+                DB::commit();
+
+                try {
+
+                } catch (Exception $e) {
+                    DB::rollback();
+                    dd($e);
+                    return redirect()->back()->with("error", "failed");
+                }
+
             }
         }
     }
