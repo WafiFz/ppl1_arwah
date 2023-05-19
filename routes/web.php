@@ -41,6 +41,12 @@ Route::prefix('order')->name('order.')->group(function () {
     Route::view('/detail', 'user/order/detail')->name('detail');
 });
 
+/*
+*
+*  Client Routes
+*
+* ---------------------------------------------------------------------
+*/
 Route::prefix('client')->name('client.')->group(function () {
     $controller_profile = 'App\Http\Controllers\ProfileController';
     $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
@@ -68,11 +74,22 @@ Route::prefix('client')->name('client.')->group(function () {
     // Route::view('/orders', 'client/orders')->name('orders');
 });
 
+/*
+*
+*  Guest Routes
+*
+* ---------------------------------------------------------------------
+*/
+$controller_guest = 'Modules\Invitation\Http\Controllers\Frontend\GuestController';
+$controller_rsvp = 'Modules\Invitation\Http\Controllers\Frontend\RsvpController';
+
+Route::get('/{slug}', $controller_guest . '@showInvitation')->name(('showInvitation'));
+Route::post('/rsvp', $controller_rsvp . '@rsvp')->name(('rsvp'));
 
 
 
 /* 
-* ||========================== LARAVEL STARTER ROUTES ==========================||
+* ||========================== BLOG ROUTES ==========================||
 */
 
 

@@ -81,7 +81,7 @@ class Invitation extends BaseModel
      * ---------------------------------------------------------------------
      */
 
-     public static function initWeddingInvitation($order){
+    public static function initWeddingInvitation($order){
         $invitation = Invitation::create([
             'user_id'               => auth()->user()->id,
             'invitation_type_id'    => 1,
@@ -120,5 +120,9 @@ class Invitation extends BaseModel
             'name'               => 'Unduh Mantu',
         ]);
 
-     }
+    }
+
+    public static function getBySlug($slug){
+        return Invitation::where('slug', $slug)->first();
+    }
 }

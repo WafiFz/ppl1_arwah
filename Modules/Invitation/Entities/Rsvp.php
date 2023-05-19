@@ -2,12 +2,14 @@
 
 namespace Modules\Invitation\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Rsvp extends Model
+class Rsvp extends BaseModel
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'rsvps';
 
