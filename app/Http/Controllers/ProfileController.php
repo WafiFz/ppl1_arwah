@@ -158,7 +158,9 @@ class ProfileController extends Controller
 
         // condition if falidation fails or succes
         if ($validator->fails()) {
-            dd('tidak memenuhi validasi');
+            return back()->withErrors([
+                'password' => 'Tidak memenuhi validasi',
+            ]);
         } else {
             $user->update([
                 'password' => bcrypt($request->new_password),
