@@ -30,7 +30,7 @@ class InvitationDatabaseSeeder extends Seeder
 
         $orders = Order::all();
         foreach ($orders as $order) {
-            Invitation::factory()->create(['order_id' => $order ->id]);
+            Invitation::factory()->create(['order_id' => $order->id]);
         }
         $rows = Invitation::all();
         echo " Insert: invitations \n\n";
