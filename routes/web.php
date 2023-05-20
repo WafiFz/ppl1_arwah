@@ -52,6 +52,7 @@ Route::prefix('client')->name('client.')->group(function () {
 
     // Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
     Route::get('/editInvitation/{id}', $controller_invitation . '@show')->name(('editInvitation'));
+    Route::post('/save/editInvitation/{id}', $controller_invitation . '@edit')->name(('save.editInvitation'));
 
     Route::view('/invitation', 'client/invitation')->name('invitation');
 

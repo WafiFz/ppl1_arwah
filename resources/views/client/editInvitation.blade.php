@@ -1,6 +1,7 @@
 <x-member-layout title="Invitation">
     <main class="grow">
-        <form action="" method="post" x-data="form()">
+        <form action="{{ route('client.save.editInvitation', $data->id) }}" method="post" x-data="form()">
+            @csrf
             <section class="bg-white">
                 <div class="container py-8">
                     <div class="text-center sm:text-start">
@@ -158,7 +159,7 @@
                             <span class="font-bold">Nama</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <input type="text" name="name"
+                            <input type="text" name="groom_name"
                                 value="{{ $data->invitation->wedding->groom->name }}" x-model=""
                                 class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                 placeholder="Masukkan Nama Pengantin Pria" :disabled="isEdit() ? false : true"
@@ -170,7 +171,7 @@
                             <span class="font-bold">Ayah</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <input type="text" name="father"
+                            <input type="text" name="groom_father"
                                 value="{{ $data->invitation->wedding->groom->father }}" x-model=""
                                 class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                 placeholder="Masukkan Nama Ayah Pengantin Pria" :disabled="isEdit() ? false : true"
@@ -182,7 +183,7 @@
                             <span class="font-bold">Ibu</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <input type="text" name="mother"
+                            <input type="text" name="groom_mother"
                                 value="{{ $data->invitation->wedding->groom->mother }}" x-model=""
                                 class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                 placeholder="Masukkan Nama Ibu Pengantin Pria" :disabled="isEdit() ? false : true"
@@ -195,7 +196,7 @@
                         </div>
                         <div class="sm:w-2/3">
                             <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '" id="message"
-                                name="address" rows="4" value="{{ $data->invitation->wedding->groom->address }}" x-model=""
+                                name="groom_address" rows="4" value="{{ $data->invitation->wedding->groom->address }}" x-model=""
                                 class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Masukkan Alamat Pengantin Pria"></textarea>
                         </div>
@@ -211,7 +212,7 @@
                                     id="basic-addon1">@</span>
                                 <input :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100'" type="text"
-                                    value="{{ $data->invitation->wedding->groom->instagram }}"
+                                    name="groom_instagram" value="{{ $data->invitation->wedding->groom->instagram }}"
                                     class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition ease-in-out focus:z-[3] focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                                     placeholder="instagram" />
                             </div>
@@ -230,7 +231,7 @@
                             <span class="font-bold">Nama</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <input type="text" name="name"
+                            <input type="text" name="bride_name"
                                 value="{{ $data->invitation->wedding->bride->name }}" x-model=""
                                 class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                 placeholder="Masukkan Nama Pengantin Wanita" :disabled="isEdit() ? false : true"
@@ -242,7 +243,7 @@
                             <span class="font-bold">Ayah</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <input type="text" name="father"
+                            <input type="text" name="bride_father"
                                 value="{{ $data->invitation->wedding->bride->father }}" x-model=""
                                 class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                 placeholder="Masukkan Nama Ayah Pengantin Pria" :disabled="isEdit() ? false : true"
@@ -254,7 +255,7 @@
                             <span class="font-bold">Ibu</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <input type="text" name="mother"
+                            <input type="text" name="bride_mother"
                                 value="{{ $data->invitation->wedding->bride->mother }}" x-model=""
                                 class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                 placeholder="Masukkan Nama Ibu Pengantin Pria" :disabled="isEdit() ? false : true"
@@ -283,7 +284,7 @@
                                     id="basic-addon1">@</span>
                                 <input :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100'" type="text"
-                                    value="{{ $data->invitation->wedding->bride->instagram }}"
+                                    name="bride_instagram" value="{{ $data->invitation->wedding->bride->instagram }}"
                                     class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition ease-in-out focus:z-[3] focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                                     placeholder="instagram" />
                             </div>
@@ -549,7 +550,7 @@
                         </x-button>
                         <x-button type="submit"
                             class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                            <span class="mx-1">Simpan Perubahan</span>
+                            Simpan Perusahaan
                         </x-button>
                     </div>
                 </div>
