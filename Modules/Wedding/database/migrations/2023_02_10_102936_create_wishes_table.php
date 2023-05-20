@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('wishes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('from');
+            $table->string('name')->nullable();
+            $table->string('from')->nullable();
             $table->text('wish');
 
             // Foreign Key

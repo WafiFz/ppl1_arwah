@@ -82,9 +82,11 @@ Route::prefix('client')->name('client.')->group(function () {
 */
 $controller_guest = 'Modules\Invitation\Http\Controllers\Frontend\GuestController';
 $controller_rsvp = 'Modules\Invitation\Http\Controllers\Frontend\RsvpController';
+$controller_wish = 'Modules\Wedding\Http\Controllers\Frontend\WishController';
 
 Route::get('/{slug}', $controller_guest . '@showInvitation')->name(('showInvitation'));
 Route::post('/rsvp', $controller_rsvp . '@rsvp')->name(('rsvp'));
+Route::post('/wishes', $controller_wish . '@sendWish')->name(('sendWish'));
 
 
 

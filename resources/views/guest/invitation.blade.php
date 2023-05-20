@@ -308,52 +308,47 @@
     </form>
     </section>
     <section class="py-8">
+        <form method="POST" action="{{ route('sendWish') }}">
+        @csrf
+
+        <input type="hidden" name="wedding_id" value="{{ encode_id($data['wedding']->id) }}">
+
         <div class="container">
             <h2 class="mb-4 text-center">Wishes & Gifts</h2>
             <div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
                 <div class="p-4 rounded-lg bg-neutral-100 lg:w-full">
                     <div class="mb-3">
-                        <x-form.label for="nama">Nama</x-form.label>
+                        <x-form.label for="name">Nama</x-form.label>
                         <x-form.input
                             type="text"
-                            id="nama"
-                            name="nama"
+                            id="name"
+                            name="name"
                             placeholder="Masukkan Nama Pengirim"
                         />
                     </div>
                     <div class="mb-3">
-                        <x-form.label for="ucapan">Ucapan</x-form.label>
+                        <x-form.label for="wish">Ucapan</x-form.label>
                         <x-form.textarea
-                            id="ucapan"
-                            name="ucapan"
+                            id="wish"
+                            name="wish"
                             rows="4"
                             placeholder="Tuliskan ucapan anda disini"
                         />
                     </div>
                     <div class="flex items-center gap-1.5 mb-3">
-                        <x-form.checkbox id="anonymous"/>
+                        <x-form.checkbox id="anonymous" name="anonymous" value="true"/>
                         <x-form.label for="anonymous" class="!mb-0">Kirim tanpa nama</x-form.label>
                     </div>
                     <x-button class="w-full text-white bg-brand-purple-900 hover:bg-brand-yellow-500 focus:ring-4 focus:ring-brand-yellow-500">Kirim</x-button>
                 </div>
                 <div class="p-4 rounded-lg bg-neutral-100 lg:w-full">
                     <div class="flex flex-col max-h-[303.2px] overflow-y-scroll">
+                        @foreach ($data['wedding']->wish as $wish )
                         <div class="mb-3">
-                            <p class="m-0">Dari: <strong>Alfadli</strong></p>
-                            <x-form.textarea rows="4"/>
+                            <p class="m-0">Dari: <strong>{{ $wish->name }}</strong></p>
+                            <x-form.textarea rows="4" value="{{ $wish->wish }}"  placeholder="{{ $wish->wish }}"/>
                         </div>
-                        <div class="mb-3">
-                            <p class="m-0">Dari: <strong>Alfadli</strong></p>
-                            <x-form.textarea rows="4"/>
-                        </div>
-                        <div class="mb-3">
-                            <p class="m-0">Dari: <strong>Alfadli</strong></p>
-                            <x-form.textarea rows="4"/>
-                        </div>
-                        <div class="mb-3">
-                            <p class="m-0">Dari: <strong>Alfadli</strong></p>
-                            <x-form.textarea rows="4"/>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="p-4 text-white rounded-lg bg-brand-purple-900 lg:col-span-2">
@@ -368,6 +363,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </section>
     <footer class="flex justify-center py-8 bg-neutral-100">
         Made by invits.co

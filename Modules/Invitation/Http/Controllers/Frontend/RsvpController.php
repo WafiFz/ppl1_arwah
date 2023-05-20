@@ -17,8 +17,7 @@ class RsvpController extends Controller
 {
     public function rsvp(Request $request)
     {
-        try {
-            
+        try { 
             $input = collect($request->except('_token'));
             $input = $input->replace([
                 'invitation_id' => decode_id($request->invitation_id),
