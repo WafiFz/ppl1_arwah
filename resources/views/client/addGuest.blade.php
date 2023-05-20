@@ -1,7 +1,11 @@
 <x-member-layout title="Add Guests">
     <main class="grow">
-        <form action="" method="post" x-data="data()">
+
             <section class="bg-white">
+                <form action="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" method="post" x-data="data()">
+                    @csrf
+                    <input type="hidden" name="invitation_id" value="{{ encode_id($data['invitation']->id) }}">
+                    <input type="hidden" name="is_invited" value="{{ 0 }}">
                 <div class="container py-8">
                     <div class="text-center sm:text-start">
                         <h3 class="mb-0 text-xl font-medium">Guest</h3>
@@ -52,15 +56,16 @@
                             <span class="font-bold">Email</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.input type="email" name="email" value="" x-model="form.email"
+                            <x-form.input type="email" name="email" x-model="form.email"
                                 placeholder="Masukkan email tamu"
                             />
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        <x-button type="button" class="text-white bg-brand-purple-500" @click="addGuest();">Add</x-button>
+                        <x-button type="submit" class="text-white bg-brand-purple-500">Add</x-button>
                     </div>
                 </div>
+                </form>
             </section>
             <section class="bg-white">
                 <div class="container py-8">
@@ -90,15 +95,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <template x-for="guest in guests">
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4" x-text="guest.name"></td>
-                                        <td class="px-6 py-4" x-text="guest.description"></td>
-                                        <td class="px-6 py-4" x-text="guest.address"></td>
-                                        <td class="px-6 py-4" x-text="guest.no_whats_app"></td>
-                                        <td class="px-6 py-4" x-text="guest.email"></td>
-                                    </tr>
-                                </template>
+                                @foreach ($data['invitation']->guest as $guest )
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td class="px-6 py-4">{{ $guest->name }}</td>
+                                    <td class="px-6 py-4">{{ $guest->description }}</td>
+                                    <td class="px-6 py-4">{{ $guest->address }}</td>
+                                    <td class="px-6 py-4">{{ $guest->no_whats_app }}</td>
+                                    <td class="px-6 py-4">{{ $guest->email }}</td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -107,7 +112,6 @@
                     </div>
                 </div>
             </section>
-        </form>
     </main>
     @push('before-scripts')
         <script>

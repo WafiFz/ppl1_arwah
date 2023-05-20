@@ -627,7 +627,7 @@
                     </div>
                     <div class="justify-between mt-5 sm:flex">
                         <p>Total tamu seluruhnya: <span class="font-bold">89</span></p>
-                        <a class="text-brand-purple-500" href="">Lihat lebih banyak <i class="fa-solid fa-arrow-right-long"></i></a>
+                        <a class="text-brand-purple-500" href="{{ route('client.addGuest', encode_id($data->invitation->id)) }}">Lihat lebih banyak <i class="fa-solid fa-arrow-right-long"></i></a>
                     </div>
                 </div>
             </section>

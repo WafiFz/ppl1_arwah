@@ -125,4 +125,8 @@ class Invitation extends BaseModel
     public static function getBySlug($slug){
         return Invitation::where('slug', $slug)->first();
     }
+
+    public static function getById($id){
+        return Invitation::where('id', $id)->first();
+    }
 }

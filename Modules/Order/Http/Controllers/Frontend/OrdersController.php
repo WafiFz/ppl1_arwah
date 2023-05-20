@@ -47,7 +47,7 @@ class OrdersController extends Controller
     {
         // Get All Data From Table Order
         $orders = Order::where('user_id', auth()->user()->id)->get();
-        $orders = Order::all();
+        // $orders = Order::all();
 
         $data = [
             "orders" => $orders
@@ -177,7 +177,7 @@ class OrdersController extends Controller
             $payment_midtrans = Payment::midtrans($user, $order, $payment);
 
             // HANYA UNTUK TESTING
-            // Invitation::initWeddingInvitation($order);
+            Invitation::initWeddingInvitation($order);
 
             DB::commit();
 

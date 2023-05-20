@@ -51,17 +51,16 @@ Route::prefix('client')->name('client.')->group(function () {
     $controller_profile = 'App\Http\Controllers\ProfileController';
     $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
     $controller_invitation = 'Modules\Invitation\Http\Controllers\Frontend\InvitationsController';
+    $controller_guest = 'Modules\Invitation\Http\Controllers\Frontend\GuestController';
 
 
     Route::get('/orders', $controller_order . '@index')->name('orders');
 
-    Route::prefix('guests')->name('guests.')->group(function(){
-
-        Route::view('/add', 'client/addGuest')->name('add');
-    });
-
     // Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
     Route::get('/editInvitation/{id}', $controller_invitation . '@show')->name(('editInvitation'));
+
+    // Route::get('/editInvitation/{id}/guest', $controller_guest . '@addGuest')->name(('addGuest'));
+    Route::match(['GET', 'POST'], '/editInvitation/{id}/guest', $controller_guest . '@addGuest')->name(('addGuest'));
 
     Route::view('/invitation', 'client/invitation')->name('invitation');
 
