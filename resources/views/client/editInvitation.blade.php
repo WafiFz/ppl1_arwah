@@ -1,7 +1,7 @@
 <x-member-layout title="Invitation" dataFunction="form()">
-    
+
     @push('header-actions')
-        <div class="flex justify-end gap-2" x-show="!isEdit()">
+        {{-- <div class="flex justify-end gap-2" x-show="!isEdit()">
             <x-button type="button" @click="editMode()"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 <span class="mx-1">Ubah</span>
@@ -16,9 +16,9 @@
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 <span class="mx-1">Simpan</span>
             </x-button>
-        </div>
+        </div> --}}
     @endpush
-    
+
     <main class="grow">
         <form action="{{ route('client.save.editInvitation', $data->id) }}" method="post" x-data="form()">
             @csrf
@@ -546,18 +546,6 @@
                             </div>
                         </div>
                     @endforeach
-
-                    <div class="flex justify-end gap-2 mb-4" x-show="isEdit()">
-                        <x-button type="button" @click="decrementImage()" x-show="imagesCount > 1"
-                            class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
-                            <span class="mx-1"><i class="fa-solid fa-minus"></i></span>
-                        </x-button>
-                        <x-button type="button" @click="incrementImage()" x-show="imagesCount < 7"
-                            class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                            <span class="mx-1"><i class="fa-solid fa-plus"></i></span>
-                        </x-button>
-                    </div>
-<<<<<<< HEAD
                     <div class="flex justify-end gap-2 py-4 border-t border-gray-200" x-show="!isEdit()">
                         <x-button type="button" @click="editMode()"
                             class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
@@ -573,9 +561,7 @@
                             class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                             Simpan Perusahaan
                         </x-button>
-=======
-                    
-                </div>
+                    </div>
             </section>
             <section class="bg-white">
                 <div class="container py-8">
@@ -585,7 +571,8 @@
                     </div>
                     <div class="relative overflow-auto shadow-md max-h-96 sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Name
@@ -605,35 +592,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">Alfadli</td>
                                     <td class="px-6 py-4">Teman SMA</td>
                                     <td class="px-6 py-4">Meranti III</td>
                                     <td class="px-6 py-4">08xxxxxxxxx</td>
                                     <td class="px-6 py-4">alfadli@gmail.com</td>
                                 </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">Alfadli</td>
                                     <td class="px-6 py-4">Teman SMA</td>
                                     <td class="px-6 py-4">Meranti III</td>
                                     <td class="px-6 py-4">08xxxxxxxxx</td>
                                     <td class="px-6 py-4">alfadli@gmail.com</td>
                                 </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">Alfadli</td>
                                     <td class="px-6 py-4">Teman SMA</td>
                                     <td class="px-6 py-4">Meranti III</td>
                                     <td class="px-6 py-4">08xxxxxxxxx</td>
                                     <td class="px-6 py-4">alfadli@gmail.com</td>
                                 </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">Alfadli</td>
                                     <td class="px-6 py-4">Teman SMA</td>
                                     <td class="px-6 py-4">Meranti III</td>
                                     <td class="px-6 py-4">08xxxxxxxxx</td>
                                     <td class="px-6 py-4">alfadli@gmail.com</td>
                                 </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">Alfadli</td>
                                     <td class="px-6 py-4">Teman SMA</td>
                                     <td class="px-6 py-4">Meranti III</td>
@@ -645,8 +637,9 @@
                     </div>
                     <div class="justify-between mt-5 sm:flex">
                         <p>Total tamu seluruhnya: <span class="font-bold">89</span></p>
-                        <a class="text-brand-purple-500" href="{{ route('client.addGuest', encode_id($data->invitation->id)) }}">Lihat lebih banyak <i class="fa-solid fa-arrow-right-long"></i></a>
->>>>>>> 1a00d5f0a799ec9e49bbb2ccfa05e8a44231e48e
+                        <a class="text-brand-purple-500"
+                            href="{{ route('client.addGuest', encode_id($data->invitation->id)) }}">Lihat lebih banyak
+                            <i class="fa-solid fa-arrow-right-long"></i></a>
                     </div>
                 </div>
             </section>
