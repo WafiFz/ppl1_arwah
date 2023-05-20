@@ -39,4 +39,8 @@ class Guest extends BaseModel
     *
     * ---------------------------------------------------------------------
     */
+    public static function getByName($name)
+    {
+        return Guest::where('name', $name)->first();
+    }
 }

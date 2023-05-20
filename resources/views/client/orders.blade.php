@@ -58,7 +58,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datas as $data)
+                        @foreach ($data['orders'] as $order)
                             <tr class="bg-white border-b hover:bg-gray-50">
                                 <td class="w-4 p-4">
                                     <div class="flex items-center">
@@ -68,19 +68,19 @@
                                     </div>
                                 </td>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    {{ $data->id }}
+                                    {{ $order->id }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $data->created_at }}
+                                    {{ $order->created_at }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $data->package->name }}
+                                    {{ $order->package->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $data->theme->name }}
+                                    {{ $order->theme->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $data->status }}
+                                    {{ $order->status }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('order.detail') }}"
@@ -90,7 +90,7 @@
                                     {{-- <a href="{{ route('client.editInvitation') }}"
                                         class="font-medium text-brand-purple-500 hover:underline">Details</a> --}}
 
-                                    <a href="{{ route('client.editInvitation', $data->id) }}"
+                                    <a href="{{ route('client.editInvitation', $order->id) }}"
                                         class="font-medium text-brand-purple-500 hover:underline">Details</a>
                                 </td>
                             </tr>

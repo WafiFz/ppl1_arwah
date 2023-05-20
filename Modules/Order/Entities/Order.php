@@ -5,11 +5,13 @@ namespace Modules\Order\Entities;
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Order extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
 
     protected $table = 'orders';
 

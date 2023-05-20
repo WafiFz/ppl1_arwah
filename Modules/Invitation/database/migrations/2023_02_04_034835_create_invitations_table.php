@@ -23,7 +23,7 @@ return new class extends Migration
 
             // Foreign Key
             $table->foreignId('user_id');               $table->foreign('user_id')->references('id')->on('users');
-            $table->foreignId('order_id')->unique();              $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreignUuid('order_id');              $table->foreign('order_id')->references('id')->on('orders');
             $table->foreignId('invitation_type_id');    $table->foreign('invitation_type_id')->references('id')->on('invitation_types');
 
             // $table->integer('created_by')->unsigned()->nullable();

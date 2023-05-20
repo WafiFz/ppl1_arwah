@@ -63,15 +63,15 @@
                             <i class="fas fa-tachometer-alt fa-fw"></i>&nbsp;{{__('Admin Dashboard')}}
                         </a>
                         @endif
-                        <a href="{{ route('client.index', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
+                        <a href="{{ route('client.orders') }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fas fa-user fa-fw"></i>&nbsp;Client Area
                         </a>
                         {{-- <a href="{{ route('frontend.users.profile', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fas fa-user fa-fw"></i>&nbsp;{{ Auth::user()->name }}
                         </a> --}}
-                        <a href="{{ route('frontend.users.profileEdit', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
+                        {{-- <a href="{{ route('frontend.users.profileEdit', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fas fa-cogs fa-fw"></i>&nbsp;{{__('Settings')}}
-                        </a>
+                        </a> --}}
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;{{__('Logout')}}
                         </a>
@@ -151,15 +151,15 @@
                             <i class="fas fa-tachometer-alt fa-fw"></i>&nbsp;{{__('Admin Dashboard')}}
                         </a>
                         @endif
-                        <a href="{{ route('client.index', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
+                        <a href="{{ route('client.orders') }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fas fa-user fa-fw"></i>&nbsp;Client Area
                         </a>
                         {{-- <a href="{{ route('frontend.users.profile', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fas fa-user fa-fw"></i>&nbsp;{{ Auth::user()->name }}
                         </a> --}}
-                        <a href="{{ route('frontend.users.profileEdit', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
+                        {{-- <a href="{{ route('frontend.users.profileEdit', encode_id(auth()->user()->id)) }}" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fas fa-cogs fa-fw"></i>&nbsp;{{__('Settings')}}
-                        </a>
+                        </a> --}}
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-purple-500 hover:text-white" role="menuitem">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;{{__('Logout')}}
                         </a>

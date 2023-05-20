@@ -40,7 +40,7 @@
 			<i class="mr-3 fa-lg fa-solid fa-house"></i></i>Back to Home
 			</a>
 			<a
-				class="flex items-center w-full p-3 hover:bg-brand-yellow hover:text-black"
+				class="flex items-center w-full p-3 hover:bg-brand-yellow-500 hover:text-black"
 				href="{{ route('client.index', encode_id(auth()->user()->id)) }}"
 			>
 				<i class="mr-3 fa-lg fas fa-user fa-fw"></i>Profile
@@ -99,7 +99,13 @@
 						<span>{{ auth()->user()->email }}</span>
 					</div>
 				</div>
-				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+					<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				</a>
+
+				 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                </form>
 			</div>
 		</div>
 	</div>

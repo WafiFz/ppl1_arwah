@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('weddings', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
-            $table->text('location');
+            $table->string('title')->nullable();
+            $table->text('location')->nullable();
             $table->string('location_gmap')->nullable();
 
             $table->integer('created_by')->unsigned()->nullable();
