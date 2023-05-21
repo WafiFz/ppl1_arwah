@@ -61,7 +61,9 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::post('/save/editInvitation/{id}', $controller_invitation . '@edit')->name(('save.editInvitation'));
 
     // Route::get('/editInvitation/{id}/guest', $controller_guest . '@addGuest')->name(('addGuest'));
-    Route::match(['GET', 'POST'], '/editInvitation/{id}/guest', $controller_guest . '@addGuest')->name(('addGuest'));
+    Route::match(['GET', 'POST'], '/editInvitation/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
+    Route::get('/guests',$controller_guest . '@index')->name('guest.index');
+    Route::post('/sendInvitation',$controller_guest . '@sendInvitation')->name('guest.sendInvitation');
 
     Route::view('/invitation', 'client/invitation')->name('invitation');
 

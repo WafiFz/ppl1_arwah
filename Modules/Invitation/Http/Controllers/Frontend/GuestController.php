@@ -13,6 +13,43 @@ use Modules\Invitation\Entities\Guest;
 
 class GuestController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * DUMMY
+     * @return Response
+     */
+    public function index()
+    {
+        // Get All Data From Table Order
+        $guests = Guest::all();
+
+        $data = [
+            "guests" => $guests
+        ];
+
+        return view('client/guests', compact('data'));
+    }
+
+    /**
+     * Display a response
+     *
+     * DUMMY
+     * @return Response
+     */
+    public function sendInvitation(Request $request)
+    {
+        $status = 200;
+        $ids = $request->selectedIDs;
+        if(!$ids) $ids = [];
+        $method = $request->selectedMethod;
+        if($method == 'sms') $status = 404;
+        if(count($ids) == 0) $status = 400;
+
+        return response()->json(['ids' => $request->selectedIDs, 'method' => $request->selectedMethod], $status);
+    }
+
     public function showInvitation($slug)
     {
 

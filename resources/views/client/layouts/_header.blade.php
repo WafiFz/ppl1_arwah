@@ -25,7 +25,7 @@
         </div>
         <div class="flex items-center justify-between flex-grow"> 
             <div
-                class="text-xl font-bold grow"
+                class="text-xl font-bold"
             >
                 <h3>{{ $title }}</h3>
             </div>
