@@ -1,6 +1,6 @@
 <div
 	x-show="isOpen()"
-	class="fixed inset-0 flex min-h-screen bg-white bg-opacity-75 xl:static xl:self-stretch"
+	class="z-40 fixed inset-0 flex min-h-screen bg-white bg-opacity-75 xl:static xl:self-stretch"
 >
 	<div
 		@click.away="handleAway()"
