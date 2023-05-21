@@ -22,47 +22,47 @@
                 </div>
             </div>
             <div class="grid gap-6 py-8 sm:grid-cols-2">
-                <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-48 flex sm:flex-row flex-col text-center sm:text-start items-center justify-center">
+                <x-button-a href="" class="p-6 rounded-2xl bg-brand-purple-100 h-48 flex sm:flex-row flex-col text-center sm:text-start items-center justify-center">
                     <i class="ml-0 sm:ml-6 fa-solid fa-cogs" style="font-size:4rem"></i>
                     <h5 class="py-5 sm:ml-6 text-xl font-medium text-gray-900">
                         Terms and Condition
                     </h5>
-                </x-button>
-                <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-48 flex sm:flex-row flex-col text-center sm:text-start items-center justify-center">
+                </x-button-a>
+                <x-button-a href="" class="p-6 rounded-2xl bg-brand-purple-100 h-48 flex sm:flex-row flex-col text-center sm:text-start items-center justify-center">
                     <i class="ml-0 sm:ml-6 fa-solid fa-cogs" style="font-size:4rem"></i>
                     <h5 class="py-5 sm:ml-6 text-xl font-medium text-gray-900">
                         Privacy Policy
                     </h5>
-                </x-button>
+                </x-button-a>
             </div>
             <div class="text-3xl font-bold grow mt-8">
                 Guide Aplikasi
             </div>
             <div class="grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4">
-                <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
+                <x-button-a href="" class="flex-col p-6 rounded-2xl bg-brand-purple-100 h-64 "> 
                     <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
                     <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
-                </x-button>
-                <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
+                </x-button-a>
+                <x-button-a href="" class="flex-col p-6 rounded-2xl bg-brand-purple-100 h-64 "> 
                     <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
                     <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
-                </x-button>
-                <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
+                </x-button-a>
+                <x-button-a href="" class="flex-col p-6 rounded-2xl bg-brand-purple-100 h-64 "> 
                     <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
                     <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
-                </x-button>
-                <x-button class="p-6 rounded-2xl bg-brand-purple-100 h-64 ">
+                </x-button-a>
+                <x-button-a href="" class="flex-col p-6 rounded-2xl bg-brand-purple-100 h-64 "> 
                     <i class=" fa-solid fa-cogs" style="font-size:4rem"></i>
                     <h5 class="py-5 text-xl font-medium text-gray-900">
                         Pertolongan
                     </h5>
-                </x-button>
+                </x-button-a>
             </div>
             <div class="text-center text-3xl font-bold grow mt-8">
                 Frequently Ask Question
