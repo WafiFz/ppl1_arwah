@@ -196,10 +196,20 @@ class InvitationsController extends Controller
         //  Love Stories
         // ==============================
         $index = 1;
-        $desc = 'love_story_';
+        $desc_year = 'year_';
+        $desc_love_story = 'love_story_';
         foreach ($love_stories as $love_story) {
-            $name = $desc . strval($index);
-            if ($request->$name != null) {
+            $name_year = $desc_year . strval($index);
+            $name_love_story = $desc_love_story . strval($index);
+
+            // For Year
+            $love_story->year =  $request->$name_year;
+
+            // For Story
+
+
+            // For Image
+            if ($request->$name_love_story != null) {
                 if ($love_story->image != null) {
                     // Delete Before Insert New Image
                     // Replace Directory
@@ -208,7 +218,7 @@ class InvitationsController extends Controller
                 }
 
                 // Insert New Image
-                $dir_image = $request->$name->store('public/love_story');
+                $dir_image = $request->$name_love_story->store('public/love_story');
 
                 // Replace Directory
                 $image = Str::replace('public', 'storage', $dir_image);
@@ -223,7 +233,6 @@ class InvitationsController extends Controller
         // ==============================
         //  Gallery
         // ==============================
-        // Nama
 
         // Save Changes
         $package->save();

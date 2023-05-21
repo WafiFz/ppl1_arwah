@@ -479,8 +479,8 @@
                                     <div class="sm:w-2/3">
                                         <div>
                                             <span class="font-semibold">Tahun</span>
-                                            <input type="number" name="year" value="{{ $love_story->year }}"
-                                                x-model=""
+                                            <input type="number" name="year_{{ $i }}"
+                                                value="{{ $love_story->year }}" x-model=""
                                                 class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                                 placeholder="Masukkan Tahun Kejadian"
                                                 :disabled="isEdit() ? false : true"
@@ -516,7 +516,6 @@
                                                             or GIF (MAX. 800x400px)</p>
                                                     </div>
                                                 </div>
-                                                {{ $i }}
                                                 <input id="dropzone-file" type="file" class="hidden"
                                                     name="love_story_{{ $i }}"
                                                     :disabled="isEdit() ? false : true" />
@@ -579,8 +578,7 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" type="file" class="hidden"
-                                                name="name_[{{ $i }}]"
-                                                :disabled="isEdit() ? false : true" />
+                                                name="image_gallery[]" :disabled="isEdit() ? false : true" />
                                         </label>
                                     </template>
                                 </div>
