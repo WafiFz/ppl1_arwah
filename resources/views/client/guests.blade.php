@@ -253,25 +253,28 @@
                 var csrfToken = '{{ csrf_token() }}';
 
                 $.ajax({
-                url: '{{ route('client.guest.sendInvitation') }}',
-                method: 'POST',
-                data: {
-                    selectedIDs: selectedGuests,
-                    selectedMethod: selectedMethod
-                },
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                },
-                success: function(response) { //status 200
-                    console.log(response);
-                    successModal.show();
-                },
-                error: function(xhr, status, error) {
-                    // Handle error response
-                    console.log(xhr);
-                    failedModal.show();
-                }
+                    url: '{{ route('client.guest.sendInvitation') }}',
+                    method: 'POST',
+                    data: {
+                        selectedIDs: selectedGuests,
+                        selectedMethod: selectedMethod
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) { //status 200
+                        console.log(response);
+                        loadingModal.hide();
+                        successModal.show();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.log(xhr);
+                        loadingModal.hide();
+                        failedModal.show();
+                    }
                 });
+                loadingModal.show();
             }
         </script>
     @endpush
@@ -368,6 +371,16 @@
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 OK
             </x-button>
+        </div>
+    </x-flowbite-modal>
+
+    <x-flowbite-modal id="loadingModal" title="Send Invitation" closable="false" header="false">\
+        <!-- Modal body -->
+        <div class="p-6 flex flex-col justify-center items-center">
+            <i class="fa-solid fa-spinner fa-spin-pulse text-brand-purple-500 text-9xl"></i>
+            <div class="mt-4">
+                <span class="font-bold">Processing ...</span>
+            </div>
         </div>
     </x-flowbite-modal>
 </x-member-layout>
