@@ -22,7 +22,8 @@
         @endpush
 
         <main class="grow">
-            <form action="{{ route('client.save.editInvitation', $data->id) }}" method="post" x-data="form()">
+            <form action="{{ route('client.save.editInvitation', $data->id) }}" method="post" x-data="form()"
+                enctype="multipart/form-data">
                 @csrf
                 <section class="bg-white">
                     <div class="container py-8">
@@ -466,6 +467,9 @@
                             <h3 class="mb-0 text-xl font-medium">Love Stories</h3>
                             <p>Stories of your love</p>
                         </div>
+                        <?php
+                        $i = 1;
+                        ?>
                         @foreach ($data->invitation->wedding->love_story as $love_story)
                             <template x-for="i in eventsCount">
                                 <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -512,13 +516,18 @@
                                                             or GIF (MAX. 800x400px)</p>
                                                     </div>
                                                 </div>
+                                                {{ $i }}
                                                 <input id="dropzone-file" type="file" class="hidden"
-                                                    name="image" :disabled="isEdit() ? false : true" />
+                                                    name="love_story_{{ $i }}"
+                                                    :disabled="isEdit() ? false : true" />
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </template>
+                            <?php
+                            $i++;
+                            ?>
                         @endforeach
                         <div class="flex justify-end gap-2" x-show="isEdit()">
                             <x-button type="button" @click="decrementEvent()" x-show="eventsCount > 1"
@@ -539,6 +548,9 @@
                             <p>Upload your romantic images</p>
                         </div>
                         @foreach ($data->invitation->wedding->gallery as $gallery)
+                            <?php
+                            $i = 1;
+                            ?>
                             <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
                                 <div class="sm:w-1/3">
                                     <span class="font-bold">Images</span>
@@ -566,12 +578,16 @@
                                                         GIF (MAX. 800x400px)</p>
                                                 </div>
                                             </div>
-                                            <input id="dropzone-file" type="file" class="hidden" name="file"
+                                            <input id="dropzone-file" type="file" class="hidden"
+                                                name="name_[{{ $i }}]"
                                                 :disabled="isEdit() ? false : true" />
                                         </label>
                                     </template>
                                 </div>
                             </div>
+                            <?php
+                            $i++;
+                            ?>
                         @endforeach
                         <div class="flex justify-end gap-2 py-4 border-t border-gray-200" x-show="!isEdit()">
                             <x-button type="button" @click="editMode()"

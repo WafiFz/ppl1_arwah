@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Modules\Invitation\Entities\Invitation;
 use Modules\Order\Entities\Order;
+use Illuminate\Support\Facades\Storage;
 
 class InvitationsController extends Controller
 {
@@ -53,6 +54,10 @@ class InvitationsController extends Controller
         );
     }
 
+    public function store(Request $request)
+    {
+        //
+    }
     /**
      * Display the specified resource.
      *
@@ -88,6 +93,7 @@ class InvitationsController extends Controller
 
     public function edit(Request $request, $id)
     {
+        // dd($request->love_story_1);
         // cari data yang akan diubah 
         $order = Order::find($id);
         $package = $order->package;
@@ -97,6 +103,7 @@ class InvitationsController extends Controller
         $groom = $wedding->groom;
         $bride = $wedding->bride;
         $events = $wedding->event;
+        $love_stories = $wedding->love_story;
 
         // ==============================
         //  Invitation
@@ -188,7 +195,30 @@ class InvitationsController extends Controller
         // ==============================
         //  Love Stories
         // ==============================
-        // Nama
+        $index = 1;
+        $desc = 'love_story_';
+        foreach ($love_stories as $love_story) {
+            $name = $desc . strval($index);
+            if ($request->$name != null) {
+                if ($love_story->image != null) {
+                    // Delete Before Insert New Image
+                    // Replace Directory
+                    $love_story->image = Str::replace('storage', 'public', $love_story->image);
+                    Storage::disk('local')->delete($love_story->image);
+                }
+
+                // Insert New Image
+                $dir_image = $request->$name->store('public/love_story');
+
+                // Replace Directory
+                $image = Str::replace('public', 'storage', $dir_image);
+
+                $love_story->update([
+                    'image' => $image,
+                ]);
+            }
+            $index++;
+        }
 
         // ==============================
         //  Gallery
