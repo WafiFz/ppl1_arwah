@@ -35,13 +35,13 @@
                                 </div>
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                ID
+                                No
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Tanggal Pemesanan
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Paket
+                                URL
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Tema
@@ -58,6 +58,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i = 1; ?>
                         @foreach ($data['orders'] as $order)
                             <tr class="bg-white border-b hover:bg-gray-50">
                                 <td class="w-4 p-4">
@@ -68,31 +69,45 @@
                                     </div>
                                 </td>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    {{ $order->id }}
+                                    <?php echo $i; $i++; ?>
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $order->created_at }}
+                                    {{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $order->package->name }}
+                                    @if($order->status != "UNPAID")
+                                    <a href="{{ "../" . $order->invitation->slug }}" target="_blank"> {{ $order->invitation->slug }} </a>
+                                    @else
+                                    {{ "BELUM MEMBAYAR" }}
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $order->theme->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $order->status }}
+                                    @if($order->status != "UNPAID")
+                                        {{ $order->invitation->status }}
+                                    @else
+                                        {{ "UNPAID" }}
+                                    @endif
                                 </td>
+                                @if($order->status != "UNPAID")
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('order.detail') }}"
+                                    <a href="{{ route('client.ordersDetail', $order->id) }}"
                                         class="font-medium text-brand-pink hover:underline">Details</a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{-- <a href="{{ route('client.editInvitation') }}"
-                                        class="font-medium text-brand-purple-500 hover:underline">Details</a> --}}
-
                                     <a href="{{ route('client.editInvitation', $order->id) }}"
                                         class="font-medium text-brand-purple-500 hover:underline">Details</a>
                                 </td>
+                                @else
+                                <td class="px-6 py-4">
+                                    -
+                                </td>
+                                <td class="px-6 py-4">
+                                    -
+                                </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

@@ -56,6 +56,12 @@ class Order extends BaseModel
         return $this->hasOne('Modules\Invitation\Entities\Invitation');
     }
 
+    // Payment
+    public function payment()
+    {
+        return $this->hasOne('Modules\Order\Entities\Payment');
+    }
+
     /**
      *
      *  METHOD

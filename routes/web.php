@@ -38,7 +38,6 @@ Route::prefix('order')->name('order.')->group(function () {
     Route::get('/theme/{package_id}',  $controller_order . '@makeOrderSelectTheme')->name('theme');
     Route::get('/summary/{theme_id}',  $controller_order . '@makeOrderSummary')->name('summary');
     Route::get('/checkout/{theme_id}',  $controller_order . '@makeOrder')->name('checkout');
-    Route::view('/detail', 'user/order/detail')->name('detail');
 });
 
 /*
@@ -53,27 +52,25 @@ Route::prefix('client')->name('client.')->group(function () {
     $controller_invitation = 'Modules\Invitation\Http\Controllers\Frontend\InvitationsController';
     $controller_guest = 'Modules\Invitation\Http\Controllers\Frontend\GuestController';
 
-
+    // Client Order
     Route::get('/orders', $controller_order . '@index')->name('orders');
+    Route::get('/orders/{id}', $controller_order . '@show')->name(('ordersDetail'));
+    // Route::view('/bills', 'user/order/detail')->name('bills');
 
-    // Route::view('/editInvitation', 'client/editInvitation')->name('editInvitation');
+    // Client Invitation
     Route::get('/editInvitation/{id}', $controller_invitation . '@show')->name(('editInvitation'));
     Route::post('/save/editInvitation/{id}', $controller_invitation . '@edit')->name(('save.editInvitation'));
 
-    // Route::get('/editInvitation/{id}/guest', $controller_guest . '@addGuest')->name(('addGuest'));
+    // Client Guest
     Route::match(['GET', 'POST'], '/editInvitation/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
     Route::get('/guests',$controller_guest . '@index')->name('guest.index');
     Route::post('/sendInvitation',$controller_guest . '@sendInvitation')->name('guest.sendInvitation');
 
-    Route::view('/invitation', 'client/invitation')->name('invitation');
-
-
+    // Client Profile
     Route::get('/{id}', $controller_profile  . '@show')->name('index');
     Route::post('/{id}', $controller_profile . '@edit')->name('editProfile');
     Route::get('/{id}/changePassword', $controller_profile  . '@editPassword')->name('editPassword');
     Route::post('/{id}/changePassword', $controller_profile . '@updatePassword')->name('updatePassword');
-    // Route::view('/orders', 'client/orders')->name('orders');
-    // Route::view('/orders', 'client/orders')->name('orders');
 });
 
 /*
@@ -85,6 +82,9 @@ Route::prefix('client')->name('client.')->group(function () {
 $controller_guest = 'Modules\Invitation\Http\Controllers\Frontend\GuestController';
 $controller_rsvp = 'Modules\Invitation\Http\Controllers\Frontend\RsvpController';
 $controller_wish = 'Modules\Wedding\Http\Controllers\Frontend\WishController';
+
+// Preview Invitation
+Route::view('preview/invitation', 'client/invitation')->name('invitation');
 
 Route::get('/{slug}', $controller_guest . '@showInvitation')->name(('showInvitation'));
 Route::post('/rsvp', $controller_rsvp . '@rsvp')->name(('rsvp'));

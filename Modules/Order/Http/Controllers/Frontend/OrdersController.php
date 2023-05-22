@@ -53,7 +53,7 @@ class OrdersController extends Controller
             "orders" => $orders
         ];
 
-        return view('client/orders', compact('data'));
+        return view('client/orders/index', compact('data'));
     }
 
     /**
@@ -62,26 +62,16 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    // public function show($id)
-    // {
-    //     $id = decode_id($id);
+    public function show($id)
+    {
+        $order = Order::find($id);
 
-    //     $module_title = $this->module_title;
-    //     $module_name = $this->module_name;
-    //     $module_path = $this->module_path;
-    //     $module_icon = $this->module_icon;
-    //     $module_model = $this->module_model;
-    //     $module_name_singular = Str::singular($module_name);
+        $data = [
+            'order' => $order
+        ];
 
-    //     $module_action = 'Show';
-
-    //     $$module_name_singular = $module_model::findOrFail($id);
-
-    //     return view(
-    //         "order::frontend.$module_name.show",
-    //         compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
-    //     );
-    // }
+        return view('client/orders/detail', compact('data'));
+    }
 
     /**
      * Select Package to Make Order
@@ -207,6 +197,12 @@ class OrdersController extends Controller
             if ($request->transaction_status == 'capture') {
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'PAID']);
+                $order->payment->update([
+                    'type' => $request->payment_type,
+                    'transaction_id' => $request->transaction_id,
+                    'transaction_time' => $request->transaction_time,
+                    'transaction_status' => $request->transaction_status,
+                ]);
 
                 DB::beginTransaction();
                 
