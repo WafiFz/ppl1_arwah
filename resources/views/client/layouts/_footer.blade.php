@@ -5,5 +5,4 @@
         @lang('Copyright') &copy; {{ date('Y') }}
         @endif
     </div>
-    <div>{!! setting('footer_text') !!}</div>
 </footer>
