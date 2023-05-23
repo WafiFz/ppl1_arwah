@@ -489,9 +489,9 @@
                                         <div class="mt-4">
                                             <span class="font-semibold">Kisah</span>
                                             <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '" id="message"
-                                                name="story" rows="4" value="{{ $love_story->story }}" x-model=""
+                                                name="story_{{ $i }}" rows="4" value="{{ $love_story->story }}" x-model=""
                                                 class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 mt-1.5"
-                                                placeholder="Ceritakan Kisahmu Disini..."></textarea>
+                                                placeholder="Ceritakan Kisahmu Disini...">{{ $love_story->story }}</textarea>
                                         </div>
                                         <div class="mt-4">
                                             <span class="font-semibold">Gambar</span>
@@ -546,10 +546,11 @@
                             <h3 class="mb-0 text-xl font-medium">Gallery</h3>
                             <p>Upload your romantic images</p>
                         </div>
+
+                        <?php
+                        $i = 1;
+                        ?>
                         @foreach ($data->invitation->wedding->gallery as $gallery)
-                            <?php
-                            $i = 1;
-                            ?>
                             <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
                                 <div class="sm:w-1/3">
                                     <span class="font-bold">Images</span>
@@ -578,7 +579,8 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file" type="file" class="hidden"
-                                                name="image_gallery[]" :disabled="isEdit() ? false : true" />
+                                                name="image_gallery_{{ $i }}"
+                                                :disabled="isEdit() ? false : true" />
                                         </label>
                                     </template>
                                 </div>

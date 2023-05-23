@@ -198,15 +198,17 @@ class InvitationsController extends Controller
         $index = 1;
         $desc_year = 'year_';
         $desc_love_story = 'love_story_';
+        $desc_story = 'story_';
         foreach ($love_stories as $love_story) {
             $name_year = $desc_year . strval($index);
             $name_love_story = $desc_love_story . strval($index);
+            $name_story = $desc_story . strval($index);
 
             // For Year
             $love_story->year =  $request->$name_year;
 
             // For Story
-
+            $love_story->story = $request->$name_story;
 
             // For Image
             if ($request->$name_love_story != null) {
@@ -227,12 +229,16 @@ class InvitationsController extends Controller
                     'image' => $image,
                 ]);
             }
+            $love_story->save();
             $index++;
         }
 
         // ==============================
         //  Gallery
         // ==============================
+        dd($request->image_gallery_1);
+
+
 
         // Save Changes
         $package->save();
