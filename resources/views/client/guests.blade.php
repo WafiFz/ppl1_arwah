@@ -5,7 +5,7 @@
             $invitationID = 0;
         @endphp
         <div class="container" >
-            <button @click="broadcastModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            {{-- <button @click="broadcastModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                 Toggle broadcast modal
             </button>
             <button @click="confirmModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
@@ -16,7 +16,7 @@
             </button>
             <button @click="failedModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                 Toggle failed modal
-            </button>
+            </button> --}}
             <!-- <div id="modalEl"></div> -->
             <div class="flex flex-col gap-2 text-center sm:flex-row">
                 <div class="grow">
@@ -52,16 +52,16 @@
                                 </div>
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                ID
+                                No
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Nama
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Jumlah Orang
+                                Email
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Status
+                                Nomor WA
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Undangan
@@ -72,6 +72,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i=1; ?>
                         @foreach ($data['guests'] as $guest)
                             <tr class="bg-white border-b hover:bg-gray-50">
                                 <td class="w-4 p-4">
@@ -82,19 +83,23 @@
                                     </div>
                                 </td>
                                 <th scope="row" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap ">
-                                    #{{ $guest->id }}
+                                    {{ $i}}
                                 </th>
                                 <td class="px-6 py-4">
                                     {{ $guest->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    jml. org
+                                    {{ $guest->email }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    Tidak Hadir
+                                    {{ $guest->no_whats_app }}
                                 </td>
                                 <td class="px-6 py-4">
+                                    @if($guest->is_invited)
+                                    Dikirim
+                                    @else
                                     Belum Dikirim
+                                    @endif
                                 </td>
                                 <td class="py-4 flex justify-center">
                                     <x-button-a @click="confirmInvitation([{{ $guest->id }}],defaultMethod)" class="w-9 h-9 mx-1.5 bg-brand-purple-100 text-brand-purple-500 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
@@ -105,6 +110,7 @@
                                     </x-button-a>
                                 </td>
                             </tr>
+                        <?php $i++; ?>
                         @endforeach
                     </tbody>
                 </table>
@@ -285,7 +291,7 @@
                 class=" text-brand-purple-500 w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-0 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                 <span class="font-extrabold">Broadcast</span>
             </x-button>
-            <x-button-a href="" type="button"
+            <x-button-a href="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" type="button"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 <span class="font-extrabold">Add New</span>
             </x-button>

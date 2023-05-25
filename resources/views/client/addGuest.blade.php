@@ -70,8 +70,7 @@
             <section class="bg-white">
                 <div class="container py-8">
                     <div class="text-center sm:text-start">
-                        <h3 class="mb-0 text-xl font-medium">Akan Ditambahkan</h3>
-                        <p>Daftar tamu ini akan ditambahkan setelah anda menekan save.</p>
+                        <h3 class="mb-0 text-xl font-medium">Baru Ditambahkan</h3>
                     </div>
                     <div class="relative overflow-auto shadow-md max-h-96 sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -95,7 +94,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i=0; ?>
                                 @foreach ($data['invitation']->guest as $guest )
+                                <?php if($i==10) break; ?>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $guest->name }}</td>
                                     <td class="px-6 py-4">{{ $guest->description }}</td>
@@ -103,13 +104,14 @@
                                     <td class="px-6 py-4">{{ $guest->no_whats_app }}</td>
                                     <td class="px-6 py-4">{{ $guest->email }}</td>
                                 </tr>
+                                <?php $i++; ?>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="flex justify-end mt-5">
+                    {{-- <div class="flex justify-end mt-5">
                         <x-button type="button" class="ml-auto text-white bg-brand-purple-500" @click="addGuest();">Save</x-button>
-                    </div>
+                    </div> --}}
                 </div>
             </section>
     </main>

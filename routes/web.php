@@ -58,12 +58,12 @@ Route::prefix('client')->name('client.')->group(function () {
     // Route::view('/bills', 'user/order/detail')->name('bills');
 
     // Client Invitation
-    Route::get('/editInvitation/{id}', $controller_invitation . '@show')->name(('editInvitation'));
-    Route::post('/save/editInvitation/{id}', $controller_invitation . '@edit')->name(('save.editInvitation'));
+    Route::get('/invitations/{id}', $controller_invitation . '@show')->name(('editInvitation'));
+    Route::post('/save/invitations/{id}', $controller_invitation . '@edit')->name(('save.editInvitation'));
 
     // Client Guest
-    Route::match(['GET', 'POST'], '/editInvitation/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
-    Route::get('/guests',$controller_guest . '@index')->name('guest.index');
+    Route::match(['GET', 'POST'], '/invitations/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
+    Route::get('/invitations/{id}/guests',$controller_guest . '@index')->name('guest.index');
     Route::post('/sendInvitation',$controller_guest . '@sendInvitation')->name('guest.sendInvitation');
 
     // Client Profile

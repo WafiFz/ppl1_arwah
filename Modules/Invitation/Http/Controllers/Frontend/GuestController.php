@@ -20,13 +20,13 @@ class GuestController extends Controller
      * DUMMY
      * @return Response
      */
-    public function index()
+    public function index($id)
     {
-        // Get All Data From Table Order
-        $guests = Guest::all();
+        $invitation = Invitation::getById(decode_id($id));
 
         $data = [
-            "guests" => $guests
+            "invitation" => $invitation,
+            "guests" => $invitation->guest
         ];
 
         return view('client/guests', compact('data'));
@@ -40,6 +40,7 @@ class GuestController extends Controller
      */
     public function sendInvitation(Request $request)
     {
+        dd("OK");
         $status = 200;
         $ids = $request->selectedIDs;
         if(!$ids) $ids = [];
