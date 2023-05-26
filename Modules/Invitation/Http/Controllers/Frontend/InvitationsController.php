@@ -6,10 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Order\Entities\Order;
 use App\Http\Controllers\Controller;
+
+// Entities
+use Modules\Order\Entities\Order;
 use Illuminate\Support\Facades\Storage;
 use Modules\Invitation\Entities\Invitation;
+use Modules\Invitation\Entities\Guest;
 
 class InvitationsController extends Controller
 {
@@ -87,18 +90,24 @@ class InvitationsController extends Controller
     // }
     public function show($id)
     {
-        $data = Order::find($id);
+        $order = Order::find($id);
+        $guests = Guest::where('invitation_id', $order->invitation->id)->orderBy('id', 'desc')->limit(10)->get();
+        $guests_count = count($order->invitation->guest);
 
-        return view('client/editInvitation', ['data' => $data]);
+        $data = [
+            'order' => $order,
+            'guests' => $guests,
+            'guests_count' => $guests_count,
+
+        ];
+
+        return view('client/editInvitation', compact('data'));
     }
 
     public function edit(Request $request, $id)
     {
-        // dd($request->love_story_1);
         // cari data yang akan diubah 
         $order = Order::find($id);
-        $package = $order->package;
-        $theme = $order->theme;
         $invitation = $order->invitation;
         $wedding = $invitation->wedding;
         $groom = $wedding->groom;
@@ -110,14 +119,9 @@ class InvitationsController extends Controller
         // ==============================
         //  Invitation
         // ==============================
-        // Ubah Tanggal
-        // $order->created_by = '';
-        // Ubah Paket
-        $package->name = $request->package_name;
-        // Ubah Tema
-        $theme->name = $request->theme_name;
         // Ubah Status
-        $invitation->status = $request->status;
+        // $invitation->status = $request->status;
+        $invitation->status = 'ACTIVE';
         // Ubah Slug
         $invitation->slug = $request->slug;
         // Ubah Domain
@@ -246,8 +250,6 @@ class InvitationsController extends Controller
         }
 
         // Save Changes
-        $package->save();
-        $theme->save();
         $invitation->save();
         $wedding->save();
         $groom->save();

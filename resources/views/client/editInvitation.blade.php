@@ -3,26 +3,16 @@
     @endphp
     <x-member-layout title="Invitation" dataFunction="form()">
         @push('header-actions')
-            {{-- <div class="flex justify-end gap-2" x-show="!isEdit()">
-            <x-button type="button" @click="editMode()"
+        <div>
+            <x-button-a href="{{ route('showInvitation', $data['order']->invitation->slug) }}" type="button" target="_blank"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                <span class="mx-1">Ubah</span>
+                <span class="font-extrabold">Pratinjau</span>
             </x-button>
         </div>
-        <div class="flex justify-end gap-2" x-show="isEdit()">
-            <x-button type="button" @click="reset()"
-                class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
-                <span class="mx-1">Batalkan</span>
-            </x-button>
-            <x-button type="submit"
-                class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                <span class="mx-1">Simpan</span>
-            </x-button>
-        </div> --}}
         @endpush
 
         <main class="grow">
-            <form action="{{ route('client.save.editInvitation', $data->id) }}" method="post" x-data="form()"
+            <form action="{{ route('client.save.editInvitation', $data['order']->id) }}" method="post" x-data="form()"
                 enctype="multipart/form-data">
                 @csrf
                 <section class="bg-white">
@@ -36,9 +26,9 @@
                                 <span class="font-bold">Order ID</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="order_id" value="{{ $data->id }}" x-model=""
+                                <input type="text" name="order_id" value="{{ $data['order']->id }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Masukkan Order ID" :disabled="isEdit() ? false : true"
+                                    placeholder="Masukkan Order ID" :disabled="true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -47,10 +37,10 @@
                                 <span class="font-bold">Type</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="status" value="{{ $data->invitation->type }}"
+                                <input type="text" name="status" value="{{ $data['order']->invitation->type->type }}"
                                     x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Wedding / Birthday / Event" :disabled="isEdit() ? false : true"
+                                    placeholder="Wedding / Birthday / Event" :disabled="true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -60,10 +50,10 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="date" name="created_at"
-                                    value="{{ \Carbon\Carbon::createFromTimestamp($data->created_at)->toDateString() }}"
+                                    value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->created_at)->toDateString() }}"
                                     x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Masukkan Tanggal Pemesanan" :disabled="isEdit() ? false : true"
+                                    placeholder="Masukkan Tanggal Pemesanan" :disabled="true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -72,10 +62,10 @@
                                 <span class="font-bold">Paket</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="package_name" value="{{ $data->package->name }}"
+                                <input type="text" name="package_name" value="{{ $data['order']->package->name }}"
                                     x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Masukkan Nama Paket" :disabled="isEdit() ? false : true"
+                                    placeholder="Masukkan Nama Paket" :disabled="true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -84,9 +74,9 @@
                                 <span class="font-bold">Tema</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="theme_name" value="{{ $data->theme->name }}" x-model=""
+                                <input type="text" name="theme_name" value="{{ $data['order']->theme->name }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Masukkan Nama Tema" :disabled="isEdit() ? false : true"
+                                    placeholder="Masukkan Nama Tema" :disabled="true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -95,10 +85,10 @@
                                 <span class="font-bold">Status</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="status" value="{{ $data->invitation->status }}"
+                                <input type="text" name="status" value="{{ $data['order']->invitation->status }}"
                                     x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Status Undangan" :disabled="isEdit() ? false : true"
+                                    placeholder="Status Undangan" :disabled="true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -107,14 +97,15 @@
                                 <span class="font-bold">Slug</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="slug" value="{{ $data->invitation->slug }}"
+                                <input type="text" name="slug" value="{{ $data['order']->invitation->slug }}"
                                     x-model=""
                                     class="inline-block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Ex: bride-groom" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
-                        <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
+                        {{-- CUSTOM DOMAIN --}}
+                        {{-- <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
                             <div class="sm:w-1/3">
                                 <span class="font-bold">Custom Domain</span>
                             </div>
@@ -131,7 +122,7 @@
                                     placeholder="Ex: bride-groom.com" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </section>
                 <section class="bg-white">
@@ -145,7 +136,7 @@
                                 <span class="font-bold">Judul</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <input type="text" name="title" value="{{ $data->invitation->wedding->title }}"
+                                <input type="text" name="title" value="{{ $data['order']->invitation->wedding->title }}"
                                     x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Judul Undangan" :disabled="isEdit() ? false : true"
@@ -158,7 +149,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="location"
-                                    value="{{ $data->invitation->wedding->location }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->location }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Lokasi Resepsi" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -191,7 +182,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="groom_name"
-                                    value="{{ $data->invitation->wedding->groom->name }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->groom->name }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Nama Pengantin Pria" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -203,7 +194,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="groom_father"
-                                    value="{{ $data->invitation->wedding->groom->father }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->groom->father }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Nama Ayah Pengantin Pria"
                                     :disabled="isEdit() ? false : true"
@@ -216,7 +207,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="groom_mother"
-                                    value="{{ $data->invitation->wedding->groom->mother }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->groom->mother }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Nama Ibu Pengantin Pria" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -228,7 +219,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '" id="message"
-                                    name="groom_address" rows="4" value="{{ $data->invitation->wedding->groom->address }}" x-model=""
+                                    name="groom_address" rows="4" value="{{ $data['order']->invitation->wedding->groom->address }}" x-model=""
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="Masukkan Alamat Pengantin Pria"></textarea>
                             </div>
@@ -245,7 +236,7 @@
                                     <input :disabled="isEdit() ? false : true"
                                         :class="isEdit() == false && 'bg-neutral-100'" type="text"
                                         name="groom_instagram"
-                                        value="{{ $data->invitation->wedding->groom->instagram }}"
+                                        value="{{ $data['order']->invitation->wedding->groom->instagram }}"
                                         class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition ease-in-out focus:z-[3] focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                                         placeholder="instagram" />
                                 </div>
@@ -265,7 +256,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="bride_name"
-                                    value="{{ $data->invitation->wedding->bride->name }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->bride->name }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Nama Pengantin Wanita" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -277,7 +268,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="bride_father"
-                                    value="{{ $data->invitation->wedding->bride->father }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->bride->father }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Nama Ayah Pengantin Pria"
                                     :disabled="isEdit() ? false : true"
@@ -290,7 +281,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="bride_mother"
-                                    value="{{ $data->invitation->wedding->bride->mother }}" x-model=""
+                                    value="{{ $data['order']->invitation->wedding->bride->mother }}" x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Nama Ibu Pengantin Pria" :disabled="isEdit() ? false : true"
                                     :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -302,7 +293,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '" id="message"
-                                    name="address" rows="4" value="{{ $data->invitation->wedding->bride->adress }}" x-model=""
+                                    name="address" rows="4" value="{{ $data['order']->invitation->wedding->bride->adress }}" x-model=""
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="Masukkan Alamat Pengantin Pria"></textarea>
                             </div>
@@ -319,7 +310,7 @@
                                     <input :disabled="isEdit() ? false : true"
                                         :class="isEdit() == false && 'bg-neutral-100'" type="text"
                                         name="bride_instagram"
-                                        value="{{ $data->invitation->wedding->bride->instagram }}"
+                                        value="{{ $data['order']->invitation->wedding->bride->instagram }}"
                                         class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition ease-in-out focus:z-[3] focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                                         placeholder="instagram" />
                                 </div>
@@ -341,7 +332,7 @@
                                 <div>
                                     <span class="font-semibold">Tanggal</span>
                                     <input type="date" name="date_akad"
-                                        value="{{ \Carbon\Carbon::createFromTimestamp($data->invitation->wedding->event[0]->date)->toDateString() }}"
+                                        value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->invitation->wedding->event[0]->date)->toDateString() }}"
                                         x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         :disabled="isEdit() ? false : true"
@@ -350,15 +341,15 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Waktu</span>
                                     <div class="flex flex-col items-center gap-2 sm:flex-row mt-1.5">
-                                        <input type="text" name="start_time_akad"
-                                            value="{{ $data->invitation->wedding->event[0]->start_time }}"
+                                        <input type="time" step="3600" name="start_time_akad"
+                                            value="{{ $data['order']->invitation->wedding->event[0]->start_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
                                             :class="isEdit() == false && 'bg-neutral-100'" />
                                         -
-                                        <input type="text" name="end_time_akad"
-                                            value="{{ $data->invitation->wedding->event[0]->end_time }}"
+                                        <input type="time" step="3600" name="end_time_akad"
+                                            value="{{ $data['order']->invitation->wedding->event[0]->end_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
@@ -368,7 +359,7 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Tempat</span>
                                     <input type="text" name="place_akad"
-                                        value="{{ $data->invitation->wedding->event[0]->place }}" x-model=""
+                                        value="{{ $data['order']->invitation->wedding->event[0]->place }}" x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         placeholder="Masukkan Tempat Akad" :disabled="isEdit() ? false : true"
                                         :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -383,7 +374,7 @@
                                 <div>
                                     <span class="font-semibold">Tanggal</span>
                                     <input type="date" name="date_resepsi"
-                                        value="{{ \Carbon\Carbon::createFromTimestamp($data->invitation->wedding->event[1]->date)->toDateString() }}"
+                                        value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->invitation->wedding->event[1]->date)->toDateString() }}"
                                         x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         :disabled="isEdit() ? false : true"
@@ -392,15 +383,15 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Waktu</span>
                                     <div class="flex flex-col items-center gap-2 sm:flex-row mt-1.5">
-                                        <input type="text" name="start_time_resepsi"
-                                            value="{{ $data->invitation->wedding->event[1]->start_time }}"
+                                        <input type="time" step="3600" name="start_time_resepsi"
+                                            value="{{ $data['order']->invitation->wedding->event[1]->start_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
                                             :class="isEdit() == false && 'bg-neutral-100'" />
                                         -
-                                        <input type="text" name="end_time_resepsi"
-                                            value="{{ $data->invitation->wedding->event[1]->end_time }}"
+                                        <input type="time" step="3600" name="end_time_resepsi"
+                                            value="{{ $data['order']->invitation->wedding->event[1]->end_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
@@ -410,7 +401,7 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Tempat</span>
                                     <input type="text" name="place_resepsi"
-                                        value="{{ $data->invitation->wedding->event[1]->place }}" x-model=""
+                                        value="{{ $data['order']->invitation->wedding->event[1]->place }}" x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         placeholder="Masukkan Tempat Resepsi" :disabled="isEdit() ? false : true"
                                         :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -425,7 +416,7 @@
                                 <div>
                                     <span class="font-semibold">Tanggal</span>
                                     <input type="date" name="date_unduh_mantu"
-                                        value="{{ \Carbon\Carbon::createFromTimestamp($data->invitation->wedding->event[2]->date)->toDateString() }}"
+                                        value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->invitation->wedding->event[2]->date)->toDateString() }}"
                                         x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         :disabled="isEdit() ? false : true"
@@ -434,15 +425,15 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Waktu</span>
                                     <div class="flex flex-col items-center gap-2 sm:flex-row mt-1.5">
-                                        <input type="text" name="start_time_unduh_mantu"
-                                            value="{{ $data->invitation->wedding->event[2]->start_time }}"
+                                        <input type="time" step="3600" name="start_time_unduh_mantu"
+                                            value="{{ $data['order']->invitation->wedding->event[2]->start_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
                                             :class="isEdit() == false && 'bg-neutral-100'" />
                                         -
-                                        <input type="text" name="end_time_unduh_mantu"
-                                            value="{{ $data->invitation->wedding->event[2]->end_time }}"
+                                        <input type="time" step="3600" name="end_time_unduh_mantu"
+                                            value="{{ $data['order']->invitation->wedding->event[2]->end_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
@@ -452,7 +443,7 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Tempat</span>
                                     <input type="text" name="place_unduh_mantu"
-                                        value="{{ $data->invitation->wedding->event[2]->place }}" x-model=""
+                                        value="{{ $data['order']->invitation->wedding->event[2]->place }}" x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         placeholder="Masukkan Tempat Unduh Mantu" :disabled="isEdit() ? false : true"
                                         :class="isEdit() == false && 'bg-neutral-100 '" />
@@ -469,7 +460,7 @@
                         </div>
                         <?php $i = 1; ?>
                         {{-- <template x-for="i in eventsCount"> --}}
-                        @foreach ($data->invitation->wedding->love_story as $love_story)
+                        @foreach ($data['order']->invitation->wedding->love_story as $love_story)
                             <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
                                 <div class="sm:w-1/3">
                                     <span class="font-bold">Story {{ $i }}<span
@@ -546,7 +537,7 @@
                         $i = 1;
                         ?>
                         {{-- <template x-for="i in eventsCount"> --}}
-                        @foreach ($data->invitation->wedding->gallery as $gallery)
+                        @foreach ($data['order']->invitation->wedding->gallery as $gallery)
                             <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
                                 <div class="sm:w-1/3">
                                     <span class="font-bold">Image {{ $i }}<span
@@ -600,7 +591,7 @@
                             </x-button>
                             <x-button type="submit"
                                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                                Simpan Perusahaan
+                                Simpan Perubahan
                             </x-button>
                         </div>
                 </section>
@@ -633,53 +624,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach ($data['guests'] as $guest )
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">Alfadli</td>
-                                        <td class="px-6 py-4">Teman SMA</td>
-                                        <td class="px-6 py-4">Meranti III</td>
-                                        <td class="px-6 py-4">08xxxxxxxxx</td>
-                                        <td class="px-6 py-4">alfadli@gmail.com</td>
+                                        <td class="px-6 py-4">{{ $guest->name }}</td>
+                                        <td class="px-6 py-4">{{ $guest->description }}</td>
+                                        <td class="px-6 py-4">{{ $guest->address }}</td>
+                                        <td class="px-6 py-4">{{ $guest->no_whats_app }}</td>
+                                        <td class="px-6 py-4">{{ $guest->email }}</td>
                                     </tr>
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">Alfadli</td>
-                                        <td class="px-6 py-4">Teman SMA</td>
-                                        <td class="px-6 py-4">Meranti III</td>
-                                        <td class="px-6 py-4">08xxxxxxxxx</td>
-                                        <td class="px-6 py-4">alfadli@gmail.com</td>
-                                    </tr>
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">Alfadli</td>
-                                        <td class="px-6 py-4">Teman SMA</td>
-                                        <td class="px-6 py-4">Meranti III</td>
-                                        <td class="px-6 py-4">08xxxxxxxxx</td>
-                                        <td class="px-6 py-4">alfadli@gmail.com</td>
-                                    </tr>
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">Alfadli</td>
-                                        <td class="px-6 py-4">Teman SMA</td>
-                                        <td class="px-6 py-4">Meranti III</td>
-                                        <td class="px-6 py-4">08xxxxxxxxx</td>
-                                        <td class="px-6 py-4">alfadli@gmail.com</td>
-                                    </tr>
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="px-6 py-4">Alfadli</td>
-                                        <td class="px-6 py-4">Teman SMA</td>
-                                        <td class="px-6 py-4">Meranti III</td>
-                                        <td class="px-6 py-4">08xxxxxxxxx</td>
-                                        <td class="px-6 py-4">alfadli@gmail.com</td>
-                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <div class="justify-between mt-5 sm:flex">
-                            <p>Total tamu seluruhnya: <span class="font-bold">89</span></p>
+                            <p>Total tamu seluruhnya: <span class="font-bold">{{ $data['guests_count'] }}</span></p>
                             <a class="text-brand-purple-500"
-                                href="{{ route('client.guest.index', encode_id($data->invitation->id)) }}">Lihat lebih
+                                href="{{ route('client.guest.index', encode_id($data['order']->invitation->id)) }}">Lihat lebih
                                 banyak
                                 <i class="fa-solid fa-arrow-right-long"></i></a>
                         </div>
@@ -692,7 +653,7 @@
                 function form() {
                     return {
                         edit: false,
-                        eventsCount: {{ count($data->invitation->wedding->love_story) }},
+                        eventsCount: {{ count($data['order']->invitation->wedding->love_story) }},
                         imagesCount: 2,
                         form: {},
                         isEdit() {

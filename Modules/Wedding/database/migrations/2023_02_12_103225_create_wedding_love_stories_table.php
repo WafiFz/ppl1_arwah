@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('wedding_love_stories', function (Blueprint $table) {
             $table->id();
 
-            $table->string('year');
-            $table->text('story');
-            $table->string('image');
+            $table->string('year')->nullable();
+            $table->text('story')->nullable();
+            $table->string('image')->nullable();
 
             // Foreign Key
             $table->foreignId('wedding_id');   $table->foreign('wedding_id')->references('id')->on('weddings');

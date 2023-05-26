@@ -13,6 +13,8 @@ use Modules\Wedding\Entities\Wedding;
 use Modules\Wedding\Entities\Bride;
 use Modules\Wedding\Entities\Groom;
 use Modules\Wedding\Entities\WeddingEvent;
+use Modules\Wedding\Entities\WeddingGallery;
+use Modules\Wedding\Entities\WeddingLoveStory;
 
 class Invitation extends BaseModel
 {
@@ -53,7 +55,7 @@ class Invitation extends BaseModel
     // Invitaion Type
     public function type()
     {
-        return $this->belongsTo('Modules\Invitation\Entities\InvitationType');
+        return $this->belongsTo('Modules\Invitation\Entities\InvitationType', 'invitation_type_id');
     }
 
     // Wedding
@@ -120,6 +122,51 @@ class Invitation extends BaseModel
             'name'               => 'Unduh Mantu',
         ]);
 
+        WeddingGallery::create([
+            'wedding_id'         => $wedding->id,
+            'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+        ]);
+
+        WeddingGallery::create([
+            'wedding_id'         => $wedding->id,
+            'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+        ]);
+
+        WeddingGallery::create([
+            'wedding_id'         => $wedding->id,
+            'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+        ]);
+
+        WeddingGallery::create([
+            'wedding_id'         => $wedding->id,
+            'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+        ]);
+        
+        WeddingGallery::create([
+            'wedding_id'         => $wedding->id,
+            'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+        ]);
+
+        WeddingLoveStory::create([
+            'wedding_id'         => $wedding->id,
+            'image'              => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp",
+            'year'               => "2021",
+            'story'              => "Story 1",
+        ]);
+
+        WeddingLoveStory::create([
+            'wedding_id'         => $wedding->id,
+            'image'              => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp",
+            'year'               => "2022",
+            'story'              => "Story 2",
+        ]);
+
+        WeddingLoveStory::create([
+            'wedding_id'         => $wedding->id,
+            'image'              => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp",
+            'year'               => "2023",
+            'story'              => "Story 3",
+        ]);
     }
 
     public static function getBySlug($slug){
