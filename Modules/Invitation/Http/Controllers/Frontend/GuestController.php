@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Mail\InvitationMail;
+use App\Traits\WablasTrait;
 
 // Entities
 use Modules\Invitation\Entities\Invitation;
@@ -25,7 +26,7 @@ class GuestController extends Controller
     public function index($id)
     {
         $invitation = Invitation::getById(decode_id($id));
-
+        
         $data = [
             "invitation" => $invitation,
             "guests" => $invitation->guest,
@@ -61,11 +62,31 @@ class GuestController extends Controller
                 ];
         
                 Mail::to($guest->email)->send(new InvitationMail($data));
+
+                $guest->is_invited = true;
+                $guest->save();
+            }
+            $status = 200;
+        }elseif ($method == 'wa') {
+            foreach ($ids as $id) {
+                $guest = Guest::find($id);
+    
+                $kumpulan_data = [];
+                $data['phone'] = $guest->no_whats_app;
+                $data['message'] = WablasTrait::invitationMessage($invitation, $guest);
+                $data['secret'] = false;
+                $data['retry'] = false;
+                $data['isGroup'] = false;
+                array_push($kumpulan_data, $data);
+    
+                WablasTrait::sendText($kumpulan_data);
+
+                $guest->is_invited = true;
+                $guest->save();
             }
             $status = 200;
         }
 
-        if($method == 'sms') $status = 404;
         if(count($ids) == 0) $status = 400;
 
         return response()->json(['ids' => $request->selectedIDs, 'method' => $request->selectedMethod], $status);

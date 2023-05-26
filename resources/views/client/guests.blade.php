@@ -90,7 +90,10 @@
                                 </td>
                                 <td class="py-4 flex justify-center">
                                     <x-button-a @click="confirmInvitation([{{ $guest->id }}],defaultMethod)" class="w-9 h-9 mx-1.5 bg-brand-purple-100 text-brand-purple-500 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
-                                        <i class="fa-solid fa-paper-plane text-lg"></i>
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </x-button-a>
+                                    <x-button-a @click="confirmInvitation([{{ $guest->id }}],'wa')" class="w-9 h-9 mx-1.5 bg-brand-purple-100 text-brand-purple-500 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
+                                        <i class="fa-brands fa-whatsapp"></i>
                                     </x-button-a>
                                     <x-button-a href="#" class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                         <i class="fa-solid fa-pen text-lg"></i>
@@ -343,7 +346,7 @@
         </div>
         <!-- Modal footer -->
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <x-button  type="button" @click="hide()"
+            <x-button  type="button" @click="window.location.reload(true)"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 OK
             </x-button>
