@@ -191,35 +191,35 @@ class OrdersController extends Controller
      */
     public function makeOrderMidtransCallback(Request $request)
     {
-        $server_key = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $server_key);
-        if ($hashed == $request->signature_key) {
-            if ($request->transaction_status == 'capture') {
-                $order = Order::find($request->order_id);
-                $order->update(['status' => 'PAID']);
-                $order->payment->update([
-                    'type' => $request->payment_type,
-                    'transaction_id' => $request->transaction_id,
-                    'transaction_time' => $request->transaction_time,
-                    'transaction_status' => $request->transaction_status,
-                ]);
 
-                DB::beginTransaction();
-                
-                // Create invitation
-                Invitation::initWeddingInvitation($order);
-
-                DB::commit();
-
-                try {
-
-                } catch (Exception $e) {
-                    DB::rollback();
-                    dd($e);
-                    return redirect()->back()->with("error", "failed");
+        try {
+            $server_key = config('midtrans.server_key');
+            $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $server_key);
+            if ($hashed == $request->signature_key) {
+                if ($request->transaction_status == 'capture') {
+                    $order = Order::find($request->order_id);
+                    $order->update(['status' => 'PAID']);
+                    $order->payment->update([
+                        'type' => $request->payment_type,
+                        'transaction_id' => $request->transaction_id,
+                        'transaction_time' => $request->transaction_time,
+                        'transaction_status' => $request->transaction_status,
+                    ]);
+    
+                    DB::beginTransaction();
+                    
+                    // Create invitation
+                    Invitation::initWeddingInvitation($order);
+    
+                    DB::commit();        
+    
+                    return redirect()->route('client.orders');
                 }
-
             }
+        } catch (Exception $e) {
+            DB::rollback();
+            dd($e);
+            return redirect()->back()->with("error", "failed");
         }
     }
 }
