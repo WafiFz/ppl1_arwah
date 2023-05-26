@@ -164,7 +164,6 @@ class InvitationsController extends Controller
         // ==============================
         //  Events
         // ==============================
-        // Akad (Pae Array)
         // Tanggal
         $events[0]->date = Carbon::parse($request->date_akad)->format('Y-m-d H:i:s');
         // Waktu Mulai
@@ -174,7 +173,6 @@ class InvitationsController extends Controller
         // Tempat
         $events[0]->place = $request->place_akad;
 
-        // dd($request->all(), $events[0]->date);
         // Resepsi
         // Tanggal
         $events[1]->date = Carbon::parse($request->date_resepsi)->format('Y-m-d H:i:s');
