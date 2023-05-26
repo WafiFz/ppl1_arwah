@@ -576,7 +576,7 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file-gallery-{{ $i }}" type="file"
-                                                class="hidden" name="image_gallery[]"
+                                                class="hidden" name="gallery_image[]"
                                                 :disabled="isEdit() ? false : true" />
                                         </label>
                                     </div>

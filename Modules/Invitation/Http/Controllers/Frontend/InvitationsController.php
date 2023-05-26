@@ -227,13 +227,25 @@ class InvitationsController extends Controller
         // ==============================
         //  Gallery
         // ==============================
-        // $index = 1;
-        // $desc_gallery = 'gallery_';
-        // foreach ($galleries as $gallery) {
-        // }
-        // dd($request->all());
+        for ($i = 0; $i < count($galleries); $i++) {
+            // File
+            if (isset($request->gallery_image[$i])) {
+                if ($galleries[$i]->file != null) {
+                    // Delete Before Insert New Image
+                    // Replace Directory
+                    $galleries[$i]->file = Str::replace('storage', 'public', $galleries[$i]->file);
+                    Storage::disk('local')->delete($galleries[$i]->file);
+                }
+                // Insert New Image
+                $dir_image = $request->gallery_image[$i]->store('public/gallery');
 
+                // Replace Directory
+                $file = Str::replace('public', 'storage', $dir_image);
 
+                $galleries[$i]->file = $file;
+            }
+            $galleries[$i]->save();
+        }
 
         // Save Changes
         $package->save();
