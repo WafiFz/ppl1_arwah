@@ -64,7 +64,7 @@ Route::prefix('client')->name('client.')->group(function () {
     // Client Guest
     Route::match(['GET', 'POST'], '/invitations/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
     Route::get('/invitations/{id}/guests',$controller_guest . '@index')->name('guest.index');
-    Route::post('/sendInvitation',$controller_guest . '@sendInvitation')->name('guest.sendInvitation');
+    Route::post('/sendInvitation/{id}', $controller_guest . '@sendInvitation')->name('guest.sendInvitation');
 
     // Client Profile
     Route::get('/{id}', $controller_profile  . '@show')->name('index');

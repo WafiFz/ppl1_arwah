@@ -95,7 +95,7 @@
                             </thead>
                             <tbody>
                                 <?php $i=0; ?>
-                                @foreach ($data['invitation']->guest as $guest )
+                                @foreach ($data['guests'] as $guest )
                                 <?php if($i==10) break; ?>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">{{ $guest->name }}</td>

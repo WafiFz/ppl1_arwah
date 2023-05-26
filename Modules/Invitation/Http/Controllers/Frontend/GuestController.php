@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Mail\InvitationMail;
 
 // Entities
 use Modules\Invitation\Entities\Invitation;
@@ -26,7 +28,7 @@ class GuestController extends Controller
 
         $data = [
             "invitation" => $invitation,
-            "guests" => $invitation->guest
+            "guests" => $invitation->guest,
         ];
 
         return view('client/guests', compact('data'));
@@ -38,13 +40,31 @@ class GuestController extends Controller
      * DUMMY
      * @return Response
      */
-    public function sendInvitation(Request $request)
+    public function sendInvitation(Request $request, $id)
     {
-        dd("OK");
-        $status = 200;
+        
+        $status = 400;
         $ids = $request->selectedIDs;
         if(!$ids) $ids = [];
         $method = $request->selectedMethod;
+
+        $invitation = Invitation::getById(decode_id($id));
+
+        if($method == 'email'){
+            foreach ($ids as $id) {
+                $guest = Guest::find($id);
+    
+                $data = [
+                    "invitation" => $invitation,
+                    "wedding" => $invitation->wedding,
+                    "guest" => $guest,
+                ];
+        
+                Mail::to($guest->email)->send(new InvitationMail($data));
+            }
+            $status = 200;
+        }
+
         if($method == 'sms') $status = 404;
         if(count($ids) == 0) $status = 400;
 
@@ -85,9 +105,11 @@ class GuestController extends Controller
 
 
         $invitation = Invitation::getById(decode_id($id));
-
+        $guests = Guest::where('invitation_id', decode_id($id))->orderBy('id', 'desc')->get();
+    
         $data = [
             'invitation' => $invitation,
+            'guests' => $guests,
         ];        
 
         return view('client/addGuest', compact('data'));

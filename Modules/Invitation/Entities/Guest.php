@@ -43,4 +43,11 @@ class Guest extends BaseModel
     {
         return Guest::where('name', $name)->first();
     }
+
+    public static function getById($id)
+    {
+        return Guest::find($id);
+    }
+
+
 }

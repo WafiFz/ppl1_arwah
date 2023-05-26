@@ -5,19 +5,6 @@
             $invitationID = 0;
         @endphp
         <div class="container" >
-            {{-- <button @click="broadcastModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                Toggle broadcast modal
-            </button>
-            <button @click="confirmModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                Toggle confirm modal
-            </button>
-            <button @click="successModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                Toggle succes modal
-            </button>
-            <button @click="failedModal.show()" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                Toggle failed modal
-            </button> --}}
-            <!-- <div id="modalEl"></div> -->
             <div class="flex flex-col gap-2 text-center sm:flex-row">
                 <div class="grow">
                     <form>
@@ -259,7 +246,7 @@
                 var csrfToken = '{{ csrf_token() }}';
 
                 $.ajax({
-                    url: '{{ route('client.guest.sendInvitation') }}',
+                    url: '{{ route('client.guest.sendInvitation', encode_id($data['invitation']->id)) }}',
                     method: 'POST',
                     data: {
                         selectedIDs: selectedGuests,
@@ -325,7 +312,7 @@
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="confirmModal" title="Send Invitation">\
+    <x-flowbite-modal id="confirmModal" title="Send Invitation">
         <!-- Modal body -->
         <div class="p-6 flex flex-col justify-center items-center">
             <i class="fa-regular fa-circle-question text-brand-purple-500 text-9xl"></i>
@@ -346,7 +333,7 @@
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="successModal" title="Send Invitation" closable="false">\
+    <x-flowbite-modal id="successModal" title="Send Invitation" closable="false">
         <!-- Modal body -->
         <div class="p-6 flex flex-col justify-center items-center">
             <i class="fa-regular fa-circle-check text-brand-purple-500 text-9xl"></i>
@@ -363,7 +350,7 @@
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="failedModal" title="Send Invitation" closable="false">\
+    <x-flowbite-modal id="failedModal" title="Send Invitation" closable="false">
         <!-- Modal body -->
         <div class="p-6 flex flex-col justify-center items-center">
             <i class="fa-regular fa-circle-xmark text-brand-purple-500 text-9xl"></i>
@@ -380,7 +367,7 @@
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="loadingModal" title="Send Invitation" closable="false" header="false">\
+    <x-flowbite-modal id="loadingModal" title="Send Invitation" closable="false" header="false">
         <!-- Modal body -->
         <div class="p-6 flex flex-col justify-center items-center">
             <i class="fa-solid fa-spinner fa-spin-pulse text-brand-purple-500 text-9xl"></i>
