@@ -22,13 +22,13 @@
                 </div>
             </div>
             <div class="grid gap-6 py-8 sm:grid-cols-2">
-                <x-button-a href="" class="flex flex-col sm:flex-row items-center justify-center text-center gap-3 !p-8 rounded-lg bg-brand-purple-100">
+                <x-button-a href="{{ route('help.tac') }}" class="flex flex-col sm:flex-row items-center justify-center text-center gap-3 !p-8 rounded-lg bg-brand-purple-100">
                     <i class="text-7xl fa-solid fa-file-circle-check"></i>
                     <span class="text-2xl">
                         Terms and Condition
                     </span>
                 </x-button-a>
-                <x-button-a href="" class="flex flex-col sm:flex-row items-center justify-center text-center gap-3 !p-8 rounded-lg bg-brand-purple-100">
+                <x-button-a href="{{ route('help.tac') }}" class="flex flex-col sm:flex-row items-center justify-center text-center gap-3 !p-8 rounded-lg bg-brand-purple-100">
                     <i class="text-7xl fa-solid fa-file-shield"></i>                    
                     <span class="text-2xl">
                         Privacy Policy
@@ -39,25 +39,25 @@
                 Guide Aplikasi
             </div>
             <div class="grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4">
-                <x-button-a href="" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
+                <x-button-a href="{{route('help.panduan-pemesanan')}}" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
                     <i class="text-8xl fa-solid fa-cart-plus"></i>
                     <span class="text-2xl text-center">
                         Melakukan Pemesanan
                     </span>
                 </x-button-a>
-                <x-button-a href="" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
+                <x-button-a href="{{route('help.panduan-pemesanan')}}" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
                     <i class="text-8xl fa-solid fa-user-pen"></i>
                     <span class="text-2xl text-center">
                         Mengubah Profil
                     </span>
                 </x-button-a>
-                <x-button-a href="" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
+                <x-button-a href="{{route('help.panduan-pemesanan')}}" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
                     <i class="text-8xl fa-solid fa-users-gear"></i>
                     <span class="text-2xl text-center">
                         Manajemen Tamu
                     </span>
                 </x-button-a>
-                <x-button-a href="" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
+                <x-button-a href="{{route('help.panduan-pemesanan')}}" class="aspect-square grid gap-3 !p-8 place-content-center place-items-center rounded-lg bg-brand-purple-100 "> 
                     <i class="text-8xl fa-solid fa-envelope"></i>
                     <span class="text-2xl text-center">
                         Membuat Undangan

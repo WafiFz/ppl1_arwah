@@ -19,7 +19,7 @@
                     </svg>
                 </div>
                 <nav class="flex flex-wrap justify-center gap-4 grow">
-                    <a class="hover:opacity-75" href="{{route('help')}}" target="_blank" rel="noopener noreferrer">
+                    <a class="hover:opacity-75" href="{{route('help.index')}}" target="_blank" rel="noopener noreferrer">
                         Help Center
                     </a>
                     <a class="hover:opacity-75" href="https://nasirkhn.com" target="_blank" rel="noopener noreferrer">

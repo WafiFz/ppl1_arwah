@@ -23,7 +23,11 @@ require __DIR__ . '/auth.php';
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('/', 'App\Http\Controllers\PageController@index')->name('home');
-Route::view('/help', 'user/help/index')->name('help');
+Route::prefix('help')->name('help.')->group(function () {
+    Route::view('/', 'user.help.index')->name('index');
+    Route::view('/tac', 'user.help.tac')->name('tac');
+    Route::view('/panduan-pemesanan', 'user.help.pemesanan')->name('panduan-pemesanan');
+});
 
 /*
 *
