@@ -515,7 +515,7 @@
                                                 </div>
                                             </div>
                                             <input id="dropzone-file-love-story-{{ $i }}" type="file"
-                                                class="hidden" name="love_story[]"
+                                                class="hidden" name="love_story_image[]" value="-"
                                                 :disabled="isEdit() ? false : true" />
                                         </label>
                                     </div>

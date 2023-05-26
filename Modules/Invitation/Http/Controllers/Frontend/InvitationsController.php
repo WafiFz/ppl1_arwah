@@ -198,43 +198,31 @@ class InvitationsController extends Controller
         // ==============================
         //  Love Stories
         // ==============================
-        // $index = 1;
-        // $desc_year = 'year_';
-        // $desc_love_story = 'love_story_';
-        // $desc_story = 'story_';
-        // foreach ($love_stories as $love_story) {
-        //     $name_year = $desc_year . strval($index);
-        //     $name_love_story = $desc_love_story . strval($index);
-        //     $name_story = $desc_story . strval($index);
+        for ($i = 0; $i < count($love_stories); $i++) {
+            // Year
+            $love_stories[$i]->year = $request->year[$i];
+            // Story
+            $love_stories[$i]->story = $request->story[$i];
 
-        //     // For Year
-        //     $love_story->year =  $request->$name_year;
+            // For Image
+            if (isset($request->love_story_image[$i])) {
+                if ($love_stories[$i]->image != null) {
+                    // Delete Before Insert New Image
+                    // Rpelace Directory
+                    $love_stories[$i]->image = Str::replace('storage', 'public', $love_stories[$i]->image);
+                    Storage::disk('local')->delete($love_stories[$i]->image);
+                }
+                // Insert New Image
+                $dir_image = $request->love_story_image[$i]->store('public/love_story');
 
-        //     // For Story
-        //     $love_story->story = $request->$name_story;
+                // Replace Directory
+                $image = Str::replace('public', 'storage', $dir_image);
 
-        //     // For Image
-        //     if ($request->$name_love_story != null) {
-        //         if ($love_story->image != null) {
-        //             // Delete Before Insert New Image
-        //             // Replace Directory
-        //             $love_story->image = Str::replace('storage', 'public', $love_story->image);
-        //             Storage::disk('local')->delete($love_story->image);
-        //         }
+                $love_stories[$i]->image = $image;
+            }
 
-        //         // Insert New Image
-        //         $dir_image = $request->$name_love_story->store('public/love_story');
-
-        //         // Replace Directory
-        //         $image = Str::replace('public', 'storage', $dir_image);
-
-        //         $love_story->update([
-        //             'image' => $image,
-        //         ]);
-        //     }
-        //     $love_story->save();
-        //     $index++;
-        // }
+            $love_stories[$i]->save();
+        }
 
         // ==============================
         //  Gallery
