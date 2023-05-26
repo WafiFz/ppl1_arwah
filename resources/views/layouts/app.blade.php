@@ -31,7 +31,7 @@
             @include('layouts._navigation')
 
             <!-- Page Content -->
-            <main class="flex-grow mt-20">
+            <main class="flex-grow pt-[80px]">
                 {{ $slot }}
             </main>
 

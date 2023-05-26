@@ -1,5 +1,5 @@
 <x-app-layout title="Order">
-    <section class="py-10">
+    <section class="flex items-center py-10">
         <div class="container">
             <div class="mx-auto w-fit">
                 <h1 class="mt-0 mb-2 text-5xl font-medium leading-tight text-center">Pelayanan Terbaik Kami</h1>
@@ -21,7 +21,7 @@
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div> --}}
                             <div>@rupiah($theme->price)</div>
                         </div>
-                        <div class="w-full py-3 rounded-b-lg">
+                        <div class="w-full py-3 text-base font-bold border-t rounded-b-lg text-brand-purple-500 border-t-neutral-200">
                             <span class="font-bold">{{ $theme->name }}</span> 
                         </div>
                     </div>

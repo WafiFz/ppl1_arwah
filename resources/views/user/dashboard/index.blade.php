@@ -1,10 +1,10 @@
 <x-app-layout title="Home">
-    <section class="flex items-center h-screen">
+    <section class="flex items-center h-screen -mt-[80px]">
         <div class="container flex items-center gap-4">
             <div class="w-full">
                 <div>
-                    <h1 class="mt-0 mb-2 text-5xl font-medium leading-tight">Digital Invitation</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibus ante at vestibulum.</p>
+                    <h1 class="mt-0 mb-2 text-5xl font-medium leading-tight">Rayakan Cinta Tanpa Batas dengan Keindahan Teknologi.</h1>
+                    <p>Menghidupkan Cerita Cinta Anda melalui Sentuhan Digital yang Mempesona.</p>
                 </div>
                 <div class="flex flex-wrap items-center justify-between p-4 mt-12 text-center bg-brand-purple-100">
                     <div class="w-1/3 xl:flex xl:w-fit">
@@ -14,7 +14,7 @@
                         <div class="xl:ml-2">
                             <strong class="block text-2xl">1K+</strong>
                             <span class="text-sm">
-                                Weddings    
+                                Pernikahan    
                             </span>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         <div class="xl:ml-2">
                             <strong class="block text-2xl">10K+</strong>
                             <span class="text-sm">
-                                Guests    
+                                Tamu    
                             </span>
                         </div>
                     </div>
@@ -36,11 +36,11 @@
                         <div class="xl:ml-2">
                             <strong class="block text-2xl">80K+</strong>
                             <span class="text-sm">
-                                Gifts    
+                                Hadiah    
                             </span>
                         </div>
                     </div>
-                    <x-button-a href="{{ route('order.index') }}" class="w-full py-4 mt-5 text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black xl:w-fit xl:mt-0">Make Yours Now</x-button-a>
+                    <x-button-a href="{{ route('order.index') }}" class="w-full py-4 mt-5 text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black xl:w-fit xl:mt-0">Buat Undangan Anda</x-button-a>
                 </div>
             </div>
             <div class="hidden w-full lg:block">
@@ -57,37 +57,34 @@
             <div class="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-3">
                 <div class="p-6 rounded-lg shadow-lg bg-brand-purple-100">
                     <a href="#!">
-                        <img class="rounded-t-lg w-full max-w-[300px] mx-auto" src="{{asset('img/dummy-illustration.svg')}}" alt=""/>
+                        <img class="rounded-t-lg w-full max-h-[200px] mx-auto" src="{{asset('img/illustration/desain-menawan.svg')}}" alt=""/>
                     </a>
                     <div class="mt-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Reason 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Desain Menawan</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
+                            Setiap desain kami dirancang dengan penuh perhatian, sehingga Anda dapat menemukan undangan yang mencerminkan kepribadian dan gaya pernikahan Anda.
                         </p>
                     </div>
                 </div>
                 <div class="p-6 rounded-lg shadow-lg bg-brand-purple-100">
                     <a href="#!">
-                        <img class="rounded-t-lg w-full max-w-[300px] mx-auto" src="{{asset('img/dummy-illustration.svg')}}" alt=""/>
+                        <img class="rounded-t-lg w-full max-h-[200px] mx-auto" src="{{asset('img/illustration/kemudahan-penggunaan.svg')}}" alt=""/>
                     </a>
                     <div class="mt-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Ramah Lingkungan</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Kemudahan Penggunaan</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
+                            Menggunakan undangan pernikahan digital kami sangatlah mudah. Anda dapat dengan cepat membuat, mengedit, dan mengirim undangan Anda dengan beberapa klik saja.
                         </p>
                     </div>
                 </div>
                 <div class="p-6 rounded-lg shadow-lg bg-brand-purple-100">
                     <a href="#!">
-                        <img class="rounded-t-lg w-full max-w-[300px] mx-auto" src="{{asset('img/dummy-illustration.svg')}}" alt=""/>
+                        <img class="rounded-t-lg w-full max-h-[200px] mx-auto" src="{{asset('img/illustration/hemat-biaya.svg')}}" alt=""/>
                     </a>
                     <div class="mt-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Reason 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Hemat Biaya</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
+                            Kami percaya bahwa semua pasangan pantas mendapatkan undangan pernikahan yang indah tanpa harus membayar harga yang mahal.
                         </p>
                     </div>
                 </div>
@@ -95,7 +92,7 @@
         </div>
     </section>
     @include('user.dashboard._package')
-    <section class="py-10 bg-brand-purple-100" x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+    <section id="tema" class="py-10 bg-brand-purple-100" x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
         <div class="container" >
             <div class="mb-8">
                 <h2 class="mt-0 mb-2 text-4xl font-medium leading-tight">Preset Memudahkan Kita</h2>
@@ -111,13 +108,13 @@
                         </div>
                     </a>
                     <div class="text-center">
-                        <div class="flex gap-1.5 justify-center pt-5 pb-3">
+                        <div class="flex gap-1.5 justify-center py-5">
                             {{-- <div class="bg-gray-200 rounded-full w-9 h-9"></div>
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div>
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div> --}}
-                            <div>@rupiah($theme->price)</div>
+                            <div class="font-semibold">@rupiah($theme->price)</div>
                         </div>
-                        <x-button class="w-full py-3 text-base font-bold rounded-b-lg hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
+                        <x-button class="w-full py-3 text-base font-bold border-t rounded-b-lg text-brand-purple-500 border-t-neutral-200 hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
                             @click="showModal = true">
                             {{ $theme->name }}
                         </x-button>
@@ -127,7 +124,7 @@
             </div>
             <div class="grid mt-10 place-items-center">
                 <x-button-a href="{{ route('order.index') }}" class="w-full py-3 text-base tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-48 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                    <span class="mx-1">Lihat Selengkapnya</span>
+                    Lihat Selengkapnya
                 </x-button-a>
             </div>
         </div>
@@ -164,7 +161,7 @@
         <!-- /Overlay -->
     </section>
     @include('user.dashboard._testimoni')
-    <section class="py-10 bg-brand-purple-100">
+    <section id="fitur" class="py-10 bg-brand-purple-100">
         <div class="container">
             <div class="mb-8">
                 <span class="flex items-center"><hr class="h-[1px] w-6 bg-black border-0 inline-block mr-1">Fitur</span>
@@ -172,63 +169,57 @@
             </div>
             <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 <div class="flex flex-col bg-white rounded-lg shadow-lg lg:flex-row">
-                    <img class="object-cover w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                    <img class="object-cover object-center w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="{{ asset('img/fitur/rsvp.png')}}" alt="" />
                     <div class="flex flex-col justify-start p-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Fitur 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">RSVP Interaktif</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            Fitur ini memungkinkan tamu undangan untuk dengan mudah mengonfirmasi kehadiran mereka.
                         </p>
-                        <p class="text-xs text-gray-600">Last updated 3 mins ago</p>
                     </div>
                 </div>
                 <div class="flex flex-col bg-white rounded-lg shadow-lg lg:flex-row">
-                    <img class="object-cover w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                    <img class="object-cover object-left w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="{{ asset('img/fitur/tamu.png')}}" alt="" />
                     <div class="flex flex-col justify-start p-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Fitur 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Pengelolaan Tamu</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            Fitur ini memungkinkan Anda untuk mengatur daftar tamu, mengirim undangan secara individu atau grup, serta melacak konfirmasi kehadiran.
                         </p>
-                        <p class="text-xs text-gray-600">Last updated 3 mins ago</p>
                     </div>
                 </div>
                 <div class="flex flex-col bg-white rounded-lg shadow-lg lg:flex-row">
-                    <img class="object-cover w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                    <img class="object-cover object-left w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="{{ asset('img/fitur/responsive.png')}}" alt="" />
                     <div class="flex flex-col justify-start p-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Fitur 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Tampilan Responsif</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            Undangan dapat diakses dengan lancar melalui ponsel, tablet, atau komputer, sehingga tamu mendapatkan pengalaman yang optimal.
                         </p>
-                        <p class="text-xs text-gray-600">Last updated 3 mins ago</p>
                     </div>
                 </div>
                 <div class="flex flex-col bg-white rounded-lg shadow-lg lg:flex-row">
-                    <img class="object-cover w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                    <img class="object-cover object-left w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="{{ asset('img/fitur/wishes-gifts.png')}}" alt="" />
                     <div class="flex flex-col justify-start p-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Fitur 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Wishes & Gifts</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            Tamu undangan dapat meninggalkan komentar, ucapan selamat, doa, atau amplop digital untuk Anda dan pasangan.
                         </p>
-                        <p class="text-xs text-gray-600">Last updated 3 mins ago</p>
                     </div>
                 </div>
                 <div class="flex flex-col bg-white rounded-lg shadow-lg lg:flex-row">
-                    <img class="object-cover w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                    <img class="object-cover object-left w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="{{ asset('img/fitur/live-edit.png')}}" alt="" />
                     <div class="flex flex-col justify-start p-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Fitur 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Live Edit</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            Ubah konten undangan Anda kapanpun melalui form yang kami sediakan. Simpan dan lihat langsung perubahannya.
                         </p>
-                        <p class="text-xs text-gray-600">Last updated 3 mins ago</p>
                     </div>
                 </div>
                 <div class="flex flex-col bg-white rounded-lg shadow-lg lg:flex-row">
-                    <img class="object-cover w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="" />
+                    <img class="object-cover object-left w-full rounded-t-lg h-96 lg:h-auto lg:w-48 lg:rounded-none lg:rounded-l-lg" src="{{ asset('img/fitur/love-stories.png')}}" alt="" />
                     <div class="flex flex-col justify-start p-6">
-                        <h5 class="mb-2 text-xl font-medium text-gray-900">Fitur 1</h5>
+                        <h5 class="mb-2 text-xl font-medium text-gray-900">Love Stories</h5>
                         <p class="mb-4 text-base text-gray-700">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            Ceritakan rangkaian kisah cintamu langsung di undangan. Sertakan juga foto-foto terbaikmu!
                         </p>
-                        <p class="text-xs text-gray-600">Last updated 3 mins ago</p>
                     </div>
                 </div>
             </div>
@@ -239,10 +230,10 @@
         <div class="container text-center">
             <h2 class="max-w-4xl mx-auto my-0 mb-5 text-4xl font-medium leading-tight ">Jadikan pernikahan Anda berharga dan semakin berkesan dengan layanan kami</h2>
             <div class="flex flex-col justify-center gap-2 sm:flex-row">
-                <x-button-a href="#" class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
+                <x-button-a href="#" class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:max-w-[180px] ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
                     <span class="mx-1">Hubungi Tim Kami</span>
                 </x-button-a>
-                <x-button-a href="{{ route('order.index') }}" class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                <x-button-a href="{{ route('order.index') }}" class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:max-w-[180px] bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                     <span class="mx-1">Pesan Sekarang</span>
                 </x-button-a>
             </div>
