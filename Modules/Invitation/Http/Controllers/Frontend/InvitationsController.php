@@ -2,13 +2,14 @@
 
 namespace Modules\Invitation\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Str;
-use Modules\Invitation\Entities\Invitation;
 use Modules\Order\Entities\Order;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Modules\Invitation\Entities\Invitation;
 
 class InvitationsController extends Controller
 {
@@ -104,6 +105,7 @@ class InvitationsController extends Controller
         $bride = $wedding->bride;
         $events = $wedding->event;
         $love_stories = $wedding->love_story;
+        $galleries = $wedding->gallery;
 
         // ==============================
         //  Invitation
@@ -162,81 +164,86 @@ class InvitationsController extends Controller
         // ==============================
         //  Events
         // ==============================
-        // Akad
+        // Akad (Pae Array)
         // Tanggal
-        $events[0]->date = '2000-09-22 00:00:00';
+        $events[0]->date = Carbon::parse($request->date_akad)->format('Y-m-d H:i:s');
         // Waktu Mulai
-        $events[0]->start_time = '05:23:18';
+        $events[0]->start_time = $request->start_time_akad;
         // Waktu Akhir
-        $events[0]->end_time = '06:22:18';
+        $events[0]->end_time = $request->end_time_akad;
         // Tempat
-        $events[0]->place = 'Gedung Pemkot';
+        $events[0]->place = $request->place_akad;
 
+        // dd($request->all(), $events[0]->date);
         // Resepsi
         // Tanggal
-        $events[1]->date = '2000-09-22 00:00:00';
+        $events[1]->date = Carbon::parse($request->date_resepsi)->format('Y-m-d H:i:s');
         // Waktu Mulai
-        $events[1]->start_time = '05:23:18';
+        $events[1]->start_time = $request->start_time_resepsi;
         // Waktu Akhir
-        $events[1]->end_time = '03:22:18';
+        $events[1]->end_time = $request->end_time_resepsi;
         // Tempat
-        $events[1]->place = 'Rumah Rangga';
+        $events[1]->place = $request->place_resepsi;
 
         // Unduh Mantu
         // Tanggal
-        $events[2]->date = '2001-09-22 00:00:00';
+        $events[2]->date = Carbon::parse($request->date_unduh_mantu)->format('Y-m-d H:i:s');
         // Waktu Mulai
-        $events[2]->start_time = '05:23:18';
+        $events[2]->start_time = $request->start_time_unduh_mantu;
         // Waktu Akhir
-        $events[2]->end_time = '03:22:18';
+        $events[2]->end_time = $request->end_time_unduh_mantu;
         // Tempat
-        $events[2]->place = 'Rumah S';
+        $events[2]->place = $request->place_unduh_mantu;
 
         // ==============================
         //  Love Stories
         // ==============================
-        $index = 1;
-        $desc_year = 'year_';
-        $desc_love_story = 'love_story_';
-        $desc_story = 'story_';
-        foreach ($love_stories as $love_story) {
-            $name_year = $desc_year . strval($index);
-            $name_love_story = $desc_love_story . strval($index);
-            $name_story = $desc_story . strval($index);
+        // $index = 1;
+        // $desc_year = 'year_';
+        // $desc_love_story = 'love_story_';
+        // $desc_story = 'story_';
+        // foreach ($love_stories as $love_story) {
+        //     $name_year = $desc_year . strval($index);
+        //     $name_love_story = $desc_love_story . strval($index);
+        //     $name_story = $desc_story . strval($index);
 
-            // For Year
-            $love_story->year =  $request->$name_year;
+        //     // For Year
+        //     $love_story->year =  $request->$name_year;
 
-            // For Story
-            $love_story->story = $request->$name_story;
+        //     // For Story
+        //     $love_story->story = $request->$name_story;
 
-            // For Image
-            if ($request->$name_love_story != null) {
-                if ($love_story->image != null) {
-                    // Delete Before Insert New Image
-                    // Replace Directory
-                    $love_story->image = Str::replace('storage', 'public', $love_story->image);
-                    Storage::disk('local')->delete($love_story->image);
-                }
+        //     // For Image
+        //     if ($request->$name_love_story != null) {
+        //         if ($love_story->image != null) {
+        //             // Delete Before Insert New Image
+        //             // Replace Directory
+        //             $love_story->image = Str::replace('storage', 'public', $love_story->image);
+        //             Storage::disk('local')->delete($love_story->image);
+        //         }
 
-                // Insert New Image
-                $dir_image = $request->$name_love_story->store('public/love_story');
+        //         // Insert New Image
+        //         $dir_image = $request->$name_love_story->store('public/love_story');
 
-                // Replace Directory
-                $image = Str::replace('public', 'storage', $dir_image);
+        //         // Replace Directory
+        //         $image = Str::replace('public', 'storage', $dir_image);
 
-                $love_story->update([
-                    'image' => $image,
-                ]);
-            }
-            $love_story->save();
-            $index++;
-        }
+        //         $love_story->update([
+        //             'image' => $image,
+        //         ]);
+        //     }
+        //     $love_story->save();
+        //     $index++;
+        // }
 
         // ==============================
         //  Gallery
         // ==============================
-        dd($request->image_gallery_1);
+        // $index = 1;
+        // $desc_gallery = 'gallery_';
+        // foreach ($galleries as $gallery) {
+        // }
+        // dd($request->all());
 
 
 
