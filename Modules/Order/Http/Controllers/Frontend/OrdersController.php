@@ -165,9 +165,8 @@ class OrdersController extends Controller
             $payment = Payment::create($payment);
 
             $payment_midtrans = Payment::midtrans($user, $order, $payment);
-
-            // HANYA UNTUK TESTING
-            // Invitation::initWeddingInvitation($order);
+            
+            Invitation::initWeddingInvitation($order);
 
             DB::commit();
 
@@ -191,7 +190,6 @@ class OrdersController extends Controller
      */
     public function makeOrderMidtransCallback(Request $request)
     {
-
         try {
             $server_key = config('midtrans.server_key');
             $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $server_key);
@@ -204,11 +202,7 @@ class OrdersController extends Controller
                         'transaction_id' => $request->transaction_id,
                         'transaction_time' => $request->transaction_time,
                         'transaction_status' => $request->transaction_status,
-                    ]);
-    
-                    // Create invitation
-                    Invitation::initWeddingInvitation($order);
-        
+                    ]);    
                 }
             }
         } catch (Exception $e) {
