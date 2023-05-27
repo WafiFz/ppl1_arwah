@@ -1,4 +1,4 @@
-<x-member-layout title="Add Guests">
+<x-member-layout title="Add Guests" :php-data="$data['order']->invitation->id">
     <main class="grow">
 
             <section class="bg-white">
