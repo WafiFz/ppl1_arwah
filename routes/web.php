@@ -56,11 +56,15 @@ Route::prefix('client')->name('client.')->group(function () {
     $controller_order = 'Modules\Order\Http\Controllers\Frontend\OrdersController';
     $controller_invitation = 'Modules\Invitation\Http\Controllers\Frontend\InvitationsController';
     $controller_guest = 'Modules\Invitation\Http\Controllers\Frontend\GuestController';
+    $controller_rsvp = 'Modules\Invitation\Http\Controllers\Frontend\RsvpController';
 
     // Client Order
     Route::get('/orders', $controller_order . '@index')->name('orders');
     Route::get('/orders/{id}', $controller_order . '@show')->name(('ordersDetail'));
     // Route::view('/bills', 'user/order/detail')->name('bills');
+
+    // Client RSVP
+    Route::view('/invitations/rsvp', 'client.rsvp')->name('rsvp');
 
     // Client Invitation
     Route::get('/invitations/{id}', $controller_invitation . '@show')->name(('editInvitation'));
@@ -70,6 +74,7 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::match(['GET', 'POST'], '/invitations/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
     Route::get('/invitations/{id}/guests',$controller_guest . '@index')->name('guest.index');
     Route::post('/sendInvitation/{id}', $controller_guest . '@sendInvitation')->name('guest.sendInvitation');
+
 
     // Client Profile
     Route::get('/{id}', $controller_profile  . '@show')->name('index');

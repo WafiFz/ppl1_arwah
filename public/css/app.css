@@ -1567,6 +1567,9 @@ video {
   background-color: rgb(255 255 255 / 0.2);
 }.bg-white\/50{
   background-color: rgb(255 255 255 / 0.5);
+}.bg-brand-purple-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(84 34 181 / var(--tw-bg-opacity));
 }.bg-opacity-50{
   --tw-bg-opacity: 0.5;
 }.bg-opacity-75{
@@ -1591,6 +1594,8 @@ video {
   fill: currentColor;
 }.stroke-brand-purple-500{
   stroke: #692BE2;
+}.stroke-brand-yellow-500{
+  stroke: #E2BF2B;
 }.object-contain{
   -o-object-fit: contain;
      object-fit: contain;
@@ -1748,6 +1753,8 @@ video {
   padding-top: 2rem;
 }.pt-\[80px\]{
   padding-top: 80px;
+}.pl-6{
+  padding-left: 1.5rem;
 }.text-left{
   text-align: left;
 }.text-center{

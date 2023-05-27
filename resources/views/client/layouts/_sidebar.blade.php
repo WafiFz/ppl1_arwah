@@ -1,6 +1,6 @@
 <div
 	x-show="isOpen()"
-	class="z-40 fixed inset-0 flex min-h-screen bg-white bg-opacity-75 xl:static xl:self-stretch"
+	class="fixed inset-0 z-40 flex min-h-screen bg-white bg-opacity-75 xl:static xl:self-stretch"
 >
 	<div
 		@click.away="handleAway()"
@@ -64,6 +64,46 @@
 				</svg>
 				Orders
 			</a>
+			@if ( request()->is('client/invitations/*') )
+			<a
+				class="flex items-center w-full p-3 pl-6 bg-brand-purple-600 hover:bg-brand-yellow-500 hover:text-black"
+				href=""
+				><svg
+					class="w-6 h-6 mr-3"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+					/>
+				</svg>
+				Tamu
+			</a>
+			<a
+				class="flex items-center w-full p-3 pl-6 bg-brand-purple-600 hover:bg-brand-yellow-500 hover:text-black"
+				href="{{ route('client.rsvp') }}"
+				><svg
+					class="w-6 h-6 mr-3"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+					/>
+				</svg>
+				RSVP
+			</a>
+			@endif
 			<a
 				class="flex items-center w-full p-3 hover:bg-brand-yellow-500 hover:text-black"
 				href="#"

@@ -15,6 +15,19 @@ use Modules\Invitation\Entities\Rsvp;
 
 class RsvpController extends Controller
 {
+    public function index($id)
+    {
+        $invitation = Invitation::getById(decode_id($id));
+        $rsvps = Rsvp::where('invitation_id', decode_id($id))->paginate(8);
+
+        $data = [
+            "invitation" => $invitation,
+            "rsvps" => $rsvps,
+        ];
+
+        return view('client/rsvp', compact('data'));
+    }
+
     public function rsvp(Request $request)
     {
         try { 
