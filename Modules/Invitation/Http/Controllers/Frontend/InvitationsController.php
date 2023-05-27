@@ -142,6 +142,8 @@ class InvitationsController extends Controller
         $bride->address = $request->bride_address;
         // Instagram
         $bride->instagram = $request->bride_instagram;
+        // Foto
+        $bride->image = HelperTrait::storeImage($bride->image, $request->bride_image, 'wedding/brides');
 
         // ==============================
         //  Events
