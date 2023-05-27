@@ -70,7 +70,7 @@
             <div>
                 <div>
                     <button onclick="this.classList.toggle('faqItem-cascaded')" class="flex items-center justify-between w-full py-3 mt-3 text-xl font-medium tracking-wide text-white rounded-t-lg text-start px-11 bg-brand-purple-500 focus:outline-none faqItem-cascaded">
-                        <span>Berapa lama waktu pengerjaan website?</span><i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                        <span>Berapa lama waktu pengerjaan website?</span><i class="fa-solid fa-chevron-up text-white transition-transform"></i>
                     </button>
                     <div class="py-3 text-base font-medium tracking-wide text-black rounded-b-lg bg-brand-purple-100 px-11">
                         <p>
@@ -80,7 +80,7 @@
                 </div>
                 <div>
                     <button onclick="this.classList.toggle('faqItem-cascaded')" class="flex items-center justify-between w-full py-3 mt-3 text-xl font-medium tracking-wide text-white rounded-t-lg text-start px-11 bg-brand-purple-500 focus:outline-none faqItem-cascaded">
-                        <span>Berapa lama batas pembayaran harus dilakukan?</span><i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+                        <span>Berapa lama batas pembayaran harus dilakukan?</span><i class="fa-solid fa-chevron-up text-white transition-transform"></i>
                     </button>
                     <div class="py-3 text-base font-medium tracking-wide text-black rounded-b-lg bg-brand-purple-100 px-11">
                         <p>
@@ -100,9 +100,17 @@
             <div class="mt-8 text-3xl font-bold text-center grow">
                 Anda masih punya pertanyaan?
             </div>
-            <x-button-a href="" class="py-3 mt-6 tracking-wide text-white capitalize transition-colors duration-200 transform w-fit bg-brand-purple-500 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
-                <span class="mx-1">Hubungi Kami</span>
-            </x-button-a>
+            <div class="flex gap-4 justify-center">
+                <x-button-a href="#" class="mt-6 w-12 h-12 py-3 bg-brand-purple-500 text-white hover:text-black hover:bg-brand-yellow-500">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                </x-button-a>
+                <x-button-a href="#" class="mt-6 w-12 h-12 py-3 bg-brand-purple-500 text-white hover:text-black hover:bg-brand-yellow-500">
+                    <i class="fa-brands fa-instagram text-3xl"></i>
+                </x-button-a>
+                <x-button-a href="#" class="mt-6 w-12 h-12 py-3 bg-brand-purple-500 text-white hover:text-black hover:bg-brand-yellow-500">
+                    <i class="fa-regular fa-envelope text-3xl"></i>
+                </x-button-a>
+            </div>
         </div>
     </div>
 </x-app-layout>
