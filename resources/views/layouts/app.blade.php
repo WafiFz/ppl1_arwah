@@ -5,8 +5,8 @@
         {{-- <link rel="icon" type="image/png" href="{{asset('img/logo.svg')}}">
         <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/logo.svg')}}"> --}}
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="{{ setting('meta_description') }}">
-        <meta name="keyword" content="{{ setting('meta_keyword') }}">
+        <meta name="description" content="Temukan pengalaman pernikahan modern dan praktis dengan undangan pernikahan digital kami. Dapatkan desain undangan elegan, personalisasi yang mudah, dan pengiriman instan. Sambut tamu undangan Anda dengan undangan pernikahan unik dan hemat biaya.">
+        <meta name="keyword" content="undangan pernikahan, undangan digital, pernikahan modern, desain elegan, personalisasi mudah, pengiriman instan, hemat biaya">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }} | {{ $title }}</title>

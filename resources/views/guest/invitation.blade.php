@@ -19,6 +19,21 @@
     <x-google-analytics />
 </head>
 <body class="">
+    <x-flowbite-modal id="giftModal" title="Kirim Hadiah" closable="true">
+        <!-- Modal body -->
+        <div class="p-6 flex flex-col justify-center items-center">
+            <div class="mt-4">
+                <span class="font-bold text-3xl">Transfer ke</span>
+            </div>
+            <div class="mt-4 text-center">
+                <img class="object-contain h-30 w-60" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="logoBCA"/>
+            </div>
+            <div class="mt-4 text-center">
+                <span class="font-bold text-3xl">140810200029</span>
+            </div>
+        </div>
+    </x-flowbite-modal>
+    
     <nav id="main-nav" class="absolute top-0 z-50 w-3/4 text-white -translate-x-1/2 shadow-md xl:w-1/2 left-1/2 bg-brand-purple-900 rounded-b-md"
          x-data="{ showMobileNav: false }">
         <div id="nav-light" class="container py-2">
@@ -97,21 +112,26 @@
             <div class="absolute z-40 text-center text-white md:w-1/2">
                 <h1 class="mb-6">{{ $data['wedding']->bride->name . " & " . $data['wedding']->groom->name }}</h1>
                 <div class="flex flex-col w-full text-center md:flex-row">
-                    <div class="grid grid-cols-2 px-2 border-2 border-white divide-y md:w-2/5">
+                    @php
+                        // 1973-03-23 00:00:00 ---> 1973-03-23 03:51:42
+                        $startDate = explode(" ",$data['wedding']->event[0]->date)[0] . " " . $data['wedding']->event[0]->start_time;
+                    @endphp
+                    <div x-data="countdown('{{ $startDate }}')" x-init="init()"
+                    class="grid grid-cols-2 px-2 border-2 border-white divide-y md:w-2/5">
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.hari"></h4>
                             <span>Hari</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.jam"></h4>
                             <span>Jam</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.menit"></h4>
                             <span>Menit</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.detik"></h4>
                             <span>Detik</span>
                         </div>
                     </div>
@@ -358,7 +378,7 @@
                             <h3>Send your <br class="max-lg:hidden">best gift</h3>
                         </div>
                         <p class="m-0 lg:flex-grow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibu</p>
-                        <x-button class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
+                        <x-button type="button" onclick="giftModal.show()" class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
                     </div>
                 </div>
             </div>
@@ -370,12 +390,70 @@
     </footer>
     
     @stack('before-scripts')
+    <script>
+        //https://codepen.io/harsh/pen/KKdEVPV
+        function countdown(expiry) {
+            return {
+                expiry: new Date(expiry).getTime(),
+                remaining:null,
+                remainingTimes:null,
+                init() {
+                this.setRemaining()
+                setInterval(() => {
+                    this.setRemaining();
+                    this.remainingTimes = this.time();
+                    console.log(this.expiry);
+                    console.log(expiry);
+                }, 1000);
+                },
+                setRemaining() {
+                    const diff = this.expiry - new Date().getTime();
+                    this.remaining =  parseInt(diff / 1000);
+                },
+                days() {
+                return {
+                    value:this.remaining / 86400,
+                    remaining:this.remaining % 86400
+                };
+                },
+                hours() {
+                return {
+                    value:this.days().remaining / 3600,
+                    remaining:this.days().remaining % 3600
+                };
+                },
+                minutes() {
+                    return {
+                    value:this.hours().remaining / 60,
+                    remaining:this.hours().remaining % 60
+                };
+                },
+                seconds() {
+                    return {
+                    value:this.minutes().remaining,
+                };
+                },
+                format(value) {
+                    return ("0" + parseInt(value)).slice(-2)
+                },
+                time(){
+                    return {
+                    hari:parseInt(this.days().value),
+                    jam:parseInt(this.hours().value),
+                    menit:parseInt(this.minutes().value),
+                    detik:parseInt(this.seconds().value),
+                }
+                },
+            }
+        }
+
+    </script>
     <script src="{{ mix('js/frontend.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/glide.js"></script>
     <script src="https://kit.fontawesome.com/b249d00227.js" crossorigin="anonymous"></script>
-
-    <script>
+    
+    {{-- <script>
         function sidebar() {
             const breakpoint = 1280
             return {
@@ -434,12 +512,11 @@
                 }
             },
         } ).mount();
-    </script>
-    <script>
-        
-    </script>
+    </script> --}}
     
     <!-- font awesome -->
     @stack('after-scripts')
+
+    
 </body>
 </html>

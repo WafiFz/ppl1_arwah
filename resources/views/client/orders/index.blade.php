@@ -23,7 +23,7 @@
                 </div>
                 <x-button class="px-6 py-3 bg-brand-purple-100"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button>
             </div>
-            <div class="relative mt-5 overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -114,7 +114,9 @@
                 </table>
             </div>
 
-            <div class="flex items-center justify-between mt-5 bg-white">
+            {{ $data['orders']->links() }}
+
+            {{-- <div class="flex items-center justify-between mt-5 bg-white">
                 <div class="flex justify-end flex-1 sm:hidden">
                     <a href="#"
                         class="items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-brand-purple-100 hover:text-brand-purple-500">Previous</a>
@@ -171,7 +173,7 @@
                         </nav>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </main>
