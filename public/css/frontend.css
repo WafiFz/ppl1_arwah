@@ -1880,6 +1880,10 @@ ol{
   height: 100vh;
 }
 
+.h-40{
+  height: 10rem;
+}
+
 .max-h-96{
   max-height: 24rem;
 }
@@ -2007,6 +2011,14 @@ ol{
 
 .w-full{
   width: 100%;
+}
+
+.w-96{
+  width: 24rem;
+}
+
+.w-60{
+  width: 15rem;
 }
 
 .min-w-0{
@@ -2823,6 +2835,11 @@ ol{
 
 .stroke-brand-purple-500{
   stroke: #692BE2;
+}
+
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .object-cover{

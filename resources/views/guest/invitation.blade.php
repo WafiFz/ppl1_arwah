@@ -19,6 +19,21 @@
     <x-google-analytics />
 </head>
 <body class="">
+    <x-flowbite-modal id="giftModal" title="Kirim Hadiah" closable="true">
+        <!-- Modal body -->
+        <div class="p-6 flex flex-col justify-center items-center">
+            <div class="mt-4">
+                <span class="font-bold text-3xl">Transfer ke</span>
+            </div>
+            <div class="mt-4 text-center">
+                <img class="object-contain h-30 w-60" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="logoBCA"/>
+            </div>
+            <div class="mt-4 text-center">
+                <span class="font-bold text-3xl">140810200029</span>
+            </div>
+        </div>
+    </x-flowbite-modal>
+    
     <nav id="main-nav" class="absolute top-0 z-50 w-3/4 text-white -translate-x-1/2 shadow-md xl:w-1/2 left-1/2 bg-brand-purple-900 rounded-b-md"
          x-data="{ showMobileNav: false }">
         <div id="nav-light" class="container py-2">
@@ -358,7 +373,7 @@
                             <h3>Send your <br class="max-lg:hidden">best gift</h3>
                         </div>
                         <p class="m-0 lg:flex-grow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibu</p>
-                        <x-button class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
+                        <x-button type="button" onclick="giftModal.show()" class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
                     </div>
                 </div>
             </div>
@@ -374,8 +389,8 @@
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/glide.js"></script>
     <script src="https://kit.fontawesome.com/b249d00227.js" crossorigin="anonymous"></script>
-
-    <script>
+    
+    {{-- <script>
         function sidebar() {
             const breakpoint = 1280
             return {
@@ -434,12 +449,14 @@
                 }
             },
         } ).mount();
-    </script>
+    </script> --}}
     <script>
         
     </script>
     
     <!-- font awesome -->
     @stack('after-scripts')
+
+    
 </body>
 </html>

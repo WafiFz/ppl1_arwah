@@ -20,7 +20,11 @@
         </div>
     </div>
 </div>
-
+@once
+    @push('before-scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    @endpush
+@endonce
 @push('before-scripts')
     <script>
         function data{{ $id }}() {
