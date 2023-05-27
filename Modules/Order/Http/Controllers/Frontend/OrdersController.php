@@ -205,9 +205,13 @@ class OrdersController extends Controller
                         'transaction_time' => $request->transaction_time,
                         'transaction_status' => $request->transaction_status,
                     ]);
-                                        
+    
+                    DB::beginTransaction();
+                    
                     // Create invitation
-                    Invitation::initWeddingInvitation($order);     
+                    Invitation::initWeddingInvitation($order);
+    
+                    DB::commit();        
                 }
             }
         } catch (Exception $e) {
