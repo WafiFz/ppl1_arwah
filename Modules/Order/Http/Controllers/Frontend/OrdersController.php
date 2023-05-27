@@ -167,7 +167,7 @@ class OrdersController extends Controller
             $payment_midtrans = Payment::midtrans($user, $order, $payment);
 
             // HANYA UNTUK TESTING
-            Invitation::initWeddingInvitation($order);
+            // Invitation::initWeddingInvitation($order);
 
             DB::commit();
 
@@ -206,14 +206,9 @@ class OrdersController extends Controller
                         'transaction_status' => $request->transaction_status,
                     ]);
     
-                    DB::beginTransaction();
-                    
                     // Create invitation
                     Invitation::initWeddingInvitation($order);
-    
-                    DB::commit();        
-    
-                    return redirect()->route('client.orders');
+        
                 }
             }
         } catch (Exception $e) {
