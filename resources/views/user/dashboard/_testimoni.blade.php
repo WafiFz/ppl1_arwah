@@ -19,7 +19,7 @@
                                                 <div class="flex items-center gap-4 pt-4 text-sm text-brand-purple-500">
                                                     <img src="https://i.pravatar.cc/40?img=11" alt="user name" title="user name" width="48" height="48" class="max-w-full rounded-full shrink-0" />
                                                     <div class="flex flex-col gap-1">
-                                                        <span class="font-bold uppercase">Bill Gates</span>
+                                                        <span class="font-bold uppercase">Wafi & Manda</span>
                                                         <span class="flex gap-1 text-amber-400" role="img" aria-label="Rating: 3 out of 5 stars">
                                                             <span aria-hidden="true">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -51,7 +51,7 @@
                                                 </div>
                                             </figcaption>
                                             <blockquote class="p-6 text-lg leading-relaxed">
-                                                <p>Wind-ui, is probably one of the best libraries I've came across. Good looking, easy to use and above all super accessible.</p>
+                                                <p>Bener-bener recommended deh undangan digital dari sini! Desainnya cakep dan sesuai tema pernikahan kita. Pelayanannya juga cepet tanggap banget, bantuin kita dari awal sampe akhir. Mantap!</p>
                                             </blockquote>
                                         </figure>
                                         <svg aria-hidden="true" class="absolute z-0 h-16 left-6 top-6" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                                                 <div class="flex items-center gap-4 pt-4 text-sm text-brand-purple-500">
                                                     <img src="https://i.pravatar.cc/40?img=11" alt="user name" title="user name" width="48" height="48" class="max-w-full rounded-full shrink-0" />
                                                     <div class="flex flex-col gap-1">
-                                                        <span class="font-bold uppercase">Bill Gates</span>
+                                                        <span class="font-bold uppercase">Calvin & Nanda</span>
                                                         <span class="flex gap-1 text-amber-400" role="img" aria-label="Rating: 3 out of 5 stars">
                                                             <span aria-hidden="true">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -104,7 +104,7 @@
                                                 </div>
                                             </figcaption>
                                             <blockquote class="p-6 text-lg leading-relaxed">
-                                                <p>Wind-ui, is probably one of the best libraries I've came across. Good looking, easy to use and above all super accessible.</p>
+                                                <p>Undangan digital dari sini memang keren banget! Banyak pilihan tema yang bisa kita sesuaikan sama selera kita. Harganya juga ramah di kantong buat budget pernikahan kita. Pokoknya pas banget, deh!</p>
                                             </blockquote>
                                         </figure>
                                         <svg aria-hidden="true" class="absolute z-0 h-16 left-6 top-6" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +125,7 @@
                                                 <div class="flex items-center gap-4 pt-4 text-sm text-brand-purple-500">
                                                     <img src="https://i.pravatar.cc/40?img=11" alt="user name" title="user name" width="48" height="48" class="max-w-full rounded-full shrink-0" />
                                                     <div class="flex flex-col gap-1">
-                                                        <span class="font-bold uppercase">Bill Gates</span>
+                                                        <span class="font-bold uppercase">Fajar & Indah</span>
                                                         <span class="flex gap-1 text-amber-400" role="img" aria-label="Rating: 3 out of 5 stars">
                                                             <span aria-hidden="true">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -157,7 +157,7 @@
                                                 </div>
                                             </figcaption>
                                             <blockquote class="p-6 text-lg leading-relaxed">
-                                                <p>Wind-ui, is probably one of the best libraries I've came across. Good looking, easy to use and above all super accessible.</p>
+                                                <p>Ini dia pilihan undangan digital yang paling asik, guys! Proses bikinnya cepet dan gampang banget, ditambah desainnya yang modern dan rapi. Terima kasih banget, ya, udah bikin pernikahan kita jadi beda!</p>
                                             </blockquote>
                                         </figure>
                                         <svg aria-hidden="true" class="absolute z-0 h-16 left-6 top-6" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">

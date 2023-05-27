@@ -1,8 +1,8 @@
 <x-app-layout title="Register">
     <x-auth-card>
         <x-slot name="header">
-            <h1 class="text-3xl font-bold">Daftar</h1>
-            <p>Sudah punya akun? <a href=" {{ route('register') }} " class="font-bold ">Masuk!</a></p>
+            <h1 class="mb-1 text-3xl font-bold">Daftar</h1>
+            <p>Sudah punya akun? <a href=" {{ route('login') }} " class="font-bold ">Masuk!</a></p>
         </x-slot>
 
         <!-- Validation Errors -->

@@ -1,4 +1,4 @@
-<section class="py-10">
+<section id="paket" class="py-10">
     <div class="container">
         <div class="mx-auto w-fit">
             <h2 class="mt-0 mb-2 text-4xl font-medium leading-tight text-center">Pilih Paket Terbaikmu</h2>
@@ -18,8 +18,11 @@
                             <li class="py-2.5 glide__slide">
                                 <div class="flex flex-col items-center justify-between h-full p-6 bg-white rounded-lg shadow-lg">
                                     <div>
-                                        <h5 class="text-xl font-bold text-gray-900">{{ $package->name }}</h5>
-                                        <span class="text-xl text-brand-yellow-600">{{ $package->price }}</span>
+                                        <h5 class="mb-3 text-2xl font-bold text-gray-900">{{ $package->name }}</h4>
+                                        <div>
+                                            <span class="block text-xs">Mulai Dari</span>
+                                            <span class="text-xl font-semibold text-brand-yellow-600">{{ $package->price }}</span>
+                                        </div>
                                         {{-- <div>{{ $package->description }}</div> --}}
                                         <ul class="my-4 text-left">
                                             <?= $package->features; ?>

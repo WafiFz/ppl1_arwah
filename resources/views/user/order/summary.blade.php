@@ -1,5 +1,5 @@
 <x-app-layout title="Order Summary">
-    <section class="py-10">
+    <section class="flex items-center py-10">
         <div class="container">
             <div class="mx-auto w-fit">
                 <h1 class="mt-0 mb-2 text-5xl font-medium leading-tight text-center">Ringkasan Pemesanan</h1>

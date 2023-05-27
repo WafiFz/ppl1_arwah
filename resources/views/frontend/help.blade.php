@@ -92,7 +92,7 @@
             </div>
         </div>
     </section>
-    <div class="mt-8 py-16 text-center bg-brand-purple-100 flex lg:flex-row flex-col text-center lg:text-start items-center justify-center">
+    <div class="mt-8 py-16 text-center bg-brand-purple-100 flex lg:flex-row flex-col lg:text-start items-center justify-center">
         <img class="mx-24" src="/img/faq-question.svg" width=402 height=283 alt="image">
         <div class="flex flex-col justify-center items-center">
             <div class="text-center text-3xl font-bold grow mt-8">

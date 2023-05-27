@@ -1,4 +1,4 @@
-<section class="py-10">
+<section id="portfolio" class="py-10">
     <div class="container">
         <div class="relative w-full glide-portfolio">
             <div class="items-end justify-between mb-5 md:flex">
@@ -19,60 +19,56 @@
                 <div class="overflow-hidden glide__track " data-glide-el="track">
                     <ul class="list-none glide__slides relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
                         <li class="glide__slide py-2.5">
-                            <div class="bg-white rounded-lg shadow-lg">
+                            <div class="flex flex-col h-full bg-white rounded-lg shadow-lg">
                                 <a href="#!">
-                                    <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                                    <img class="rounded-t-lg" src="{{asset('img/themes/theme-bronze.png')}}" alt=""/>
                                 </a>
-                                <div class="p-6">
-                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Card title</h5>
-                                    <p class="mb-4 text-base text-gray-700">
-                                        Some quick example text to build on the card title and make up the bulk of the card's
-                                        content.
+                                <div class="flex flex-col items-start h-full p-6">
+                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Rudi & Ani</h5>
+                                    <p class="flex-grow mb-4 text-base text-gray-700">
+                                        Undangan paket Bronze dengan tema Basic White.
                                     </p>
                                     <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
                                 </div>
                             </div>
                         </li>
                         <li class="glide__slide py-2.5">
-                            <div class="bg-white rounded-lg shadow-lg">
+                            <div class="flex flex-col h-full bg-white rounded-lg shadow-lg">
                                 <a href="#!">
-                                    <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                                    <img class="rounded-t-lg" src="{{asset('img/themes/theme-silver.png')}}" alt=""/>
                                 </a>
-                                <div class="p-6">
-                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Card title</h5>
-                                    <p class="mb-4 text-base text-gray-700">
-                                        Some quick example text to build on the card title and make up the bulk of the card's
-                                        content.
+                                <div class="flex flex-col items-start h-full p-6">
+                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Rina & Dika</h5>
+                                    <p class="flex-grow mb-4 text-base text-gray-700">
+                                        Undangan paket Silver dengan tema Lego.
                                     </p>
                                     <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
                                 </div>
                             </div>
                         </li>
                         <li class="glide__slide py-2.5">
-                            <div class="bg-white rounded-lg shadow-lg">
+                            <div class="flex flex-col h-full bg-white rounded-lg shadow-lg">
                                 <a href="#!">
-                                    <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                                    <img class="rounded-t-lg" src="{{asset('img/themes/theme-bronze.png')}}" alt=""/>
                                 </a>
-                                <div class="p-6">
-                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Card title</h5>
-                                    <p class="mb-4 text-base text-gray-700">
-                                        Some quick example text to build on the card title and make up the bulk of the card's
-                                        content.
+                                <div class="flex flex-col items-start h-full p-6">
+                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Calvin & Nanda</h5>
+                                    <p class="flex-grow mb-4 text-base text-gray-700">
+                                        Undangan paket Bronze dengan tema Basic White.
                                     </p>
                                     <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
                                 </div>
                             </div>
                         </li>
                         <li class="glide__slide py-2.5">
-                            <div class="bg-white rounded-lg shadow-lg">
+                            <div class="flex flex-col h-full bg-white rounded-lg shadow-lg">
                                 <a href="#!">
-                                    <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                                    <img class="rounded-t-lg" src="{{asset('img/themes/theme-gold.png')}}" alt=""/>
                                 </a>
-                                <div class="p-6">
-                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Card title</h5>
-                                    <p class="mb-4 text-base text-gray-700">
-                                        Some quick example text to build on the card title and make up the bulk of the card's
-                                        content.
+                                <div class="flex flex-col items-start h-full p-6">
+                                    <h5 class="mb-2 text-xl font-medium text-gray-900">Wafi & Manda</h5>
+                                    <p class="flex-grow mb-4 text-base text-gray-700">
+                                        Undangan paket Gold dengan tema Basic Luxury Flower.
                                     </p>
                                     <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
                                 </div>

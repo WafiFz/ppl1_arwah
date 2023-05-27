@@ -23,6 +23,11 @@ require __DIR__ . '/auth.php';
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('/', 'App\Http\Controllers\PageController@index')->name('home');
+Route::prefix('help')->name('help.')->group(function () {
+    Route::view('/', 'user.help.index')->name('index');
+    Route::view('/tac', 'user.help.tac')->name('tac');
+    Route::view('/panduan-pemesanan', 'user.help.pemesanan')->name('panduan-pemesanan');
+});
 
 /*
 *
@@ -108,7 +113,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
-    Route::get('help', 'FrontendController@help')->name('help');
+    // Route::get('help', 'FrontendController@help')->name('help');
 
     Route::group(['middleware' => ['auth']], function () {
         /*
