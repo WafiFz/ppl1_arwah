@@ -206,12 +206,9 @@ class OrdersController extends Controller
                         'transaction_status' => $request->transaction_status,
                     ]);
     
-                    DB::beginTransaction();
-                    
                     // Create invitation
                     Invitation::initWeddingInvitation($order);
-    
-                    DB::commit();        
+        
                 }
             }
         } catch (Exception $e) {
