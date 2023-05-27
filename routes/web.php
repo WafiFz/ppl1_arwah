@@ -63,18 +63,17 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::get('/orders/{id}', $controller_order . '@show')->name(('ordersDetail'));
     // Route::view('/bills', 'user/order/detail')->name('bills');
 
-    // Client RSVP
-    Route::view('/invitations/rsvp', 'client.rsvp')->name('rsvp');
-
     // Client Invitation
     Route::get('/invitations/{id}', $controller_invitation . '@show')->name(('editInvitation'));
     Route::post('/save/invitations/{id}', $controller_invitation . '@edit')->name(('save.editInvitation'));
-
+    
     // Client Guest
     Route::match(['GET', 'POST'], '/invitations/{id}/guests/add', $controller_guest . '@addGuest')->name(('addGuest'));
     Route::get('/invitations/{id}/guests',$controller_guest . '@index')->name('guest.index');
     Route::post('/sendInvitation/{id}', $controller_guest . '@sendInvitation')->name('guest.sendInvitation');
-
+    
+    // Client RSVP
+    Route::get('/invitations/{id}/rsvps', $controller_rsvp . '@index')->name('rsvp');
 
     // Client Profile
     Route::get('/{id}', $controller_profile  . '@show')->name('index');

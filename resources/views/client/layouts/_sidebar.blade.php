@@ -67,7 +67,7 @@
 			@if ( request()->is('client/invitations/*') )
 			<a
 				class="flex items-center w-full p-3 pl-6 bg-brand-purple-600 hover:bg-brand-yellow-500 hover:text-black"
-				href=""
+				href="{{ route('client.guest.index', encode_id($data)) }}"
 				><svg
 					class="w-6 h-6 mr-3"
 					xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@
 			</a>
 			<a
 				class="flex items-center w-full p-3 pl-6 bg-brand-purple-600 hover:bg-brand-yellow-500 hover:text-black"
-				href="{{ route('client.rsvp') }}"
+				href="{{ route('client.rsvp', encode_id($data)) }}"
 				><svg
 					class="w-6 h-6 mr-3"
 					xmlns="http://www.w3.org/2000/svg"

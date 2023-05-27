@@ -1,4 +1,4 @@
-<x-member-layout title="Guests" dataFunction="guests">
+<x-member-layout title="Guests" alpineData="guests" :php-data="$data['invitation']->id">
     <main class="py-3 bg-white grow">
         @php
             $dataCount = count($data['guests']);
