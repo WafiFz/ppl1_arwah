@@ -82,8 +82,8 @@ trait WablasTrait
         Kami yang berbahagia $groom->name dan $bride->name, mengundang Saudara/Saudari untuk hadir di pemberkatan nikah kami, pada:
         
         Hari dan Tanggal\t:	$date
-        Pukul\t\t\t:	$event->start_time
-        Lokasi\t\t\t:	$wedding->location
+        Pukul\t\t:	$event->start_time
+        Lokasi\t\t:	$wedding->location
         Link Undangan\t:	$link
         
         Akan menjadi suatu kehormatan apabila Saudara/Saudari berkenan hadir di acara kami.
