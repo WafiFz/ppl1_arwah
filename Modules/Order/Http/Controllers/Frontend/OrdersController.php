@@ -212,8 +212,6 @@ class OrdersController extends Controller
                     Invitation::initWeddingInvitation($order);
     
                     DB::commit();        
-    
-                    return redirect()->route('client.orders');
                 }
             }
         } catch (Exception $e) {
