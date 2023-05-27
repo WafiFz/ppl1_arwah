@@ -167,7 +167,7 @@ class OrdersController extends Controller
             $payment_midtrans = Payment::midtrans($user, $order, $payment);
 
             // HANYA UNTUK TESTING
-            Invitation::initWeddingInvitation($order);
+            // Invitation::initWeddingInvitation($order);
 
             DB::commit();
 
