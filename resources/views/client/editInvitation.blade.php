@@ -50,7 +50,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="date" name="created_at"
-                                    value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->created_at)->toDateString() }}"
+                                    value="{{ $data['order']->created_at->toDateString() }}"
                                     x-model=""
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Masukkan Tanggal Pemesanan" :disabled="true"
@@ -246,32 +246,13 @@
                             <div class="sm:w-1/3">
                                 <span class="font-semibold">Foto</span>
                             </div>
-                            <div class="sm:w-2/3">
-                                <label for="dropzone-file-image-groom"
-                                    class="mt-1.5  flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50"
-                                    :class="isEdit() == false && 'bg-neutral-100 hover:bg-neutral-100'">
-                                    <div class="flex items-center justify-center gap-2 pt-5 pb-6">
-                                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                            </path>
-                                        </svg>
-                                        <div>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                    class="font-semibold">Click to upload</span></p>
-                                            <p class="m-0 text-xs text-gray-500 dark:text-gray-400">SVG,
-                                                PNG,
-                                                JPG
-                                                or GIF (MAX. 800x400px)</p>
-                                        </div>
-                                    </div>
-                                    <input id="dropzone-file-image-groom" type="file"
-                                        class="hidden" name="groom_image" value="-"
-                                        :disabled="isEdit() ? false : true" />
-                                </label>
+                            <div class="flex flex-col gap-1.5 sm:w-2/3 sm:flex-row">
+                                <div class="sm:w-1/3">
+                                    <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($data['order']->invitation->wedding->groom->image) }}" alt="">
+                                </div>
+                                <div class="sm:w-2/3">
+                                    <input name="groom_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -352,32 +333,13 @@
                             <div class="sm:w-1/3">
                                 <span class="font-semibold">Foto</span>
                             </div>
-                            <div class="sm:w-2/3">
-                                <label for="dropzone-file-image-bride"
-                                    class="mt-1.5  flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50"
-                                    :class="isEdit() == false && 'bg-neutral-100 hover:bg-neutral-100'">
-                                    <div class="flex items-center justify-center gap-2 pt-5 pb-6">
-                                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                            </path>
-                                        </svg>
-                                        <div>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                    class="font-semibold">Click to upload</span></p>
-                                            <p class="m-0 text-xs text-gray-500 dark:text-gray-400">SVG,
-                                                PNG,
-                                                JPG
-                                                or GIF (MAX. 800x400px)</p>
-                                        </div>
-                                    </div>
-                                    <input id="dropzone-file-image-bride" type="file"
-                                        class="hidden" name="bride_image" value="-"
-                                        :disabled="isEdit() ? false : true" />
-                                </label>
+                            <div class="flex flex-col gap-1.5 sm:w-2/3 sm:flex-row">
+                                <div class="sm:w-1/3">
+                                    <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($data['order']->invitation->wedding->bride->image) }}" alt="">
+                                </div>
+                                <div class="sm:w-2/3">
+                                    <input name="bride_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -396,7 +358,7 @@
                                 <div>
                                     <span class="font-semibold">Tanggal</span>
                                     <input type="date" name="date_akad"
-                                        value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->invitation->wedding->event[0]->date)->toDateString() }}"
+                                        value="{{ \Carbon\Carbon::createFromDate($data['order']->invitation->wedding->event[0]->date)->toDateString() }}"
                                         x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         :disabled="isEdit() ? false : true"
@@ -405,14 +367,14 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Waktu</span>
                                     <div class="flex flex-col items-center gap-2 sm:flex-row mt-1.5">
-                                        <input type="time" step="3600" name="start_time_akad"
+                                        <input type="time"  name="start_time_akad"
                                             value="{{ $data['order']->invitation->wedding->event[0]->start_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
                                             :class="isEdit() == false && 'bg-neutral-100'" />
                                         -
-                                        <input type="time" step="3600" name="end_time_akad"
+                                        <input type="time"  name="end_time_akad"
                                             value="{{ $data['order']->invitation->wedding->event[0]->end_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
@@ -438,7 +400,7 @@
                                 <div>
                                     <span class="font-semibold">Tanggal</span>
                                     <input type="date" name="date_resepsi"
-                                        value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->invitation->wedding->event[1]->date)->toDateString() }}"
+                                        value="{{ \Carbon\Carbon::createFromDate($data['order']->invitation->wedding->event[1]->date)->toDateString() }}"
                                         x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         :disabled="isEdit() ? false : true"
@@ -447,14 +409,14 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Waktu</span>
                                     <div class="flex flex-col items-center gap-2 sm:flex-row mt-1.5">
-                                        <input type="time" step="3600" name="start_time_resepsi"
+                                        <input type="time"  name="start_time_resepsi"
                                             value="{{ $data['order']->invitation->wedding->event[1]->start_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
                                             :class="isEdit() == false && 'bg-neutral-100'" />
                                         -
-                                        <input type="time" step="3600" name="end_time_resepsi"
+                                        <input type="time"  name="end_time_resepsi"
                                             value="{{ $data['order']->invitation->wedding->event[1]->end_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
@@ -480,7 +442,7 @@
                                 <div>
                                     <span class="font-semibold">Tanggal</span>
                                     <input type="date" name="date_unduh_mantu"
-                                        value="{{ \Carbon\Carbon::createFromTimestamp($data['order']->invitation->wedding->event[2]->date)->toDateString() }}"
+                                        value="{{ \Carbon\Carbon::createFromDate($data['order']->invitation->wedding->event[2]->date)->toDateString() }}"
                                         x-model=""
                                         class="mt-1.5 block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                         :disabled="isEdit() ? false : true"
@@ -489,14 +451,14 @@
                                 <div class="mt-4">
                                     <span class="font-semibold">Waktu</span>
                                     <div class="flex flex-col items-center gap-2 sm:flex-row mt-1.5">
-                                        <input type="time" step="3600" name="start_time_unduh_mantu"
+                                        <input type="time"  name="start_time_unduh_mantu"
                                             value="{{ $data['order']->invitation->wedding->event[2]->start_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                             :disabled="isEdit() ? false : true"
                                             :class="isEdit() == false && 'bg-neutral-100'" />
                                         -
-                                        <input type="time" step="3600" name="end_time_unduh_mantu"
+                                        <input type="time"  name="end_time_unduh_mantu"
                                             value="{{ $data['order']->invitation->wedding->event[2]->end_time }}"
                                             x-model=""
                                             class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
@@ -548,31 +510,14 @@
                                     </div>
                                     <div class="mt-4">
                                         <span class="font-semibold">Gambar</span>
-                                        <label for="dropzone-file-love-story-{{ $i }}"
-                                            class="mt-1.5  flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50"
-                                            :class="isEdit() == false && 'bg-neutral-100 hover:bg-neutral-100'">
-                                            <div class="flex items-center justify-center gap-2 pt-5 pb-6">
-                                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400"
-                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                                    </path>
-                                                </svg>
-                                                <div>
-                                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                            class="font-semibold">Click to upload</span></p>
-                                                    <p class="m-0 text-xs text-gray-500 dark:text-gray-400">SVG,
-                                                        PNG,
-                                                        JPG
-                                                        or GIF (MAX. 800x400px)</p>
-                                                </div>
+                                        <div class="flex flex-col gap-1.5 sm:flex-row">
+                                            <div class="sm:w-1/3">
+                                                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($love_story->image) }}" alt="">
                                             </div>
-                                            <input id="dropzone-file-love-story-{{ $i }}" type="file"
-                                                class="hidden" name="love_story_image[]" value="-"
-                                                :disabled="isEdit() ? false : true" />
-                                        </label>
+                                            <div class="sm:w-2/3">
+                                                <input name="love_story_image[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -609,31 +554,14 @@
                                 </div>
                                 <div class="sm:w-2/3">
                                     <div class="mt-4">
-                                        <label for="dropzone-file-gallery-{{ $i }}"
-                                            class="mt-1.5  flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50"
-                                            :class="isEdit() == false && 'bg-neutral-100 hover:bg-neutral-100'">
-                                            <div class="flex items-center justify-center gap-2 pt-5 pb-6">
-                                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400"
-                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                                    </path>
-                                                </svg>
-                                                <div>
-                                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                            class="font-semibold">Click to upload</span></p>
-                                                    <p class="m-0 text-xs text-gray-500 dark:text-gray-400">SVG,
-                                                        PNG,
-                                                        JPG
-                                                        or GIF (MAX. 800x400px)</p>
-                                                </div>
+                                        <div class="flex flex-col gap-1.5 sm:flex-row">
+                                            <div class="sm:w-1/3">
+                                                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($gallery->file) }}" alt="">
                                             </div>
-                                            <input id="dropzone-file-gallery-{{ $i }}" type="file"
-                                                class="hidden" name="gallery_image[]"
-                                                :disabled="isEdit() ? false : true" />
-                                        </label>
+                                            <div class="sm:w-2/3">
+                                                <input name="gallery_image[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

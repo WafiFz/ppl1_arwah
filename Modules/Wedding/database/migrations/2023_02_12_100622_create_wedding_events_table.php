@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name')->nullable();
-            $table->dateTime('date')->nullable();
+            $table->dateTime('date')->nullable()->default(Carbon::now());
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->string('place')->nullable();

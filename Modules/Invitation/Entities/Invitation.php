@@ -142,11 +142,6 @@ class Invitation extends BaseModel
             'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
         ]);
         
-        WeddingGallery::create([
-            'wedding_id'         => $wedding->id,
-            'file'               => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
-        ]);
-
         WeddingLoveStory::create([
             'wedding_id'         => $wedding->id,
             'image'              => "https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp",
