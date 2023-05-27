@@ -76,7 +76,7 @@ class SocialLoginController extends Controller
             UserProvider::create([
                 'user_id'     => $authUser->id,
                 'provider_id' => $socialUser->getId(),
-                'avatar'      => $socialUser->getAvatar(),
+                'avatar'      => 'img/default-avatar.jpg',
                 'provider'    => $provider,
             ]);
 
@@ -113,7 +113,7 @@ class SocialLoginController extends Controller
             UserProvider::create([
                 'user_id'     => $user->id,
                 'provider_id' => $socialUser->getId(),
-                'avatar'      => $socialUser->getAvatar(),
+                'avatar'      => 'img/default-avatar.jpg',
                 'provider'    => $provider,
             ]);
 
