@@ -141,7 +141,7 @@
                         <span>G</span><span>r</span><span>o</span><span>o</span><span>m</span>
                     </span>
                 </h3>
-                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px]" src="https://source.unsplash.com/X657fvd3smo" alt="">
+                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px]" src="{{ $data['wedding']->groom->image }}" alt="">
                 <div class="w-full mt-5 sm:mt-0">
                     <h4 class="md:text-3xl">{{ $data['wedding']->groom->name }}</h4>
                     <p class="m-0">Anak dari Bpk. {{ $data['wedding']->groom->father }}</p>
@@ -157,7 +157,7 @@
                         <span>B</span><span>r</span><span>i</span><span>d</span><span>e</span>
                     </span>
                 </h3>
-                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px]" src="https://source.unsplash.com/MMNgGsFEbuI" alt="">
+                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px]" src="{{ $data['wedding']->bride->image }}" alt="">
                 <div class="w-full mt-5 sm:mt-0 sm:text-end">
                     <h4 class="md:text-3xl">{{ $data['wedding']->bride->name }}</h4>
                     <p class="m-0">Anak dari Bpk. {{ $data['wedding']->bride->father }}</p>

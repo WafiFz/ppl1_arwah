@@ -4,13 +4,14 @@ namespace Modules\Invitation\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Traits\HelperTrait;
 
 // Entities
 use Modules\Order\Entities\Order;
-use Illuminate\Support\Facades\Storage;
 use Modules\Invitation\Entities\Invitation;
 use Modules\Invitation\Entities\Guest;
 
@@ -62,32 +63,7 @@ class InvitationsController extends Controller
     {
         //
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    // public function show($id)
-    // {
-    //     $id = decode_id($id);
 
-    //     $module_title = $this->module_title;
-    //     $module_name = $this->module_name;
-    //     $module_path = $this->module_path;
-    //     $module_icon = $this->module_icon;
-    //     $module_model = $this->module_model;
-    //     $module_name_singular = Str::singular($module_name);
-
-    //     $module_action = 'Show';
-
-    //     $$module_name_singular = $module_model::findOrFail($id);
-
-    //     return view(
-    //         "invitation::frontend.$module_name.show",
-    //         compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
-    //     );
-    // }
     public function show($id)
     {
         $order = Order::find($id);
@@ -147,9 +123,11 @@ class InvitationsController extends Controller
         // Ibu
         $groom->mother = $request->groom_mother;
         // Alamat
-        // 
+        $groom->address = $request->groom_address;
         // Instagram
         $groom->instagram = $request->groom_instagram;
+        // Foto
+        $groom->image = HelperTrait::storeImage($groom->image, $request->groom_image, 'wedding/grooms');
 
         // ==============================
         //  Bride
@@ -161,7 +139,7 @@ class InvitationsController extends Controller
         // Ibu
         $bride->mother = $request->bride_mother;
         // Alamat
-        // 
+        $bride->address = $request->bride_address;
         // Instagram
         $bride->instagram = $request->bride_instagram;
 
@@ -208,20 +186,8 @@ class InvitationsController extends Controller
 
             // For Image
             if (isset($request->love_story_image[$i])) {
-                if ($love_stories[$i]->image != null) {
-                    // Delete Before Insert New Image
-                    // Rpelace Directory
-                    $love_stories[$i]->image = Str::replace('storage', 'public', $love_stories[$i]->image);
-                    Storage::disk('local')->delete($love_stories[$i]->image);
-                }
-                // Insert New Image
-                $dir_image = $request->love_story_image[$i]->store('public/love_story');
-
-                // Replace Directory
-                $image = Str::replace('public', 'storage', $dir_image);
-
-                $love_stories[$i]->image = $image;
-            }
+                $love_stories[$i]->image = HelperTrait::storeImage($love_stories[$i]->image, $request->love_story_image[$i], 'wedding/love_story');
+            };
 
             $love_stories[$i]->save();
         }
@@ -231,21 +197,10 @@ class InvitationsController extends Controller
         // ==============================
         for ($i = 0; $i < count($galleries); $i++) {
             // File
-            if (isset($request->gallery_image[$i])) {
-                if ($galleries[$i]->file != null) {
-                    // Delete Before Insert New Image
-                    // Replace Directory
-                    $galleries[$i]->file = Str::replace('storage', 'public', $galleries[$i]->file);
-                    Storage::disk('local')->delete($galleries[$i]->file);
-                }
-                // Insert New Image
-                $dir_image = $request->gallery_image[$i]->store('public/gallery');
+            if (isset($request->gallery_image[$i])){
+                $galleries[$i]->file = HelperTrait::storeImage($galleries[$i]->file, $request->gallery_image[$i], 'wedding/gallery');
+            };
 
-                // Replace Directory
-                $file = Str::replace('public', 'storage', $dir_image);
-
-                $galleries[$i]->file = $file;
-            }
             $galleries[$i]->save();
         }
 

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('mother')->nullable();
             $table->text('address')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('image')->nullable()->default('https://source.unsplash.com/MMNgGsFEbuI');
 
             // Foreign Key
             $table->foreignId('wedding_id')->unique();   $table->foreign('wedding_id')->references('id')->on('weddings');

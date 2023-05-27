@@ -218,10 +218,10 @@
                                 <span class="font-bold">Alamat</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '" id="message"
+                                <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '"
                                     name="groom_address" rows="4" value="{{ $data['order']->invitation->wedding->groom->address }}" x-model=""
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Masukkan Alamat Pengantin Pria"></textarea>
+                                    placeholder="Masukkan Alamat Pengantin Pria">{{ $data['order']->invitation->wedding->groom->address }}</textarea>
                             </div>
                         </div>
                         <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -240,6 +240,38 @@
                                         class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition ease-in-out focus:z-[3] focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                                         placeholder="instagram" />
                                 </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
+                            <div class="sm:w-1/3">
+                                <span class="font-semibold">Foto</span>
+                            </div>
+                            <div class="sm:w-2/3">
+                                <label for="dropzone-file-image-groom"
+                                    class="mt-1.5  flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50"
+                                    :class="isEdit() == false && 'bg-neutral-100 hover:bg-neutral-100'">
+                                    <div class="flex items-center justify-center gap-2 pt-5 pb-6">
+                                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                            </path>
+                                        </svg>
+                                        <div>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                                    class="font-semibold">Click to upload</span></p>
+                                            <p class="m-0 text-xs text-gray-500 dark:text-gray-400">SVG,
+                                                PNG,
+                                                JPG
+                                                or GIF (MAX. 800x400px)</p>
+                                        </div>
+                                    </div>
+                                    <input id="dropzone-file-image-groom" type="file"
+                                        class="hidden" name="groom_image" value="-"
+                                        :disabled="isEdit() ? false : true" />
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -292,10 +324,10 @@
                                 <span class="font-bold">Alamat</span>
                             </div>
                             <div class="sm:w-2/3">
-                                <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '" id="message"
-                                    name="address" rows="4" value="{{ $data['order']->invitation->wedding->bride->adress }}" x-model=""
+                                <textarea :disabled="isEdit() ? false : true" :class="isEdit() == false && 'bg-neutral-100 '"
+                                    name="bride_address" rows="4" value="{{ $data['order']->invitation->wedding->bride->address }}" x-model=""
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Masukkan Alamat Pengantin Pria"></textarea>
+                                    placeholder="Masukkan Alamat Pengantin Pria">{{ $data['order']->invitation->wedding->bride->address }}</textarea>
                             </div>
                         </div>
                         <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -314,6 +346,38 @@
                                         class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition ease-in-out focus:z-[3] focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                                         placeholder="instagram" />
                                 </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
+                            <div class="sm:w-1/3">
+                                <span class="font-semibold">Foto</span>
+                            </div>
+                            <div class="sm:w-2/3">
+                                <label for="dropzone-file-image-bride"
+                                    class="mt-1.5  flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50"
+                                    :class="isEdit() == false && 'bg-neutral-100 hover:bg-neutral-100'">
+                                    <div class="flex items-center justify-center gap-2 pt-5 pb-6">
+                                        <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                            </path>
+                                        </svg>
+                                        <div>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                                    class="font-semibold">Click to upload</span></p>
+                                            <p class="m-0 text-xs text-gray-500 dark:text-gray-400">SVG,
+                                                PNG,
+                                                JPG
+                                                or GIF (MAX. 800x400px)</p>
+                                        </div>
+                                    </div>
+                                    <input id="dropzone-file-image-bride" type="file"
+                                        class="hidden" name="bride_image" value="-"
+                                        :disabled="isEdit() ? false : true" />
+                                </label>
                             </div>
                         </div>
                     </div>
