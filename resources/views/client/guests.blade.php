@@ -297,7 +297,7 @@
             <div class="flex-grow">
                 <select name="broadcastMethod" class=" border border-gray-300 text-sm rounded-lg focus:ring-brand-purple-500 focus:border-brand-ring-brand-purple-500 block w-full p-2.5">
                     <option value="email">Email</option>
-                    <option value="sms">SMS</option>
+                    <option value="wa">Whatsapp</option>
                 </select>
             </div>
         </div>
