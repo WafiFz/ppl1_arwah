@@ -105,7 +105,7 @@ class SocialLoginController extends Controller
             ]);
 
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
-            $user->avatar = $media->getUrl();
+            // $user->avatar = $media->getUrl();
             $user->save();
 
             event(new UserRegistered($user));
