@@ -46,7 +46,7 @@ class OrdersController extends Controller
     public function index()
     {
         // Get All Data From Table Order
-        $orders = Order::where('user_id', auth()->user()->id)->get();
+        $orders = Order::where('user_id', auth()->user()->id)->paginate(8);
         // $orders = Order::all();
 
         $data = [

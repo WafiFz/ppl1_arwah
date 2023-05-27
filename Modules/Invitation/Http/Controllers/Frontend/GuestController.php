@@ -26,10 +26,11 @@ class GuestController extends Controller
     public function index($id)
     {
         $invitation = Invitation::getById(decode_id($id));
-        
+        $guests = Guest::where('invitation_id', decode_id($id))->paginate(8);
+
         $data = [
             "invitation" => $invitation,
-            "guests" => $invitation->guest,
+            "guests" => $guests,
         ];
 
         return view('client/guests', compact('data'));

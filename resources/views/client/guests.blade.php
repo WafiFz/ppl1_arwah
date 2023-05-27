@@ -25,16 +25,16 @@
                         </div>
                     </form>
                 </div>
-                <x-button class="px-6 py-3 bg-brand-purple-100 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button>
+                <x-button class="px-6 py-3 transition-colors duration-200 transform bg-brand-purple-100 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button>
             </div>
-            <div class="relative mt-5 overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
                             <th scope="col" class="p-4">
                                 <div class="flex items-center">
                                     <input id="selectAllCheckbox" type="checkbox" x-on:change="headerCheckboxChange($el);"
-                                        class="checkbox-brand-purple-500 w-4 h-4">
+                                        class="w-4 h-4 checkbox-brand-purple-500">
                                     <label for="selectAllCheckbox" class="sr-only">checkbox</label>
                                 </div>
                             </th>
@@ -65,7 +65,7 @@
                                 <td class="w-4 p-4">
                                     <div class="flex items-center">
                                         <input id="checkbox-{{ $guest->id }}" value="{{ $guest->id }}" type="checkbox" name="guestCheckbox" x-on:change="rowCheckboxChange($el);"
-                                            class="checkbox-brand-purple-500 w-4 h-4">
+                                            class="w-4 h-4 checkbox-brand-purple-500">
                                         <label for="checkbox-{{ $guest->id }}" class="sr-only">checkbox</label>
                                     </div>
                                 </td>
@@ -88,7 +88,7 @@
                                     Belum Dikirim
                                     @endif
                                 </td>
-                                <td class="py-4 flex justify-center">
+                                <td class="flex justify-center py-4">
                                     <x-button-a @click="confirmInvitation([{{ $guest->id }}],defaultMethod)" class="w-9 h-9 mx-1.5 bg-brand-purple-100 text-brand-purple-500 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                         <i class="fa-regular fa-envelope"></i>
                                     </x-button-a>
@@ -96,7 +96,7 @@
                                         <i class="fa-brands fa-whatsapp"></i>
                                     </x-button-a>
                                     <x-button-a href="#" class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
-                                        <i class="fa-solid fa-pen text-lg"></i>
+                                        <i class="text-lg fa-solid fa-pen"></i>
                                     </x-button-a>
                                 </td>
                             </tr>
@@ -106,7 +106,9 @@
                 </table>
             </div>
 
-            <div class="flex items-center justify-between mt-5 bg-white">
+            {{ $data['guests']->links() }}
+            
+            {{-- <div class="flex items-center justify-between mt-5 bg-white">
                 <div class="flex justify-end flex-1 sm:hidden">
                     <a href="#"
                         class="items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-brand-purple-100 hover:text-brand-purple-500">Previous</a>
@@ -163,7 +165,7 @@
                         </nav>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </main>
     @push('before-scripts')
@@ -236,8 +238,6 @@
             function confirmInvitation(target,method) {
                 selectedGuests = target;
                 selectedMethod = method;
-                console.log(selectedGuests);
-                console.log(selectedMethod);
                 confirmModal.show();
             }
 
@@ -278,7 +278,7 @@
     @push('header-actions')
         <div>
             <x-button @click="broadcastModal.show()" type="button" x-show="selectedCheckboxCount > 0"
-                class=" text-brand-purple-500 w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-0 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
+                class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white text-brand-purple-500 sm:w-40 ring-0 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                 <span class="font-extrabold">Broadcast</span>
             </x-button>
             <x-button-a href="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" type="button"
@@ -290,7 +290,7 @@
 
     <x-flowbite-modal id="broadcastModal" title="Broadcast">
         <!-- Modal body -->
-        <div class="p-6 my-6 flex flex-col sm:flex-row sm:justify-between sm:items-center">
+        <div class="flex flex-col p-6 my-6 sm:flex-row sm:justify-between sm:items-center">
             <div class="mr-4">
                 <span class="font-bold">Broadcast Via</span>
             </div>
@@ -317,7 +317,7 @@
 
     <x-flowbite-modal id="confirmModal" title="Send Invitation">
         <!-- Modal body -->
-        <div class="p-6 flex flex-col justify-center items-center">
+        <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-question text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
                 <span class="font-bold">Are you sure to send the invitation?</span>
@@ -338,7 +338,7 @@
 
     <x-flowbite-modal id="successModal" title="Send Invitation" closable="false">
         <!-- Modal body -->
-        <div class="p-6 flex flex-col justify-center items-center">
+        <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-check text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
                 <span class="font-bold">Invitation has been sent</span>
@@ -355,7 +355,7 @@
 
     <x-flowbite-modal id="failedModal" title="Send Invitation" closable="false">
         <!-- Modal body -->
-        <div class="p-6 flex flex-col justify-center items-center">
+        <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-xmark text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
                 <span class="font-bold">Invitation not sent</span>
@@ -372,7 +372,7 @@
 
     <x-flowbite-modal id="loadingModal" title="Send Invitation" closable="false" header="false">
         <!-- Modal body -->
-        <div class="p-6 flex flex-col justify-center items-center">
+        <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-solid fa-spinner fa-spin-pulse text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
                 <span class="font-bold">Processing ...</span>

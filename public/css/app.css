@@ -910,6 +910,9 @@ video {
 }.my-auto{
   margin-top: auto;
   margin-bottom: auto;
+}.my-5{
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }.\!mb-0{
   margin-bottom: 0px !important;
 }.-mb-24{
@@ -1136,6 +1139,8 @@ video {
   width: fit-content;
 }.w-full{
   width: 100%;
+}.w-60{
+  width: 15rem;
 }.min-w-0{
   min-width: 0px;
 }.min-w-\[250px\]{
@@ -1586,6 +1591,9 @@ video {
   fill: currentColor;
 }.stroke-brand-purple-500{
   stroke: #692BE2;
+}.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
 }.object-cover{
   -o-object-fit: cover;
      object-fit: cover;
