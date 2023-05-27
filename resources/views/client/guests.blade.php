@@ -27,6 +27,25 @@
                 </div>
                 <x-button class="px-6 py-3 transition-colors duration-200 transform bg-brand-purple-100 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button>
             </div>
+            <div class="flex flex-col items-start justify-between gap-2 my-5 sm:items-center items sm:flex-row">
+                <x-button-a href="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" type="button"
+                    class="sm:order-3 whitespace-nowrap w-full !px-6 !py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-fit bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                    <span class="font-extrabold">Add New</span>
+                </x-button>
+                <div class="flex w-full max-sm:justify-between">
+                    <p class="m-0"><span x-text="selectedCheckboxCount"></span> baris dipilih</p>
+                    <div class="flex justify-between gap-3 sm:mx-auto">
+                        <x-button @click="confirmDelete.show()" type="button" x-show="selectedCheckboxCount > 0"
+                            class="!px-0 !py-0 text-brand-red sm:w-fit hover:text-black">
+                            <span class="font-extrabold">Delete</span>
+                        </x-button>
+                        <x-button @click="confirmInvite.show()" type="button" x-show="selectedCheckboxCount > 0"
+                            class="!px-0 !py-0 text-brand-purple-500 sm:w-fit hover:text-brand-purple-600">
+                            <span class="font-extrabold">Broadcast</span>
+                        </x-button>
+                    </div>
+                </div>
+            </div>
             <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -97,6 +116,9 @@
                                     </x-button-a>
                                     <x-button-a href="#" class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                         <i class="text-lg fa-solid fa-pen"></i>
+                                    </x-button-a>
+                                    <x-button-a href="#" class="w-9 h-9 mx-1.5 bg-brand-red text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
+                                        <i class="fa-solid fa-trash"></i>
                                     </x-button-a>
                                 </td>
                             </tr>
@@ -238,7 +260,7 @@
             function confirmInvitation(target,method) {
                 selectedGuests = target;
                 selectedMethod = method;
-                confirmModal.show();
+                confirmInvite.show();
             }
 
             function sendInvitation() {
@@ -276,16 +298,7 @@
     @endpush
 
     @push('header-actions')
-        <div>
-            <x-button @click="broadcastModal.show()" type="button" x-show="selectedCheckboxCount > 0"
-                class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white text-brand-purple-500 sm:w-40 ring-0 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
-                <span class="font-extrabold">Broadcast</span>
-            </x-button>
-            <x-button-a href="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" type="button"
-                class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                <span class="font-extrabold">Add New</span>
-            </x-button>
-        </div>
+        
     @endpush
 
     <x-flowbite-modal id="broadcastModal" title="Broadcast">
@@ -315,23 +328,44 @@
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="confirmModal" title="Send Invitation">
+    <x-flowbite-modal id="confirmInvite" title="Send Invitation">
         <!-- Modal body -->
         <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-question text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
-                <span class="font-bold">Are you sure to send the invitation?</span>
+                <span class="font-bold">Apakah anda yakin untuk mengirim undangan?</span>
             </div>
         </div>
         <!-- Modal footer -->
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
             <x-button  type="button" @click="hide()"
                 class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
-                <span class="mx-1">Cancel</span>
+                <span class="mx-1">Batalkan</span>
             </x-button>
             <x-button  type="button" @click="sendInvitation(); hide();"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
-                Send
+                Kirim
+            </x-button>
+        </div>
+    </x-flowbite-modal>
+    
+    <x-flowbite-modal id="confirmDelete" title="Send Invitation">
+        <!-- Modal body -->
+        <div class="flex flex-col items-center justify-center p-6">
+            <i class="fa-regular fa-circle-question text-brand-purple-500 text-9xl"></i>
+            <div class="mt-4">
+                <span class="font-bold">Apakah anda yakin untuk menghapus tamu?</span>
+            </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <x-button  type="button" @click="hide()"
+                class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
+                <span class="mx-1">Batalkan</span>
+            </x-button>
+            <x-button  type="button" @click="sendInvitation(); hide();"
+                class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                Hapus
             </x-button>
         </div>
     </x-flowbite-modal>

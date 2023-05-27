@@ -37,6 +37,7 @@ module.exports = {
                         900: "#2D2609",
                     },
                     pink: "#9E1E9C",
+                    red: "#EA4134",
                 },
             },
         },
