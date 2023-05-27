@@ -119,19 +119,19 @@
                     <div x-data="countdown('{{ $startDate }}')" x-init="init()"
                     class="grid grid-cols-2 px-2 border-2 border-white divide-y md:w-2/5">
                         <div class="p-4">
-                            <h4 class="mb-0" x-text="remainingTimes.hari"></h4>
+                            <h4 class="mb-0" x-text=" remainingTimes.hari "></h4>
                             <span>Hari</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0" x-text="remainingTimes.jam"></h4>
+                            <h4 class="mb-0" x-text="remainingTimes.jam "></h4>
                             <span>Jam</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0" x-text="remainingTimes.menit"></h4>
+                            <h4 class="mb-0" x-text="remainingTimes.menit "></h4>
                             <span>Menit</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0" x-text="remainingTimes.detik"></h4>
+                            <h4 class="mb-0" x-text="remainingTimes.detik "></h4>
                             <span>Detik</span>
                         </div>
                     </div>
@@ -399,11 +399,12 @@
                 remainingTimes:null,
                 init() {
                 this.setRemaining()
+                this.remainingTimes = this.time();
                 setInterval(() => {
                     this.setRemaining();
                     this.remainingTimes = this.time();
-                    console.log(this.expiry);
-                    console.log(expiry);
+                    //console.log(this.expiry);
+                    //console.log(expiry);
                 }, 1000);
                 },
                 setRemaining() {
