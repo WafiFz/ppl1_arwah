@@ -26,6 +26,7 @@
     @endpush
 @endonce
 @push('before-scripts')
+    {{-- harus udah ada sebelum frontend.js --}}
     <script>
         function data{{ $id }}() {
             return { 

@@ -112,21 +112,26 @@
             <div class="absolute z-40 text-center text-white md:w-1/2">
                 <h1 class="mb-6">{{ $data['wedding']->bride->name . " & " . $data['wedding']->groom->name }}</h1>
                 <div class="flex flex-col w-full text-center md:flex-row">
-                    <div class="grid grid-cols-2 px-2 border-2 border-white divide-y md:w-2/5">
+                    @php
+                        // 1973-03-23 00:00:00 ---> 1973-03-23 03:51:42
+                        $startDate = explode(" ",$data['wedding']->event[0]->date)[0] . " " . $data['wedding']->event[0]->start_time;
+                    @endphp
+                    <div x-data="countdown('{{ $startDate }}')" x-init="init()"
+                    class="grid grid-cols-2 px-2 border-2 border-white divide-y md:w-2/5">
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.hari"></h4>
                             <span>Hari</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.jam"></h4>
                             <span>Jam</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.menit"></h4>
                             <span>Menit</span>
                         </div>
                         <div class="p-4">
-                            <h4 class="mb-0">20</h4>
+                            <h4 class="mb-0" x-text="remainingTimes.detik"></h4>
                             <span>Detik</span>
                         </div>
                     </div>
@@ -385,6 +390,64 @@
     </footer>
     
     @stack('before-scripts')
+    <script>
+        //https://codepen.io/harsh/pen/KKdEVPV
+        function countdown(expiry) {
+            return {
+                expiry: new Date(expiry).getTime(),
+                remaining:null,
+                remainingTimes:null,
+                init() {
+                this.setRemaining()
+                setInterval(() => {
+                    this.setRemaining();
+                    this.remainingTimes = this.time();
+                    console.log(this.expiry);
+                    console.log(expiry);
+                }, 1000);
+                },
+                setRemaining() {
+                    const diff = this.expiry - new Date().getTime();
+                    this.remaining =  parseInt(diff / 1000);
+                },
+                days() {
+                return {
+                    value:this.remaining / 86400,
+                    remaining:this.remaining % 86400
+                };
+                },
+                hours() {
+                return {
+                    value:this.days().remaining / 3600,
+                    remaining:this.days().remaining % 3600
+                };
+                },
+                minutes() {
+                    return {
+                    value:this.hours().remaining / 60,
+                    remaining:this.hours().remaining % 60
+                };
+                },
+                seconds() {
+                    return {
+                    value:this.minutes().remaining,
+                };
+                },
+                format(value) {
+                    return ("0" + parseInt(value)).slice(-2)
+                },
+                time(){
+                    return {
+                    hari:parseInt(this.days().value),
+                    jam:parseInt(this.hours().value),
+                    menit:parseInt(this.minutes().value),
+                    detik:parseInt(this.seconds().value),
+                }
+                },
+            }
+        }
+
+    </script>
     <script src="{{ mix('js/frontend.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/glide.js"></script>
@@ -450,9 +513,6 @@
             },
         } ).mount();
     </script> --}}
-    <script>
-        
-    </script>
     
     <!-- font awesome -->
     @stack('after-scripts')
