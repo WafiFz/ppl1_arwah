@@ -44,34 +44,34 @@ class GuestController extends Controller
      */
     public function sendInvitation(Request $request, $id)
     {
-        
+
         $status = 400;
         $ids = $request->selectedIDs;
-        if(!$ids) $ids = [];
+        if (!$ids) $ids = [];
         $method = $request->selectedMethod;
 
         $invitation = Invitation::getById(decode_id($id));
 
-        if($method == 'email'){
+        if ($method == 'email') {
             foreach ($ids as $id) {
                 $guest = Guest::find($id);
-    
+
                 $data = [
                     "invitation" => $invitation,
                     "wedding" => $invitation->wedding,
                     "guest" => $guest,
                 ];
-        
+
                 Mail::to($guest->email)->send(new InvitationMail($data));
 
                 $guest->is_invited = true;
                 $guest->save();
             }
             $status = 200;
-        }elseif ($method == 'wa') {
+        } elseif ($method == 'wa') {
             foreach ($ids as $id) {
                 $guest = Guest::find($id);
-    
+
                 $kumpulan_data = [];
                 $data['phone'] = $guest->no_whats_app;
                 $data['message'] = WablasTrait::invitationMessage($invitation, $guest);
@@ -79,7 +79,7 @@ class GuestController extends Controller
                 $data['retry'] = false;
                 $data['isGroup'] = false;
                 array_push($kumpulan_data, $data);
-    
+
                 WablasTrait::sendText($kumpulan_data);
 
                 $guest->is_invited = true;
@@ -88,7 +88,7 @@ class GuestController extends Controller
             $status = 200;
         }
 
-        if(count($ids) == 0) $status = 400;
+        if (count($ids) == 0) $status = 400;
 
         return response()->json(['ids' => $request->selectedIDs, 'method' => $request->selectedMethod], $status);
     }
@@ -108,32 +108,41 @@ class GuestController extends Controller
 
     public function addGuest(Request $request, $id)
     {
-        if($request->method() == 'POST'){
-            
+        if ($request->method() == 'POST') {
+
             $input = collect($request->except('_token'));
-            
+
             $input = $input->replace([
                 'invitation_id' => decode_id($request->invitation_id),
             ])->all();
 
 
             DB::beginTransaction();
-            
+
             // Create RSVP
             Guest::create($input);
-            
+
             DB::commit();
         };
 
 
         $invitation = Invitation::getById(decode_id($id));
         $guests = Guest::where('invitation_id', decode_id($id))->orderBy('id', 'desc')->get();
-    
+
         $data = [
             'invitation' => $invitation,
             'guests' => $guests,
-        ];        
+        ];
 
         return view('client/addGuest', compact('data'));
+    }
+
+    public function deleteGuest($id)
+    {
+        $data = Guest::findOrFail($id);
+        $id_invitation = $data->invitation->id;
+        $data->delete();
+
+        return redirect()->route('client.guest.index', encode_id($id_invitation));
     }
 }
