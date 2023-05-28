@@ -1,11 +1,10 @@
-<x-member-layout title="Add Guests" :php-data="$data['order']->invitation->id">
+<x-member-layout title="{{request()->routeIs('client.addGuest') ? 'Add Guests' : 'Edit Guest'}}" :php-data="$data['invitation']->id">
     <main class="grow">
-
             <section class="bg-white">
                 <form action="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" method="post" x-data="data()">
                     @csrf
                     <input type="hidden" name="invitation_id" value="{{ encode_id($data['invitation']->id) }}">
-                    <input type="hidden" name="is_invited" value="{{ 0 }}">
+                    <input type="hidden" name="is_invited" value="{{ 0 }}"> 
                 <div class="container py-8">
                     <div class="text-center sm:text-start">
                         <h3 class="mb-0 text-xl font-medium">Guest</h3>
@@ -62,14 +61,21 @@
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        <x-button type="submit" class="text-white bg-brand-purple-500">Add</x-button>
+                        <x-button type="submit" class="text-white bg-brand-purple-500">
+                            @if (request()->routeIs('client.addGuest'))
+                            Add
+                            @else
+                            Edit
+                            @endif
+                        </x-button>
                     </div>
                 </div>
                 </form>
             </section>
+            @if(request()->routeIs('client.addGuest'))
             <section class="bg-white">
                 <div class="container py-8">
-                    <div class="text-center sm:text-start">
+                    <div class="text-center sm:text-start mb-3">
                         <h3 class="mb-0 text-xl font-medium">Baru Ditambahkan</h3>
                     </div>
                     <div class="relative overflow-auto shadow-md max-h-96 sm:rounded-lg">
@@ -114,6 +120,7 @@
                     </div> --}}
                 </div>
             </section>
+            @endif
     </main>
     @push('before-scripts')
         <script>

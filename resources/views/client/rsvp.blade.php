@@ -21,7 +21,7 @@
                         </div>
                     </form>
                 </div>
-                <x-button class="px-6 py-3 transition-colors duration-200 transform bg-brand-purple-100 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button>
+                {{-- <x-button class="px-6 py-3 transition-colors duration-200 transform bg-brand-purple-100 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button> --}}
             </div>
             <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">

@@ -26,31 +26,31 @@
                             </div>
                         </form>
                     </div>
-                    <x-button
+                    {{-- <x-button
                         class="px-6 py-3 transition-colors duration-200 transform bg-brand-purple-100 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                         <i class="mr-2 fa-solid fa-filter"></i>Filter
-                    </x-button>
+                    </x-button> --}}
                 </div>
                 <div class="flex flex-col items-start justify-between gap-2 my-5 sm:items-center items sm:flex-row">
                     <x-button-a href="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" type="button"
                         class="sm:order-3 whitespace-nowrap w-full !px-6 !py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-fit bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                         <span class="font-extrabold">Add New</span>
-                        </x-button>
-                        <div class="flex w-full max-sm:justify-between">
-                            <p class="m-0"><span x-text="selectedCheckboxCount"></span> baris dipilih</p>
-                            <div class="flex justify-between gap-3 sm:mx-auto">
-                                <x-button @click="confirmDelete(getSelectedGuests())" type="button"
-                                    x-show="selectedCheckboxCount > 0"
-                                    class="!px-0 !py-0 text-brand-red sm:w-fit hover:text-black">
-                                    <span class="font-extrabold">Delete</span>
-                                </x-button>
-                                <x-button @click="modals.broadcast.show()" type="button"
-                                    x-show="selectedCheckboxCount > 0"
-                                    class="!px-0 !py-0 text-brand-purple-500 sm:w-fit hover:text-brand-purple-600">
-                                    <span class="font-extrabold">Broadcast</span>
-                                </x-button>
-                            </div>
+                    </x-button-a>
+                    <div class="flex w-full max-sm:justify-between">
+                        <p class="m-0"><span x-text="selectedCheckboxCount"></span> baris dipilih</p>
+                        <div class="flex justify-between gap-3 sm:mx-auto">
+                            <x-button @click="confirmDelete(getSelectedGuests())" type="button"
+                                x-show="selectedCheckboxCount > 0"
+                                class="!px-0 !py-0 text-brand-red sm:w-fit hover:text-black">
+                                <span class="font-extrabold">Delete</span>
+                            </x-button>
+                            <x-button @click="modals.broadcast.show()" type="button"
+                                x-show="selectedCheckboxCount > 0"
+                                class="!px-0 !py-0 text-brand-purple-500 sm:w-fit hover:text-brand-purple-600">
+                                <span class="font-extrabold">Broadcast</span>
+                            </x-button>
                         </div>
+                    </div>
                 </div>
                 <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500">
@@ -125,7 +125,7 @@
                                             class="w-9 h-9 mx-1.5 bg-brand-purple-100 text-brand-purple-500 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                             <i class="fa-brands fa-whatsapp"></i>
                                         </x-button-a>
-                                        <x-button-a href="#"
+                                        <x-button-a href="{{ route('client.guest.edit', encode_id($data['invitation']->id)) }}"
                                             class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                             <i class="text-lg fa-solid fa-pen"></i>
                                         </x-button-a>
