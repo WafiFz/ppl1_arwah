@@ -121,16 +121,16 @@
         animation: lovestory-animation 3s linear forwards;
     }
 
-    .splide--loop:hover .lovestory-progress-bar {
-        animation: lovestory-animation2 .3s linear forwards;;
+    [aria-live='polite']~ul li button .lovestory-progress-bar {
+        animation: lovestory-animation-pause .3s linear forwards !important;
     }
 
     @keyframes lovestory-animation {
-        from{transform: scaleX(.15);}
+        from{transform: scaleX(.25);}
         to {transform: scaleX(1);}
     }
-    @keyframes lovestory-animation2 {
-        from{transform: scaleX(.5);}
+    @keyframes lovestory-animation-pause {
+        from{transform: scaleX(.25);}
         to {transform: scaleX(1);}
     }
 }
