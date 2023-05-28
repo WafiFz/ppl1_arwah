@@ -40,6 +40,7 @@
             <div class="relative flex items-center justify-center">
                 <div class="items-center justify-center invisible hidden py-2 sm:hidden"
                     :class="{'!flex !visible !opacity-100': showMobileNav}">
+                    
                     <a href="{{ route('home') }}" class="block">
                         <img class="w-auto h-5 " src="{{asset('img/logo-dark.svg')}}" alt="{{ app_name() }}">
                     </a>
@@ -58,10 +59,10 @@
                 <div class="items-center content-center justify-center flex-1 hidden sm:flex">
                     <div class="hidden sm:block">
                         <div class="flex gap-x-4">
-                            <a href="{{ route('frontend.posts.index') }}" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
+                            <a href="#mempelai" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
                                 Mempelai
                             </a>
-                            <a href="{{ route('frontend.categories.index') }}" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
+                            <a href="#acara" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
                                 Acara
                             </a>
                             <div class="flex items-center flex-shrink-0">
@@ -72,10 +73,10 @@
                                     <img class="w-auto h-5 " src="{{asset('img/logo-with-text-dark.svg')}}" alt="{{ app_name() }}">
                                 </a>
                             </div>
-                            <a href="{{ route('frontend.tags.index') }}" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
+                            <a href="#galeri" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
                                 Galeri
                             </a>
-                            <a href="{{ route('frontend.comments.index') }}" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
+                            <a href="#ucapan" class="px-3 py-2 text-base font-medium transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500">
                                 Ucapan
                             </a>
                         </div>
@@ -87,23 +88,23 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="w-full sm:hidden" id="mobile-menu" x-show="showMobileNav" @click.away="showMobileNav = false" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
             <div class="px-2 pt-2 pb-3 space-y-1 shadow-lg ring-1 ring-black ring-opacity-5">
-                <a href="{{ route('frontend.posts.index') }}" class="block px-3 py-2 text-base font-medium rounded-md">
-                    {{__('Posts')}}
+                <a href="#mempelai" class="block px-3 py-2 text-base font-medium rounded-md">
+                    {{__('Mempelai')}}
                 </a>
-                <a href="{{ route('frontend.categories.index') }}" class="block px-3 py-2 text-base font-medium rounded-md">
-                    {{__('Categories')}}
+                <a href="#acara" class="block px-3 py-2 text-base font-medium rounded-md">
+                    {{__('Acara')}}
                 </a>
-                <a href="{{ route('frontend.tags.index') }}" class="block px-3 py-2 text-base font-medium rounded-md">
-                    {{__('Tags')}}
+                <a href="#galeri" class="block px-3 py-2 text-base font-medium rounded-md">
+                    {{__('Galeri')}}
                 </a>
-                <a href="{{ route('frontend.comments.index') }}" class="block px-3 py-2 text-base font-medium rounded-md">
-                    {{__('Comments')}}
+                <a href="#ucapan" class="block px-3 py-2 text-base font-medium rounded-md">
+                    {{__('Ucapan')}}
                 </a>
             </div>
         </div>
         <div class="absolute w-1/2 -translate-x-1/2 shadow-md bg-brand-purple-900 rounded-b-md top-full left-1/2 sm:hidden">
             <button type="button" class="block mx-auto" @click="showMobileNav = !showMobileNav">
-                <i class="text-white fa-sharp fa-solid fa-caret-down"></i>
+                <i class="text-white fa-sharp fa-solid fa-caret-down" :class="showMobileNav ? 'rotate-180' : ''"></i>
             </button>
         </div>
     </nav>
@@ -146,11 +147,13 @@
         </div>
         <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
     </section>
+    <a id="mempelai"></a>
     <section class="">
         <div class="container py-12 text-center">
             <h2>{{ $data['wedding']->title }}</h2>
             {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibus ante at vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibus ante at vestibulum.</p> --}}
         </div>
+        {{-- <a id="mempelai"></a> --}}
         <div class="relative text-white xl:flex">
             <div class="w-full gap-3 p-4 max-xl:pb-8 bg-brand-purple-900 sm:flex h-fit">
                 <h3 class="uppercase sm:vertical-lr sm:text-justify sm:text-justify-last">
@@ -187,6 +190,7 @@
             <img src="{{ asset("img/flowers.png")}}" alt="" class="absolute -translate-x-1/2 -translate-y-1/2 w-28 top-1/2 left-1/2">
         </div>
     </section>
+    <a id="acara"></a>
     <section class="relative py-12">
         <div class="container">
             {{-- <h2 class="text-center">Tanggal Penting</h2> --}}
@@ -229,6 +233,7 @@
         <img class="absolute top-0 left-0 hidden w-40 sm:block" src="{{asset('img/corner-flowers.png')}}" alt="">
         <img class="absolute bottom-0 right-0 w-40 rotate-180" src="{{asset('img/corner-flowers.png')}}" alt="">
     </section>
+    <a id="galeri"></a>
     <section class="py-12 text-white bg-brand-purple-900">
         <div class="flex flex-col gap-3 sm:flex-row">
             <hr class="self-start inline-block w-3/4 h-2 m-0 bg-gray-500 border-0 rounded-r-full sm:w-full">
@@ -256,6 +261,7 @@
             </div>
         </section>
     </section>
+    {{-- <a id="galeri"></a> --}}
     <section class="py-8 bg-neutral-100">
         <div class="container">
             <h2 class="text-center">Gallery</h2>
@@ -335,6 +341,7 @@
         </div>
     </form>
     </section>
+    <a id="ucapan"></a>
     <section class="py-8">
         <form method="POST" action="{{ route('sendWish') }}">
         @csrf

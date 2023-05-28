@@ -26,7 +26,7 @@ class GuestController extends Controller
     public function index($id)
     {
         $invitation = Invitation::getById(decode_id($id));
-        $guests = Guest::whereNot('invitation_id', decode_id($id))->paginate(8);
+        $guests = Guest::where('invitation_id', decode_id($id))->paginate(8);
 
         $data = [
             "invitation" => $invitation,
