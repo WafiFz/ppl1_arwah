@@ -68,6 +68,9 @@
     .nav-link {
         @apply px-3 py-2 text-base font-medium text-white transition duration-300 ease-out border-b-2 border-transparent hover:border-brand-purple-500;
     }
+    .sidebar-active {
+        @apply bg-brand-yellow-500 text-black;
+    }
     .vertical-lr {
         writing-mode: vertical-lr;
         text-orientation: upright;
@@ -86,17 +89,18 @@
         background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='rgb(105, 43, 226)' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
     }
 
-    .faqItem-cascaded{
+    .faqItem-cascaded {
         @apply rounded-b-lg;
     }
-    .faqItem-cascaded > i{
+    .faqItem-cascaded > i {
         @apply rotate-180;
     }
-    .faqItem-cascaded + div{
+    .faqItem-cascaded + div {
         @apply hidden;
     }
 
-    .lovestory-pagination, .lovestory-progress-bar{
+    .lovestory-pagination,
+    .lovestory-progress-bar {
         @apply !rounded-[50px];
         @apply !bg-gray-500;
         @apply !mx-1;
@@ -104,7 +108,8 @@
         @apply !w-3;
         @apply !h-3;
     }
-    .lovestory-pagination.is-active, .lovestory-progress-bar{
+    .lovestory-pagination.is-active,
+    .lovestory-progress-bar {
         @apply !mx-3;
         @apply !w-9;
     }
@@ -121,16 +126,24 @@
         animation: lovestory-animation 3s linear forwards;
     }
 
-    [aria-live='polite']~ul li button .lovestory-progress-bar {
-        animation: lovestory-animation-pause .3s linear forwards !important;
+    [aria-live="polite"] ~ ul li button .lovestory-progress-bar {
+        animation: lovestory-animation-pause 0.3s linear forwards !important;
     }
 
     @keyframes lovestory-animation {
-        from{transform: scaleX(.25);}
-        to {transform: scaleX(1);}
+        from {
+            transform: scaleX(0.25);
+        }
+        to {
+            transform: scaleX(1);
+        }
     }
     @keyframes lovestory-animation-pause {
-        from{transform: scaleX(.25);}
-        to {transform: scaleX(1);}
+        from {
+            transform: scaleX(0.25);
+        }
+        to {
+            transform: scaleX(1);
+        }
     }
 }

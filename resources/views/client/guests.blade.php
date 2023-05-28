@@ -129,10 +129,7 @@
                                             class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                             <i class="text-lg fa-solid fa-pen"></i>
                                         </x-button-a>
-                                        <a href="{{ route('client.guest.delete', $guest->id) }}">
-                                            Delete
-                                        </a>
-                                        <x-button-a @click="confirmDelete([{{ $guest->id }}])"
+                                        <x-button-a href="{{ route('client.guest.delete', $guest->id) }}"
                                             class="w-9 h-9 mx-1.5 bg-brand-red text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                             <i class="fa-solid fa-trash"></i>
                                         </x-button-a>
@@ -324,8 +321,8 @@
                     var csrfToken = '{{ csrf_token() }}';
 
                     $.ajax({
-                        url: '{{ route('client.guest.sendInvitation', encode_id($data['invitation']->id)) }}',
-                        method: 'POST',
+                        url: '{{ route('client.guest.delete', encode_id($data['invitation']->id)) }}',
+                        method: 'GET',
                         data: {
                             selectedIDs: targetGuests,
                         },
