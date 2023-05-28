@@ -235,18 +235,26 @@
             <div class="w-full text-center"><h2>Kisah Cinta Kita</h2></div>
             <hr class="self-end inline-block w-3/4 h-2 m-0 bg-gray-500 border-0 rounded-l-full sm:w-full">
         </div>
-        <div class="container mt-8">
-            <div class="flex flex-col items-center gap-6 sm:flex-row">
-                <div class="p-4 font-bold text-center text-black bg-white sm:max-md:w-1/2 md:w-1/3">
-                    <img class="object-cover w-full aspect-square" src="{{asset('img/wedding-hero.jpg')}}" alt="">
-                    <div>-2020-</div>
-                    <div class="mt-2 text-3xl uppercase">engaged</div>
-                </div>
-                <div class="sm:max-md:w-1/2 md:w-2/3">
-                    <q class="text-3xl lg:text-4xl text-brand-yellow-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi</q>
-                </div>
+        <section id="love-story" class="splide container mt-8 pb-[70px]" aria-label="Beautiful Images">
+            <div class="splide__track">
+                    <ul class="splide__list">
+                        @for ($ii=0;$ii<3;$ii++)
+                            <li class="splide__slide">
+                                <div class="flex flex-col items-center gap-6 sm:flex-row">
+                                    <div class="p-4 font-bold text-center text-black bg-white sm:max-md:w-1/2 md:w-1/3">
+                                        <img class="object-cover w-full aspect-square" src="{{asset('img/wedding-hero.jpg')}}" alt="">
+                                        <div>-2020-</div>
+                                        <div class="mt-2 text-3xl uppercase">engaged</div>
+                                    </div>
+                                    <div class="sm:max-md:w-1/2 md:w-2/3">
+                                        <q class="text-3xl lg:text-4xl text-brand-yellow-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi</q>
+                                    </div>
+                                </div>
+                            </li>
+                        @endfor
+                    </ul>
             </div>
-        </div>
+        </section>
     </section>
     <section class="py-8 bg-neutral-100">
         <div class="container">
@@ -391,6 +399,7 @@
     
     @stack('before-scripts')
     <script>
+        
         //https://codepen.io/harsh/pen/KKdEVPV
         function countdown(expiry) {
             return {
@@ -453,7 +462,34 @@
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/glide.js"></script>
     <script src="https://kit.fontawesome.com/b249d00227.js" crossorigin="anonymous"></script>
-    
+    <script>
+        let splide = new Splide( '#love-story', {
+            type: 'loop',
+            autoplay: true,
+            pauseOnHover: true,
+            interval: 3000, 
+            gap: 24,
+            perPage:1,
+        } );
+
+        splide.on( 'pagination:mounted', function ( data ) {
+        // You can add your class to the UL element
+            // console.log(data.items[0])
+            // data.list.classList.add( 'lovestory-pagination' );
+
+            // `items` contains all dot items
+            data.items.forEach( function ( item ) {
+                let splideProgressBar = document.createElement("div");
+                splideProgressBar.classList.add('lovestory-progress-bar');
+                item.button.classList.add( 'lovestory-pagination' );
+                item.button.appendChild(splideProgressBar);
+                // item.button.textContent = String( item.page + 1 );
+            } );
+        } );
+
+        splide.mount();
+        
+    </script>
     {{-- <script>
         function sidebar() {
             const breakpoint = 1280
@@ -493,26 +529,6 @@
             }
         }
 
-        new Splide( '.splide', {
-            type: 'loop',
-            autoplay: true,
-            pauseOnHover: true,
-            interval: 3000,
-            gap: "10px",
-            mediaQuery: 'min',
-            padding: { left: '3rem', right: '3rem' },
-            breakpoints: {
-                640: {
-                    perPage: 2,
-                },
-                1024: {
-                    perPage: 3,
-                },
-                1280: {
-                    perPage: 4,
-                }
-            },
-        } ).mount();
     </script> --}}
     
     <!-- font awesome -->

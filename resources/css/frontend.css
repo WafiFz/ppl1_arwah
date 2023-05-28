@@ -95,4 +95,42 @@
     .faqItem-cascaded + div{
         @apply hidden;
     }
+
+    .lovestory-pagination, .lovestory-progress-bar{
+        @apply !rounded-[50px];
+        @apply !bg-gray-500;
+        @apply !mx-1;
+        @apply !opacity-25;
+        @apply !w-3;
+        @apply !h-3;
+    }
+    .lovestory-pagination.is-active, .lovestory-progress-bar{
+        @apply !mx-3;
+        @apply !w-9;
+    }
+    .lovestory-progress-bar {
+        @apply !w-0;
+        @apply !m-0;
+        @apply !opacity-100;
+        @apply !bg-white;
+    }
+
+    .lovestory-pagination.is-active .lovestory-progress-bar {
+        @apply !w-9;
+        transform-origin: center;
+        animation: lovestory-animation 3s linear forwards;
+    }
+
+    .splide--loop:hover .lovestory-progress-bar {
+        animation: lovestory-animation2 .3s linear forwards;;
+    }
+
+    @keyframes lovestory-animation {
+        from{transform: scaleX(.15);}
+        to {transform: scaleX(1);}
+    }
+    @keyframes lovestory-animation2 {
+        from{transform: scaleX(.5);}
+        to {transform: scaleX(1);}
+    }
 }
