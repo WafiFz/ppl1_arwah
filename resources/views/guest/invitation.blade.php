@@ -378,7 +378,7 @@
                             <h3>Send your <br class="max-lg:hidden">best gift</h3>
                         </div>
                         <p class="m-0 lg:flex-grow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibu</p>
-                        <x-button type="button" onclick="giftModal.show()" class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
+                        <x-button type="button" onclick="modals.giftModal.show()" class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
                     </div>
                 </div>
             </div>

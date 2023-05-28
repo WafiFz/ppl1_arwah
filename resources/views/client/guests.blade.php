@@ -35,11 +35,11 @@
                 <div class="flex w-full max-sm:justify-between">
                     <p class="m-0"><span x-text="selectedCheckboxCount"></span> baris dipilih</p>
                     <div class="flex justify-between gap-3 sm:mx-auto">
-                        <x-button @click="confirmDelete.show()" type="button" x-show="selectedCheckboxCount > 0"
+                        <x-button @click="confirmDelete(getSelectedGuests())" type="button" x-show="selectedCheckboxCount > 0"
                             class="!px-0 !py-0 text-brand-red sm:w-fit hover:text-black">
                             <span class="font-extrabold">Delete</span>
                         </x-button>
-                        <x-button @click="confirmInvite.show()" type="button" x-show="selectedCheckboxCount > 0"
+                        <x-button @click="modals.broadcast.show()" type="button" x-show="selectedCheckboxCount > 0"
                             class="!px-0 !py-0 text-brand-purple-500 sm:w-fit hover:text-brand-purple-600">
                             <span class="font-extrabold">Broadcast</span>
                         </x-button>
@@ -117,7 +117,7 @@
                                     <x-button-a href="#" class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                         <i class="text-lg fa-solid fa-pen"></i>
                                     </x-button-a>
-                                    <x-button-a href="#" class="w-9 h-9 mx-1.5 bg-brand-red text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
+                                    <x-button-a @click="confirmDelete([{{ $guest->id }}])" class="w-9 h-9 mx-1.5 bg-brand-red text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                         <i class="fa-solid fa-trash"></i>
                                     </x-button-a>
                                 </td>
@@ -193,10 +193,9 @@
     @push('before-scripts')
         
         <script>
-            let defaultMethod = 'email';
-            let selectedGuests = [];
-            let selectedMethod = '';
+            
             document.addEventListener('alpine:init', () => {
+                
                 Alpine.data('guests', () => ({
                     selectedCheckboxCount : 0,
                     dataCount : {{ $dataCount }},
@@ -247,24 +246,33 @@
                     }
                 }))
             });
-            
-            function broadcast() {
-                broadcastGuests = [];
-                broadcastMethod = $('select[name="broadcastMethod"]').val();
+
+            let defaultMethod = 'email';
+            let targetGuests = [];
+
+
+            function getSelectedGuests() {
+                selectedGuests = [];
                 $("input:checkbox[name=guestCheckbox]:checked").each(function(){
-                    broadcastGuests.push($(this).val());
+                    selectedGuests.push($(this).val());
                 });
-                confirmInvitation(broadcastGuests,broadcastMethod);
+                return selectedGuests;
+            }
+
+
+            function broadcast() {
+                broadcastMethod = modals.broadcast.xdata.method;
+                confirmInvitation(getSelectedGuests(),broadcastMethod);
             }
             
             function confirmInvitation(target,method) {
-                selectedGuests = target;
+                targetGuests = target;
                 selectedMethod = method;
-                confirmInvite.show();
+                modals.confirmInvite.show();
             }
 
             function sendInvitation() {
-                broadcastModal.hide();
+                modals.broadcast.hide();
                 if (selectedMethod === "" || !selectedMethod){
                     selectedMethod = defaultMethod;
                 }
@@ -274,7 +282,7 @@
                     url: '{{ route('client.guest.sendInvitation', encode_id($data['invitation']->id)) }}',
                     method: 'POST',
                     data: {
-                        selectedIDs: selectedGuests,
+                        selectedIDs: targetGuests,
                         selectedMethod: selectedMethod
                     },
                     headers: {
@@ -282,18 +290,51 @@
                     },
                     success: function(response) { //status 200
                         console.log(response);
-                        loadingModal.hide();
-                        successModal.show();
+                        modals.loading.hide();
+                        modals.success.show();
                     },
                     error: function(xhr, status, error) {
                         // Handle error response
                         console.log(xhr);
-                        loadingModal.hide();
-                        failedModal.show();
+                        modals.loading.hide();
+                        modals.failed.show();
                     }
                 });
-                loadingModal.show();
+                modals.loading.show();
             }
+
+            function confirmDelete(target) {
+                targetGuests = target;
+                modals.confirmDelete.show();
+            }
+
+            function deleteGuest(){
+                var csrfToken = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: '{{ route('client.guest.sendInvitation', encode_id($data['invitation']->id)) }}',
+                    method: 'POST',
+                    data: {
+                        selectedIDs: targetGuests,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) { //status 200
+                        console.log(response);
+                        modals.loading.hide();
+                        modals.success.show();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.log(xhr);
+                        modals.loading.hide();
+                        modals.failed.show();
+                    }
+                });
+                modals.loading.show();
+            }
+
         </script>
     @endpush
 
@@ -301,20 +342,20 @@
         
     @endpush
 
-    <x-flowbite-modal id="broadcastModal" title="Broadcast">
-        <!-- Modal body -->
+    <x-flowbite-modal id="broadcast" title="Broadcast" xdata="{method:'wa'}">
+        <!--  body -->
         <div class="flex flex-col p-6 my-6 sm:flex-row sm:justify-between sm:items-center">
             <div class="mr-4">
                 <span class="font-bold">Broadcast Via</span>
             </div>
             <div class="flex-grow">
-                <select name="broadcastMethod" class=" border border-gray-300 text-sm rounded-lg focus:ring-brand-purple-500 focus:border-brand-ring-brand-purple-500 block w-full p-2.5">
+                <select name="broadcastMethod" x-model="method" class=" border border-gray-300 text-sm rounded-lg focus:ring-brand-purple-500 focus:border-brand-ring-brand-purple-500 block w-full p-2.5">
                     <option value="email">Email</option>
                     <option value="wa">Whatsapp</option>
                 </select>
             </div>
         </div>
-        <!-- Modal footer -->
+        <!--  footer -->
         
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
             <x-button @click="hide()" type="button"
@@ -329,14 +370,14 @@
     </x-flowbite-modal>
 
     <x-flowbite-modal id="confirmInvite" title="Send Invitation">
-        <!-- Modal body -->
+        <!--  body -->
         <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-question text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
                 <span class="font-bold">Apakah anda yakin untuk mengirim undangan?</span>
             </div>
         </div>
-        <!-- Modal footer -->
+        <!--  footer -->
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
             <x-button  type="button" @click="hide()"
                 class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
@@ -349,36 +390,36 @@
         </div>
     </x-flowbite-modal>
     
-    <x-flowbite-modal id="confirmDelete" title="Send Invitation">
-        <!-- Modal body -->
+    <x-flowbite-modal id="confirmDelete" title="Hapus Tamu">
+        <!--  body -->
         <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-question text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
                 <span class="font-bold">Apakah anda yakin untuk menghapus tamu?</span>
             </div>
         </div>
-        <!-- Modal footer -->
+        <!--  footer -->
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
             <x-button  type="button" @click="hide()"
                 class="w-full py-3 tracking-wide capitalize transition-colors duration-200 transform bg-white sm:w-40 ring-1 ring-brand-purple-500 hover:ring-0 hover:text-black hover:bg-brand-yellow-500">
                 <span class="mx-1">Batalkan</span>
             </x-button>
-            <x-button  type="button" @click="sendInvitation(); hide();"
+            <x-button  type="button" @click="deleteGuest(); hide();"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 Hapus
             </x-button>
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="successModal" title="Send Invitation" closable="false">
-        <!-- Modal body -->
+    <x-flowbite-modal id="success" title="successTitle" xdata="{message:'operasi berhasil'}" closable="false">
+        <!--  body -->
         <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-check text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
-                <span class="font-bold">Invitation has been sent</span>
+                <span x-text="message" class="font-bold"></span>
             </div>
         </div>
-        <!-- Modal footer -->
+        <!--  footer -->
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
             <x-button  type="button" @click="window.location.reload(true)"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
@@ -387,29 +428,29 @@
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="failedModal" title="Send Invitation" closable="false">
-        <!-- Modal body -->
+    <x-flowbite-modal id="failed" title="failTitle" xdata="{message:'operasi gagal'}" closable="false">
+        <!--  body -->
         <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-regular fa-circle-xmark text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
-                <span class="font-bold">Invitation not sent</span>
+                <span x-text="message" class="font-bold"></span>
             </div>
         </div>
-        <!-- Modal footer -->
+        <!--  footer -->
         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <x-button  type="button" @click="hide()"
+            <x-button  type="button" @click="hide();"
                 class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                 OK
             </x-button>
         </div>
     </x-flowbite-modal>
 
-    <x-flowbite-modal id="loadingModal" title="Send Invitation" closable="false" header="false">
-        <!-- Modal body -->
+    <x-flowbite-modal id="loading" title="loadingTitle" xdata="{message:'Mohon tunggu ...'}" closable="false" header="false">
+        <!--  body -->
         <div class="flex flex-col items-center justify-center p-6">
             <i class="fa-solid fa-spinner fa-spin-pulse text-brand-purple-500 text-9xl"></i>
             <div class="mt-4">
-                <span class="font-bold">Processing ...</span>
+                <span x-text="message" class="font-bold"></span>
             </div>
         </div>
     </x-flowbite-modal>
