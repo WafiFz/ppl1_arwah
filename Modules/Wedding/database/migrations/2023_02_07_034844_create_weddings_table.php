@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('location')->nullable();
             $table->string('location_gmap')->nullable();
+            $table->string('rekening_gift')->nullable();
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();

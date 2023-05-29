@@ -167,6 +167,20 @@
                                     :class="edit == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
+                        @if($data['order']->package->name == 'Gold')
+                        <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
+                            <div class="sm:w-1/3">
+                                <span class="font-bold">No Rekening</span>
+                            </div>
+                            <div class="sm:w-2/3">
+                                <input type="text" name="rekening_gift"
+                                    value="{{ $data['order']->invitation->wedding->rekening_gift }}"
+                                    class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
+                                    placeholder="Masukkan Rekening Untuk Hadiah Digital" :disabled="edit ? false : true"
+                                    :class="edit == false && 'bg-neutral-100 '" />
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </section>
                 <section class="bg-white">

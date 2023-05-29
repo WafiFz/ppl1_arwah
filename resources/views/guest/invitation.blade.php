@@ -25,11 +25,11 @@
             <div class="mt-4">
                 <span class="font-bold text-3xl">Transfer ke</span>
             </div>
-            <div class="mt-4 text-center">
+            {{-- <div class="mt-4 text-center">
                 <img class="object-contain h-30 w-60" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="logoBCA"/>
-            </div>
+            </div> --}}
             <div class="mt-4 text-center">
-                <span class="font-bold text-3xl">140810200029</span>
+                <span class="font-bold text-3xl">{{ $data['wedding']->rekening_gift }}</span>
             </div>
         </div>
     </x-flowbite-modal>

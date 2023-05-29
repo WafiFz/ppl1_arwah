@@ -111,7 +111,8 @@ class InvitationsController extends Controller
         // Lokasi
         $wedding->location = $request->location;
         // Link Lokasi
-        // 
+        // Nomor Rekening
+        $wedding->rekening_gift = $request->rekening_gift;
 
         // ==============================
         //  Groom
