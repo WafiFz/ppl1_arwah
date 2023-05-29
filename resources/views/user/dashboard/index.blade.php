@@ -101,7 +101,7 @@
             <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 @foreach ($data["themes"] as $theme )
                 <div class="bg-white rounded-lg shadow-lg">
-                    <a href="#!" class="relative">
+                    <a href="{{  route('order.summary', encode_id($theme->id)) }}" class="relative">
                         <img class="rounded-t-lg" src="{{asset('img/' . $theme->img_preview)}}" alt=""/>
                         <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black opacity-60 text-brand-yellow-500">
                             {{ $theme->package->name }}
@@ -114,10 +114,13 @@
                             <div class="bg-gray-200 rounded-full w-9 h-9"></div> --}}
                             <div class="font-semibold">@rupiah($theme->price)</div>
                         </div>
-                        <x-button class="w-full py-3 text-base font-bold border-t rounded-b-lg text-brand-purple-500 border-t-neutral-200 hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
+                        {{-- <x-button class="w-full py-3 text-base font-bold border-t rounded-b-lg text-brand-purple-500 border-t-neutral-200 hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none"
                             @click="showModal = true">
                             {{ $theme->name }}
-                        </x-button>
+                        </x-button> --}}
+                        <x-button-a href="{{  route('order.summary', encode_id($theme->id)) }}" class="w-full py-3 text-base font-bold border-t rounded-b-lg text-brand-purple-500 border-t-neutral-200 hover:bg-brand-purple-500 hover:text-white hover:rounded-t-none">
+                            {{ $theme->name }}
+                        </x-button-a>
                     </div>
                 </div>
                 @endforeach

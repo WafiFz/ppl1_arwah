@@ -22,10 +22,10 @@
                     <a class="hover:opacity-75" href="{{route('help.index')}}" target="_blank" rel="noopener noreferrer">
                         Help Center
                     </a>
-                    <a class="hover:opacity-75" href="https://nasirkhn.com" target="_blank" rel="noopener noreferrer">
+                    <a class="hover:opacity-75" href="" target="_blank" rel="noopener noreferrer">
                         Terms & Condition
                     </a>
-                    <a class="hover:opacity-75" href="/blog" target="_blank" rel="noopener noreferrer">
+                    <a class="hover:opacity-75" href="" target="_blank" rel="noopener noreferrer">
                         Privacy Policy
                     </a>
                 </nav>

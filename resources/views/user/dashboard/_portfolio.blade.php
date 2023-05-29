@@ -28,7 +28,7 @@
                                     <p class="flex-grow mb-4 text-base text-gray-700">
                                         Undangan paket Bronze dengan tema Basic White.
                                     </p>
-                                    <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
+                                    {{-- <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a> --}}
                                 </div>
                             </div>
                         </li>
@@ -42,7 +42,7 @@
                                     <p class="flex-grow mb-4 text-base text-gray-700">
                                         Undangan paket Silver dengan tema Lego.
                                     </p>
-                                    <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
+                                    {{-- <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a> --}}
                                 </div>
                             </div>
                         </li>
@@ -56,7 +56,7 @@
                                     <p class="flex-grow mb-4 text-base text-gray-700">
                                         Undangan paket Bronze dengan tema Basic White.
                                     </p>
-                                    <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
+                                    {{-- <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a> --}}
                                 </div>
                             </div>
                         </li>
@@ -70,7 +70,7 @@
                                     <p class="flex-grow mb-4 text-base text-gray-700">
                                         Undangan paket Gold dengan tema Basic Luxury Flower.
                                     </p>
-                                    <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a>
+                                    {{-- <x-button-a type="button" class="px-8 py-2 m-0 tracking-wide text-white transition-colors duration-200 transform bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">Button</x-button-a> --}}
                                 </div>
                             </div>
                         </li>

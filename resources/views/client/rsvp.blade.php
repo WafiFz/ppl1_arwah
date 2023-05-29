@@ -1,6 +1,7 @@
 <x-member-layout title="RSVP" :php-data="$data['invitation']->id">
     <main class="py-3 bg-white grow">
         <div class="container" >
+        @if($data['package']->name == 'Gold' || $data['package']->name == 'Silver')
             <div class="flex flex-col gap-2 text-center sm:flex-row">
                 <div class="grow">
                     <form>
@@ -23,6 +24,7 @@
                 </div>
                 {{-- <x-button class="px-6 py-3 transition-colors duration-200 transform bg-brand-purple-100 ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button> --}}
             </div>
+
             <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -73,6 +75,9 @@
             </div>
 
             {{ $data['rsvps']->links() }}
+        @else
+        <p>Paket yang anda beli tidak mendukung fitur RSVP</p>
+        @endif
         </div>
     </main>
 </x-member-layout>

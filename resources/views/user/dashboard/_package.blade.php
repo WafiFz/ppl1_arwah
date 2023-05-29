@@ -28,7 +28,7 @@
                                             <?= $package->features; ?>
                                         </ul>
                                     </div>
-                                    <button type="button" class="inline-block px-10 py-2.5 text-white bg-brand-purple-500 font-medium text-xs rounded-full hover:bg-brand-purple-100 focus:bg-brand-purple-100 active:bg-brand-purple-100 mt-4">Pilih</button>
+                                    <x-button-a href="{{ route('order.theme', encode_id($package->id)) }}" type="button" class="inline-block px-10 py-2.5 text-white bg-brand-purple-500 font-medium text-xs rounded-full hover:bg-brand-purple-100 focus:bg-brand-purple-100 active:bg-brand-purple-100 mt-4">Pilih</x-button-a>
                                 </div>
                             </li>
                             @endforeach

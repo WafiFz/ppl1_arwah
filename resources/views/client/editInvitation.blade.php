@@ -474,6 +474,7 @@
                         </div>
                     </div>
                 </section>
+                @if($data['order']->package->name == 'Gold')
                 <section class="bg-white">
                     <div class="container py-8">
                         <div class="text-center sm:text-start">
@@ -531,6 +532,8 @@
                         </div> --}}
                     </div>
                 </section>
+                @endif
+                @if($data['order']->package->name == 'Gold' || $data['order']->package->name == 'Silver')
                 <section class="bg-white">
                     <div class="container py-8">
                         <div class="text-center sm:text-start">
@@ -581,6 +584,7 @@
                             </x-button>
                         </div>
                 </section>
+                @endif
                 <section class="bg-white">
                     <div class="container py-8">
                         <div>

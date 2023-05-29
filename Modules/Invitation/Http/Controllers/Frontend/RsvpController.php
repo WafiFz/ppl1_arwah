@@ -23,6 +23,7 @@ class RsvpController extends Controller
         $data = [
             "invitation" => $invitation,
             "rsvps" => $rsvps,
+            "package" => $invitation->order->package,
         ];
 
         return view('client/rsvp', compact('data'));
