@@ -99,7 +99,6 @@ class GuestController extends Controller
         $invitation = Invitation::getBySlug($slug);
 
         $data = [
-            "package" => $invitation->order->package,
             "invitation" => $invitation,
             "wedding" => $invitation->wedding
         ];
@@ -145,5 +144,25 @@ class GuestController extends Controller
         $data->delete();
 
         return redirect()->route('client.guest.index', encode_id($id_invitation));
+    }
+
+    public function editGuest(Request $request, $id)
+    {
+        if ($request->method() == 'POST') {
+            $guest = Guest::find($id);
+            $guest->name = $request->name;
+            $guest->description = $request->description;
+            $guest->address = $request->address;
+            $guest->no_whats_app = $request->no_whats_app;
+            $guest->email = $request->email;
+
+            $guest->save();
+
+            return redirect()->route('client.guest.index', encode_id($guest->invitation_id));
+        };
+
+
+        $guest = Guest::where('id', decode_id($id))->first();
+        return view('client/editGuest', compact('guest'));
     }
 }
