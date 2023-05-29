@@ -44,8 +44,7 @@
                                 class="!px-0 !py-0 text-brand-red sm:w-fit hover:text-black">
                                 <span class="font-extrabold">Delete</span>
                             </x-button>
-                            <x-button @click="modals.broadcast.show()" type="button"
-                                x-show="selectedCheckboxCount > 0"
+                            <x-button @click="modals.broadcast.show()" type="button" x-show="selectedCheckboxCount > 0"
                                 class="!px-0 !py-0 text-brand-purple-500 sm:w-fit hover:text-brand-purple-600">
                                 <span class="font-extrabold">Broadcast</span>
                             </x-button>
@@ -125,7 +124,7 @@
                                             class="w-9 h-9 mx-1.5 bg-brand-purple-100 text-brand-purple-500 transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                             <i class="fa-brands fa-whatsapp"></i>
                                         </x-button-a>
-                                        <x-button-a href="{{ route('client.guest.edit', encode_id($data['invitation']->id)) }}"
+                                        <x-button-a href="{{ route('client.guest.edit', encode_id($guest->id)) }}"
                                             class="w-9 h-9 mx-1.5 bg-brand-purple-500 text-white transition-colors duration-200 transform ring-brand-purple-500 hover:text-black hover:bg-brand-yellow-500">
                                             <i class="text-lg fa-solid fa-pen"></i>
                                         </x-button-a>
