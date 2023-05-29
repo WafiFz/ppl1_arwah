@@ -1,10 +1,11 @@
-<x-member-layout title="{{request()->routeIs('client.addGuest') ? 'Add Guests' : 'Edit Guest'}}" :php-data="$data['invitation']->id">
+<x-member-layout title="{{ request()->routeIs('client.addGuest') ? 'Add Guests' : 'Edit Guest' }}" :php-data="$data['invitation']->id">
     <main class="grow">
-            <section class="bg-white">
-                <form action="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" method="post" x-data="data()">
-                    @csrf
-                    <input type="hidden" name="invitation_id" value="{{ encode_id($data['invitation']->id) }}">
-                    <input type="hidden" name="is_invited" value="{{ 0 }}"> 
+        <section class="bg-white">
+            <form action="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" method="post"
+                x-data="data()">
+                @csrf
+                <input type="hidden" name="invitation_id" value="{{ encode_id($data['invitation']->id) }}">
+                <input type="hidden" name="is_invited" value="{{ 0 }}">
                 <div class="container py-8">
                     <div class="text-center sm:text-start">
                         <h3 class="mb-0 text-xl font-medium">Guest</h3>
@@ -16,8 +17,7 @@
                         </div>
                         <div class="sm:w-2/3">
                             <x-form.input type="text" name="name" value="" x-model="form.name"
-                                placeholder="Masukkan nama lengkap tamu"
-                             />
+                                placeholder="Masukkan nama lengkap tamu" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -26,8 +26,7 @@
                         </div>
                         <div class="sm:w-2/3">
                             <x-form.input type="text" name="description" value="" x-model="form.description"
-                                placeholder="Masukkan deskripsi tamu"
-                            />
+                                placeholder="Masukkan deskripsi tamu" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -35,9 +34,8 @@
                             <span class="font-bold">Alamat</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.textarea id="address"
-                                name="address" rows="4" value="" x-model="form.address"
-                                placeholder="Masukkan alamat tamu"></x-form.textarea>
+                            <x-form.textarea id="address" name="address" rows="4" value=""
+                                x-model="form.address" placeholder="Masukkan alamat tamu"></x-form.textarea>
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -46,8 +44,7 @@
                         </div>
                         <div class="sm:w-2/3">
                             <x-form.input type="text" name="no_whats_app" value="" x-model="form.no_whats_app"
-                                placeholder="Masukkan nomor WhatsApp tamu"
-                             />
+                                placeholder="Masukkan nomor WhatsApp tamu" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -56,23 +53,22 @@
                         </div>
                         <div class="sm:w-2/3">
                             <x-form.input type="email" name="email" x-model="form.email"
-                                placeholder="Masukkan email tamu"
-                            />
+                                placeholder="Masukkan email tamu" />
                         </div>
                     </div>
                     <div class="flex justify-end">
                         <x-button type="submit" class="text-white bg-brand-purple-500">
                             @if (request()->routeIs('client.addGuest'))
-                            Add
+                                Add
                             @else
-                            Edit
+                                Edit
                             @endif
                         </x-button>
                     </div>
                 </div>
-                </form>
-            </section>
-            @if(request()->routeIs('client.addGuest'))
+            </form>
+        </section>
+        @if (request()->routeIs('client.addGuest'))
             <section class="bg-white">
                 <div class="container py-8">
                     <div class="text-center sm:text-start mb-3">
@@ -80,7 +76,8 @@
                     </div>
                     <div class="relative overflow-auto shadow-md max-h-96 sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Name
@@ -100,17 +97,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i=0; ?>
-                                @foreach ($data['guests'] as $guest )
-                                <?php if($i==10) break; ?>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="px-6 py-4">{{ $guest->name }}</td>
-                                    <td class="px-6 py-4">{{ $guest->description }}</td>
-                                    <td class="px-6 py-4">{{ $guest->address }}</td>
-                                    <td class="px-6 py-4">{{ $guest->no_whats_app }}</td>
-                                    <td class="px-6 py-4">{{ $guest->email }}</td>
-                                </tr>
-                                <?php $i++; ?>
+                                <?php $i = 0; ?>
+                                @foreach ($data['guests'] as $guest)
+                                    <?php if ($i == 10) {
+                                        break;
+                                    } ?>
+                                    <tr
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td class="px-6 py-4">{{ $guest->name }}</td>
+                                        <td class="px-6 py-4">{{ $guest->description }}</td>
+                                        <td class="px-6 py-4">{{ $guest->address }}</td>
+                                        <td class="px-6 py-4">{{ $guest->no_whats_app }}</td>
+                                        <td class="px-6 py-4">{{ $guest->email }}</td>
+                                    </tr>
+                                    <?php $i++; ?>
                                 @endforeach
                             </tbody>
                         </table>
@@ -120,30 +120,30 @@
                     </div> --}}
                 </div>
             </section>
-            @endif
+        @endif
     </main>
     @push('before-scripts')
         <script>
             function data() {
-                return {                
+                return {
                     form: {
                         name: '',
                         description: '',
                         address: '',
                         no_whats_app: '',
-                        email: ''  
+                        email: ''
                     },
-                    guests: [],  
-                    addGuest(){
+                    guests: [],
+                    addGuest() {
                         this.guests.push(this.form);
                         this.form = {
                             name: '',
                             description: '',
                             address: '',
                             no_whats_app: '',
-                            email: ''  
+                            email: ''
                         }
-                    } 
+                    }
                 }
             }
         </script>
