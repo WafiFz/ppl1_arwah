@@ -224,8 +224,9 @@
                     {{-- <p>Gedung PPBS D</p> --}}
     
                     <p>{{ $data['wedding']->location }}</p>
-
+                    @if($data['package']->name == 'Gold')
                     <x-button class="py-3 mt-4 text-white bg-brand-purple-500 hover:bg-brand-purple-600"><i class="mr-2 fa-solid fa-calendar"></i>Simpan acara ke kalender</x-button>
+                    @endif
                 </div>
                 <iframe class="w-full aspect-square min-w-[250px] max-w-xs" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7024030526295!2d107.77211317486105!3d-6.926132093073627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e653eb17e239%3A0xc6192a1f92aa9e41!2sPadjadjaran%20University!5e0!3m2!1sen!2sid!4v1682163086134!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -233,7 +234,7 @@
         <img class="absolute top-0 left-0 hidden w-40 sm:block" src="{{asset('img/corner-flowers.png')}}" alt="">
         <img class="absolute bottom-0 right-0 w-40 rotate-180" src="{{asset('img/corner-flowers.png')}}" alt="">
     </section>
-    <a id="galeri"></a>
+    @if($data['package']->name == 'Gold')
     <section class="py-12 text-white bg-brand-purple-900">
         <div class="flex flex-col gap-3 sm:flex-row">
             <hr class="self-start inline-block w-3/4 h-2 m-0 bg-gray-500 border-0 rounded-r-full sm:w-full">
@@ -243,38 +244,30 @@
         <section id="love-story" class="splide container mt-8 pb-[70px]" aria-label="Beautiful Images">
             <div class="splide__track">
                     <ul class="splide__list">
-                        @for ($ii=0;$ii<3;$ii++)
-                            <li class="splide__slide">
-                                <div class="flex flex-col items-center gap-6 sm:flex-row">
-                                    <div class="p-4 font-bold text-center text-black bg-white sm:max-md:w-1/2 md:w-1/3">
-                                        <img class="object-cover w-full aspect-square" src="{{asset('img/wedding-hero.jpg')}}" alt="">
-                                        <div>-2020-</div>
-                                        <div class="mt-2 text-3xl uppercase">engaged</div>
-                                    </div>
-                                    <div class="sm:max-md:w-1/2 md:w-2/3">
-                                        <q class="text-3xl lg:text-4xl text-brand-yellow-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi</q>
-                                    </div>
+                        @foreach ($data['wedding']->love_story as $love_story )
+                        <li class="splide__slide">
+                            <div class="flex flex-col items-center gap-6 sm:flex-row">
+                                <div class="p-4 font-bold text-center text-black bg-white sm:max-md:w-1/2 md:w-1/3">
+                                    <img class="object-cover w-full aspect-square" src="{{asset($love_story->image)}}" alt="">
+                                    <div>-{{ $love_story->year }}-</div>
+                                    <div class="mt-2 text-3xl uppercase"></div>
                                 </div>
-                            </li>
-                        @endfor
+                                <div class="sm:max-md:w-1/2 md:w-2/3">
+                                    <p class="text-3xl lg:text-4xl text-brand-yellow-500">{{ $love_story->story }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        @endforeach
                     </ul>
             </div>
         </section>
     </section>
-    {{-- <a id="galeri"></a> --}}
+    @endif
+    @if($data['package']->name == 'Gold' || $data['package']->name == 'Silver')
     <section class="py-8 bg-neutral-100">
         <div class="container">
             <h2 class="text-center">Gallery</h2>
             <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-4">
-                {{-- @for ($i=0; $i<4; $i++)
-                    <div class="grid gap-4">
-                        @for ($j=0; $j<3; $j++)
-                            <div>
-                                <img class="h-auto max-w-full rounded-lg" src="{{"https://source.unsplash.com/random/?wedding&".$i.$j}}" alt="">
-                            </div>
-                        @endfor
-                    </div>
-                @endfor --}}
                 @foreach ($data['wedding']->gallery as $gallery)  
                     <div class="grid gap-4">
                         <div>
@@ -285,18 +278,8 @@
             </div>
         </div>
     </section>
-    {{-- <section id="gallery" class="py-8 splide">
-        <div class="container">
-            <h2 class="text-center">Gallery</h2>
-            <div class="mt-3 splide__track">
-                <ul class="splide__list">
-                    @for ($i=0; $i<7; $i++)
-                        <li class="splide__slide"><a href="{{"https://source.unsplash.com/random/?wedding&".$i}}" data-lightbox="gallery"><img class="object-cover w-full h-full" src={{"https://source.unsplash.com/random/?wedding&".$i}} alt=""></a></li>
-                    @endfor
-                </ul>
-            </div>
-        </div>
-    </section> --}}
+    @endif
+    @if($data['package']->name == 'Gold' || $data['package']->name == 'Silver')
     <section class="py-8">
     <form method="POST" action="{{ route('rsvp') }}">
         @csrf
@@ -341,6 +324,8 @@
         </div>
     </form>
     </section>
+    @endif
+    @if($data['package']->name == 'Gold')
     <a id="ucapan"></a>
     <section class="py-8">
         <form method="POST" action="{{ route('sendWish') }}">
@@ -392,7 +377,7 @@
                             <i class="text-[2rem] lg:text-6xl fa-solid fa-gift text-brand-yellow-500"></i>
                             <h3>Send your <br class="max-lg:hidden">best gift</h3>
                         </div>
-                        <p class="m-0 lg:flex-grow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl ipsum, tempor ac aliquam posuere, commodo id neque. Nullam commodo finibu</p>
+                        <p class="m-0 lg:flex-grow">Berikan kejutan yang tak terlupakan dengan hadiah istimewa.</p>
                         <x-button type="button" onclick="modals.giftModal.show()" class="w-full text-black lg:w-1/4 bg-brand-yellow-500 hover:bg-brand-yellow-600 focus:ring-4 focus:ring-brand-yellow-100">Send now!</x-button>
                     </div>
                 </div>
@@ -400,6 +385,7 @@
         </div>
         </form>
     </section>
+    @endif
     <footer class="flex justify-center py-8 bg-neutral-100">
         Made by invits.co
     </footer>

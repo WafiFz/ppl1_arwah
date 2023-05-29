@@ -99,6 +99,7 @@ class GuestController extends Controller
         $invitation = Invitation::getBySlug($slug);
 
         $data = [
+            "package" => $invitation->order->package,
             "invitation" => $invitation,
             "wedding" => $invitation->wedding
         ];
