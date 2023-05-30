@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Mail\InvitationMail;
 use App\Traits\WablasTrait;
+Use Carbon\Carbon;
 
 // Entities
 use Modules\Invitation\Entities\Invitation;
@@ -98,10 +99,13 @@ class GuestController extends Controller
 
         $invitation = Invitation::getBySlug($slug);
 
+        $g_calendar =  $this->get_url_add_g_calendar($invitation->wedding);
+
         $data = [
             "package" => $invitation->order->package,
             "invitation" => $invitation,
-            "wedding" => $invitation->wedding
+            "wedding" => $invitation->wedding,
+            "g_calendar" => $g_calendar,
         ];
 
         return view('guest/invitation', compact('data'));
@@ -145,5 +149,23 @@ class GuestController extends Controller
         $data->delete();
 
         return redirect()->route('client.guest.index', encode_id($id_invitation));
+    }
+
+    public function get_url_add_g_calendar($wedding)
+    {
+        
+        $date = Carbon::createFromDate($wedding->event[0]->date)->format('Ymd');
+        $start_time = Carbon::createFromTimeString($wedding->event[0]->start_time)->format('His');
+        $end_time = Carbon::createFromTimeString($wedding->event[0]->end_time)->format('His');
+        
+        $start_date = $date . "T" . $start_time;
+        $end_date = $date . "T" . $end_time;
+
+        return "https://www.google.com/calendar/render?action=TEMPLATE&text=" . 
+                $wedding->title . 
+                "&ctz=Asia/Jakarta" . 
+                "&dates=" . $start_date . "/" . $end_date .
+                "%7D&details=" . "Acara Pernikahan ". $wedding->groom->name . " dan ". $wedding->bride->name . 
+                "&location=" . $wedding->location . "&sprop=&sprop=name:"; 
     }
 }

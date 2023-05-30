@@ -51,7 +51,7 @@ class PackageDatabaseSeeder extends Seeder
             'name'              => 'Gold',
             'price'             => 'Rp. 500.000',
             'description'       => 'Paket mewah lengkap untuk undanganmu',
-            'features'          => '<li>Informasi Dasar Pernikahan</li><li>Gallery</li><li>Konfirmasi Kehadiran</li><li>Wishes & Gifts</li><li>Save to Google Calendar</li>',
+            'features'          => '<li>Informasi Dasar Pernikahan</li><li>Gallery</li><li>Konfirmasi Kehadiran</li><li>Love Stories</li><li>Wishes & Gifts</li><li>Save to Google Calendar</li>',
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
         ]);

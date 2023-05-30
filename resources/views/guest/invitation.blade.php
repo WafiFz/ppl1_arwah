@@ -225,7 +225,7 @@
     
                     <p>{{ $data['wedding']->location }}</p>
                     @if($data['package']->name == 'Gold')
-                    <x-button class="py-3 mt-4 text-white bg-brand-purple-500 hover:bg-brand-purple-600"><i class="mr-2 fa-solid fa-calendar"></i>Simpan acara ke kalender</x-button>
+                    <x-button-a href="{{ $data['g_calendar'] }}" target="__blank" class="py-3 mt-4 text-white bg-brand-purple-500 hover:bg-brand-purple-600"><i class="mr-2 fa-solid fa-calendar"></i>Simpan acara ke kalender</x-button-a>
                     @endif
                 </div>
                 <iframe class="w-full aspect-square min-w-[250px] max-w-xs" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7024030526295!2d107.77211317486105!3d-6.926132093073627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e653eb17e239%3A0xc6192a1f92aa9e41!2sPadjadjaran%20University!5e0!3m2!1sen!2sid!4v1682163086134!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
