@@ -19,8 +19,8 @@ return new class extends Migration
 
             $table->string('name')->nullable();
             $table->dateTime('date')->nullable()->default(Carbon::now());
-            $table->time('start_time')->nullable();
-            $table->time('end_time')->nullable();
+            $table->time('start_time')->nullable()->default('09:00:00');
+            $table->time('end_time')->nullable()->default('13:00:00');;
             $table->string('place')->nullable();
 
             // Foreign Key
