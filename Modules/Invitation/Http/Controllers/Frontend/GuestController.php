@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Mail\InvitationMail;
 use App\Traits\WablasTrait;
+use App\Providers\RouteServiceProvider;
 Use Carbon\Carbon;
 
 // Entities
@@ -98,6 +99,8 @@ class GuestController extends Controller
     {
 
         $invitation = Invitation::getBySlug($slug);
+
+        if(!$invitation){ return redirect()->intended(RouteServiceProvider::HOME); };
 
         $g_calendar =  $this->get_url_add_g_calendar($invitation->wedding);
 

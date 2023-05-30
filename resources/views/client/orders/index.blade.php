@@ -1,6 +1,7 @@
 <x-member-layout title="Orders">
     <main class="py-3 bg-white grow">
         <div class="container">
+            @if($data['orders'] != null)
             <div class="flex flex-col gap-2 text-center sm:flex-row">
                 <div class="grow">
                     <form>
@@ -174,6 +175,18 @@
                     </div>
                 </div>
             </div> --}}
+            @else
+            <div class="mx-auto w-fit">
+                <h2 class="mt-0 mb-2 text-4xl font-medium leading-tight text-center">Anda Belum Memesan</h2>
+                <div class="w-1/2 h-2 mx-auto rounded-md bg-brand-purple-500"></div>
+            </div>
+            <div class="mt-4 mx-auto w-fit">
+                <x-button-a href="{{ route('order.index') }}" type="button" target="_blank"
+                    class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
+                    <span class="font-extrabold">Pesan Sekarang</span>
+                </x-button>
+            </div>
+            @endif
 
         </div>
     </main>
