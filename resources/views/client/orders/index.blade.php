@@ -181,7 +181,7 @@
                 <div class="w-1/2 h-2 mx-auto rounded-md bg-brand-purple-500"></div>
             </div>
             <div class="mt-4 mx-auto w-fit">
-                <x-button-a href="{{ route('order.index') }}" type="button" target="_blank"
+                <x-button-a href="{{ route('order.index') }}" type="button"
                     class="w-full py-3 tracking-wide text-white capitalize transition-colors duration-200 transform sm:w-40 bg-brand-purple-500 hover:bg-brand-yellow-500 hover:text-black">
                     <span class="font-extrabold">Pesan Sekarang</span>
                 </x-button>
