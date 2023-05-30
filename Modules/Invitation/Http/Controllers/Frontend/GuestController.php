@@ -102,9 +102,9 @@ class GuestController extends Controller
         $g_calendar =  $this->get_url_add_g_calendar($invitation->wedding);
 
         $data = [
-            "package" => $invitation->order->package,
             "invitation" => $invitation,
             "wedding" => $invitation->wedding,
+            "package" => $invitation->order->package,
             "g_calendar" => $g_calendar,
         ];
 
@@ -151,6 +151,26 @@ class GuestController extends Controller
         return redirect()->route('client.guest.index', encode_id($id_invitation));
     }
 
+    public function editGuest(Request $request, $id)
+    {
+        if ($request->method() == 'POST') {
+            $guest = Guest::find($id);
+            $guest->name = $request->name;
+            $guest->description = $request->description;
+            $guest->address = $request->address;
+            $guest->no_whats_app = $request->no_whats_app;
+            $guest->email = $request->email;
+
+            $guest->save();
+
+            return redirect()->route('client.guest.index', encode_id($guest->invitation_id));
+        };
+
+
+        $guest = Guest::where('id', decode_id($id))->first();
+        return view('client/editGuest', compact('guest'));
+    }
+
     public function get_url_add_g_calendar($wedding)
     {
         
@@ -167,5 +187,6 @@ class GuestController extends Controller
                 "&dates=" . $start_date . "/" . $end_date .
                 "%7D&details=" . "Acara Pernikahan ". $wedding->groom->name . " dan ". $wedding->bride->name . 
                 "&location=" . $wedding->location . "&sprop=&sprop=name:"; 
+    
     }
 }

@@ -1,11 +1,8 @@
-<x-member-layout title="{{ request()->routeIs('client.addGuest') ? 'Add Guests' : 'Edit Guest' }}" :php-data="$data['invitation']->id">
+<x-member-layout title="Edit Guest">
     <main class="grow">
         <section class="bg-white">
-            <form action="{{ route('client.addGuest', encode_id($data['invitation']->id)) }}" method="post"
-                x-data="data()">
+            <form action="{{ route('client.guest.edit', $guest->id) }}" method="post" x-data="data()">
                 @csrf
-                <input type="hidden" name="invitation_id" value="{{ encode_id($data['invitation']->id) }}">
-                <input type="hidden" name="is_invited" value="{{ 0 }}">
                 <div class="container py-8">
                     <div class="text-center sm:text-start">
                         <h3 class="mb-0 text-xl font-medium">Guest</h3>
@@ -16,7 +13,7 @@
                             <span class="font-bold">Nama</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.input type="text" name="name" value="" x-model="form.name"
+                            <x-form.input type="text" name="name" value="{{ $guest->name }}"
                                 placeholder="Masukkan nama lengkap tamu" />
                         </div>
                     </div>
@@ -25,7 +22,7 @@
                             <span class="font-bold">Deskripsi</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.input type="text" name="description" value="" x-model="form.description"
+                            <x-form.input type="text" name="description" value="{{ $guest->description }}"
                                 placeholder="Masukkan deskripsi tamu" />
                         </div>
                     </div>
@@ -34,8 +31,9 @@
                             <span class="font-bold">Alamat</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.textarea id="address" name="address" rows="4" value=""
-                                x-model="form.address" placeholder="Masukkan alamat tamu"></x-form.textarea>
+                            <textarea name="address" rows="4" value="{{ $guest->address }}" placeholder="Masukkan alamat tamu">
+                                {{ $guest->address }}
+                            </textarea>
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
@@ -43,7 +41,7 @@
                             <span class="font-bold">No. WhatsApp</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.input type="text" name="no_whats_app" value="" x-model="form.no_whats_app"
+                            <x-form.input type="text" name="no_whats_app" value="{{ $guest->no_whats_app }}"
                                 placeholder="Masukkan nomor WhatsApp tamu" />
                         </div>
                     </div>
@@ -52,23 +50,19 @@
                             <span class="font-bold">Email</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <x-form.input type="email" name="email" x-model="form.email"
+                            <x-form.input type="email" name="email" value="{{ $guest->email }}"
                                 placeholder="Masukkan email tamu" />
                         </div>
                     </div>
                     <div class="flex justify-end">
                         <x-button type="submit" class="text-white bg-brand-purple-500">
-                            @if (request()->routeIs('client.addGuest'))
-                                Add
-                            @else
-                                Edit
-                            @endif
+                            Edit
                         </x-button>
                     </div>
                 </div>
             </form>
         </section>
-        @if (request()->routeIs('client.addGuest'))
+        @if (request()->routeIs('guest.edit'))
             <section class="bg-white">
                 <div class="container py-8">
                     <div class="text-center sm:text-start mb-3">
@@ -98,7 +92,7 @@
                             </thead>
                             <tbody>
                                 <?php $i = 0; ?>
-                                @foreach ($data['guests'] as $guest)
+                                @foreach ($guest as $guest)
                                     <?php if ($i == 10) {
                                         break;
                                     } ?>
@@ -116,7 +110,7 @@
                         </table>
                     </div>
                     {{-- <div class="flex justify-end mt-5">
-                        <x-button type="button" class="ml-auto text-white bg-brand-purple-500" @click="addGuest();">Save</x-button>
+                        <x-button type="button" class="ml-auto text-white bg-brand-purple-500" @click="edit();">Save</x-button>
                     </div> --}}
                 </div>
             </section>
@@ -133,9 +127,9 @@
                         no_whats_app: '',
                         email: ''
                     },
-                    guests: [],
-                    addGuest() {
-                        this.guests.push(this.form);
+                    guest: [],
+                    edit() {
+                        this.guest.push(this.form);
                         this.form = {
                             name: '',
                             description: '',
