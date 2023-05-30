@@ -95,7 +95,7 @@ class ProfileController extends Controller
             $user->last_name = $input['last_name'];
             $user->email = $input['email'];
             $user->mobile = $input['mobile'];
-            $user->gender = $input['gender'];
+            if(isset($input['gender'])) $user->gender = $input['gender'];
             $user->date_of_birth = $input['date_of_birth'];
             $user->save();
 
