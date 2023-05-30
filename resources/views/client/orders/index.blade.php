@@ -1,7 +1,7 @@
 <x-member-layout title="Orders">
     <main class="py-3 bg-white grow">
         <div class="container">
-            @if($data['orders'] != null)
+            @if(count($data['orders']) != 0)
             <div class="flex flex-col gap-2 text-center sm:flex-row">
                 <div class="grow">
                     <form>
