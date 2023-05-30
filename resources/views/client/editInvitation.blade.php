@@ -160,7 +160,7 @@
                             </div>
                             <div class="sm:w-2/3">
                                 <input type="text" name="location_gmap"
-                                    value="https://goo.gl/maps/W7cH6dNi7JLXt2jG7"
+                                    value="{{ $data['order']->invitation->wedding->location_gmap }}"
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
                                     placeholder="Ex: https://goo.gl/maps/W7cH6dNi7JLXt2jG7"
                                     :disabled="edit ? false : true"
