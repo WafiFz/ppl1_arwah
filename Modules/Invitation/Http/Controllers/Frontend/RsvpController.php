@@ -44,11 +44,18 @@ class RsvpController extends Controller
     {
         try { 
             $input = collect($request->except('_token'));
+            
+            if($request->is_attend == "true"){
+                $is_attend = true;
+            }else{
+                $is_attend = false;
+            }
+
             $input = $input->replace([
                 'invitation_id' => decode_id($request->invitation_id),
-                'is_attend' => (bool)$request->is_attend,
+                'is_attend' => $is_attend,
             ])->all();
-
+            
             DB::beginTransaction();
             
             // Create RSVP
