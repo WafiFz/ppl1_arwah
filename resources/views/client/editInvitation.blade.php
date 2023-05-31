@@ -264,7 +264,7 @@
                                     <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($data['order']->invitation->wedding->groom->image) }}" alt="">
                                 </div>
                                 <div class="sm:w-2/3">
-                                    <input name="groom_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                    <input name="groom_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="edit ? false : true">
                                 </div>
                             </div>
                         </div>
@@ -351,7 +351,7 @@
                                     <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($data['order']->invitation->wedding->bride->image) }}" alt="">
                                 </div>
                                 <div class="sm:w-2/3">
-                                    <input name="bride_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                    <input name="bride_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="edit ? false : true">
                                 </div>
                             </div>
                         </div>
@@ -525,7 +525,7 @@
                                                 <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($love_story->image) }}" alt="">
                                             </div>
                                             <div class="sm:w-2/3">
-                                                <input name="love_story_image[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
+                                                <input name="love_story_image[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="edit ? false : true">
                                             </div>
                                         </div>
                                     </div>
@@ -547,9 +547,9 @@
                     </div>
                 </section>
                 @endif
-                @if($data['order']->package->name == 'Gold' || $data['order']->package->name == 'Silver')
                 <section class="bg-white">
                     <div class="container py-8">
+                        @if($data['order']->package->name == 'Gold' || $data['order']->package->name == 'Silver')
                         <div class="text-center sm:text-start">
                             <h3 class="mb-0 text-xl font-medium">Gallery</h3>
                             <p>Upload your romantic images</p>
@@ -559,27 +559,28 @@
                         ?>
                         {{-- <template x-for="i in eventsCount"> --}}
                         @foreach ($data['order']->invitation->wedding->gallery as $gallery)
-                            <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
-                                <div class="sm:w-1/3">
-                                    <span class="font-bold">Image {{ $i }}</span>
-                                </div>
-                                <div class="sm:w-2/3">
-                                    <div class="mt-4">
-                                        <div class="flex flex-col gap-1.5 sm:flex-row">
-                                            <div class="sm:w-1/3">
-                                                <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($gallery->file) }}" alt="">
-                                            </div>
-                                            <div class="sm:w-2/3">
-                                                <input name="gallery_image[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="isEdit() ? false : true">
-                                            </div>
+                        <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
+                            <div class="sm:w-1/3">
+                                <span class="font-bold">Image {{ $i }}</span>
+                            </div>
+                            <div class="sm:w-2/3">
+                                <div class="mt-4">
+                                    <div class="flex flex-col gap-1.5 sm:flex-row">
+                                        <div class="sm:w-1/3">
+                                            <img class="object-cover mt-3 mb-5 sm:m-0 aspect-square sm:max-w-xs xl:max-w-[220px] rounded" src="{{ asset($gallery->file) }}" alt="">
+                                        </div>
+                                        <div class="sm:w-2/3">
+                                            <input name="gallery_image[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" :disabled="edit ? false : true">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                             <?php
-                            $i++;
-                            ?>
+                        $i++;
+                        ?>
                         @endforeach
+                        @endif
                         {{-- </template> --}}
                         <div class="flex justify-end gap-2 py-4 border-t border-gray-200" x-show="!edit">
                             <x-button type="button" @click="editMode()"
@@ -597,8 +598,8 @@
                                 Simpan Perubahan
                             </x-button>
                         </div>
+                    </div>
                 </section>
-                @endif
                 <section class="bg-white">
                     <div class="container py-8">
                         <div>
