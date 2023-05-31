@@ -372,7 +372,7 @@
                         @foreach ($data['wedding']->wish as $wish )
                         <div class="mb-3">
                             <p class="m-0">Dari: <strong>{{ $wish->name }}</strong></p>
-                            <x-form.textarea rows="4" value="{{ $wish->wish }}"  placeholder="{{ $wish->wish }}" :disable="true" >{{ $wish->wish }}</x-form.textarea>
+                            <x-form.textarea rows="4" value="{{ $wish->wish }}"  placeholder="{{ $wish->wish }}" :disabled="true" >{{ $wish->wish }}</x-form.textarea>
                         </div>
                         @endforeach
                     </div>
