@@ -182,30 +182,34 @@ class InvitationsController extends Controller
         // ==============================
         //  Love Stories
         // ==============================
-        for ($i = 0; $i < count($love_stories); $i++) {
-            // Year
-            $love_stories[$i]->year = $request->year[$i];
-            // Story
-            $love_stories[$i]->story = $request->story[$i];
-
-            // For Image
-            if (isset($request->love_story_image[$i])) {
-                $love_stories[$i]->image = HelperTrait::storeImage($love_stories[$i]->image, $request->love_story_image[$i], 'wedding/love_story');
-            };
-
-            $love_stories[$i]->save();
+        if(isset($request->year)){
+            for ($i = 0; $i < count($love_stories); $i++) {
+                // Year
+                $love_stories[$i]->year = $request->year[$i];
+                // Story
+                $love_stories[$i]->story = $request->story[$i];
+    
+                // For Image
+                if (isset($request->love_story_image[$i])) {
+                    $love_stories[$i]->image = HelperTrait::storeImage($love_stories[$i]->image, $request->love_story_image[$i], 'wedding/love_story');
+                };
+    
+                $love_stories[$i]->save();
+            }
         }
 
         // ==============================
         //  Gallery
         // ==============================
-        for ($i = 0; $i < count($galleries); $i++) {
-            // File
-            if (isset($request->gallery_image[$i])){
-                $galleries[$i]->file = HelperTrait::storeImage($galleries[$i]->file, $request->gallery_image[$i], 'wedding/gallery');
-            };
-
-            $galleries[$i]->save();
+        if(isset($request->gallery_image)){
+            for ($i = 0; $i < count($galleries); $i++) {
+                // File
+                if (isset($request->gallery_image[$i])){
+                    $galleries[$i]->file = HelperTrait::storeImage($galleries[$i]->file, $request->gallery_image[$i], 'wedding/gallery');
+                };
+    
+                $galleries[$i]->save();
+            }
         }
 
         // Save Changes

@@ -1,4 +1,4 @@
-<x-member-layout title="Edit Guest">
+<x-member-layout title="Edit Guest" :php-data="$guest->invitation->id">
     <main class="grow">
         <section class="bg-white">
             <form action="{{ route('client.guest.edit', $guest->id) }}" method="post" x-data="data()">
@@ -31,9 +31,9 @@
                             <span class="font-bold">Alamat</span>
                         </div>
                         <div class="sm:w-2/3">
-                            <textarea name="address" rows="4" value="{{ $guest->address }}" placeholder="Masukkan alamat tamu">
+                            <x-form.textarea name="address" rows="4" value="{{ $guest->address }}">
                                 {{ $guest->address }}
-                            </textarea>
+                            </x-form.textarea>
                         </div>
                     </div>
                     <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">

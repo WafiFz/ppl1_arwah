@@ -67,40 +67,14 @@
 			@if ( request()->is('client/invitations/*') )
 			<a
 				class="flex items-center w-full p-3 pl-6 hover:bg-brand-yellow-500 hover:text-black {{ request()->routeIs('client.guest.index') ? 'sidebar-active' : 'bg-brand-purple-600' }}"
-				href="{{ route('client.guest.index', encode_id($data)) }}"
-				><svg
-					class="w-6 h-6 mr-3"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-					/>
-				</svg>
+				href="{{ route('client.guest.index', encode_id($data)) }}">
+				<i class="fa-solid fa-users mr-3 fa-lg"></i>
 				Tamu
 			</a>
 			<a
 				class="flex items-center w-full p-3 pl-6 hover:bg-brand-yellow-500 hover:text-black {{ request()->routeIs('client.rsvp') ? 'sidebar-active' : 'bg-brand-purple-600' }}"
-				href="{{ route('client.rsvp', encode_id($data)) }}"
-				><svg
-					class="w-6 h-6 mr-3"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-					/>
-				</svg>
+				href="{{ route('client.rsvp', encode_id($data)) }}">
+				<i class="fa-solid fa-user-check mr-3 fa-lg"></i>
 				RSVP
 			</a>
 			@endif
