@@ -15,10 +15,21 @@ use Modules\Invitation\Entities\Rsvp;
 
 class RsvpController extends Controller
 {
-    public function index($id)
+    public function index(Request $request, $id)
     {
         $invitation = Invitation::getById(decode_id($id));
-        $rsvps = Rsvp::where('invitation_id', decode_id($id))->paginate(8);
+       
+
+        if($request->query('key')) {
+            $key = $request->query('key');
+
+            $rsvps = Rsvp::where('invitation_id', decode_id($id))
+                        ->where('name', 'LIKE','%'. $key .'%')
+                        ->paginate(8);
+        } else {
+            $rsvps = Rsvp::where('invitation_id', decode_id($id))->paginate(8);
+        };
+
 
         $data = [
             "invitation" => $invitation,

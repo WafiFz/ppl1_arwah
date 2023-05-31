@@ -2,7 +2,7 @@
     <main class="py-3 bg-white grow">
         <div class="container">
             @if(count($data['orders']) != 0)
-            <div class="flex flex-col gap-2 text-center sm:flex-row">
+            {{-- <div class="flex flex-col gap-2 text-center sm:flex-row">
                 <div class="grow">
                     <form>
                         <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
@@ -14,7 +14,7 @@
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </div>
-                            <input type="search" id="search"
+                            <input type="search" id="search" name="key"
                                 class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Search" required>
                             <button type="submit"
@@ -22,8 +22,8 @@
                         </div>
                     </form>
                 </div>
-                {{-- <x-button class="px-6 py-3 bg-brand-purple-100"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button> --}}
-            </div>
+                <x-button class="px-6 py-3 bg-brand-purple-100"><i class="mr-2 fa-solid fa-filter"></i>Filter</x-button>
+            </div> --}}
             <div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">

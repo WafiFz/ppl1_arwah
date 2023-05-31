@@ -25,10 +25,21 @@ class GuestController extends Controller
      * DUMMY
      * @return Response
      */
-    public function index($id)
+    public function index(Request $request, $id)
     {
         $invitation = Invitation::getById(decode_id($id));
-        $guests = Guest::where('invitation_id', decode_id($id))->paginate(8);
+    
+        if($request->query('key')) {
+            $key = $request->query('key');
+
+            $guests = Guest::where('invitation_id', decode_id($id))
+                        ->where('name', 'LIKE','%'. $key .'%')
+                        ->orWhere('email', 'LIKE','%'. $key .'%')
+                        ->orWhere('no_whats_app', 'LIKE','%'. $key .'%')
+                        ->paginate(8);
+        } else {
+            $guests = Guest::where('invitation_id', decode_id($id))->paginate(8);
+        };
 
         $data = [
             "invitation" => $invitation,
