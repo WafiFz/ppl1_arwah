@@ -25,7 +25,7 @@ class WishController extends Controller
 
 
             if($request->anonymous){
-                $name = null;
+                $name = 'Anonim';
             };
 
             DB::beginTransaction();
