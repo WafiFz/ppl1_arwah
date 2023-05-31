@@ -298,7 +298,7 @@
                 <div class="gap-3 mt-5 lg:flex">
                     <div class="mb-3 lg:w-full">
                         <x-form.label for="nama" class="text-white">Nama Lengkap</x-form.label>
-                        <x-form.input
+                        <x-form.input required
                             type="text"
                             id="nama"
                             name="name"
@@ -317,7 +317,7 @@
                         </div>
                         <div class="w-full mb-5">
                             <x-form.label for="kehadiran" class="text-white">Kehadiran</x-form.label>
-                            <x-form.select id="kehadiran" name="is_attend" >
+                            <x-form.select id="kehadiran" name="is_attend" required>
                                 <option selected disabled>Pilih Kehadiran</option>
                                 <option value="true">Hadir</option>
                                 <option value="false">Tidak Hadir</option>

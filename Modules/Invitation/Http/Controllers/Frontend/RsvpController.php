@@ -50,16 +50,25 @@ class RsvpController extends Controller
             }else{
                 $is_attend = false;
             }
-
-            $input = $input->replace([
-                'invitation_id' => decode_id($request->invitation_id),
-                'is_attend' => $is_attend,
-            ])->all();
             
+            if(!$request->amount_guest){
+                $amount_guest = 0;
+                if($is_attend) $amount_guest = 1;
+            }else{
+                $amount_guest = $request->amount_guest;
+            }
+
+            $rsvp = [
+                "invitation_id" => decode_id($request->invitation_id),
+                "name" => $request->name,
+                "amount_guest" => $amount_guest,
+                "is_attend" => $is_attend
+            ];    
+                
             DB::beginTransaction();
             
             // Create RSVP
-            Rsvp::create($input);
+            Rsvp::create($rsvp);
             
             DB::commit();
 
