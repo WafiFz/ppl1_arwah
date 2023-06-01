@@ -79,7 +79,7 @@ trait WablasTrait
         $message = "
         Yth. Saudara/Saudari $guest->name
         
-        Kami yang berbahagia $groom->name dan $bride->name, mengundang Saudara/Saudari untuk hadir di pemberkatan nikah kami, pada:
+        Kami yang berbahagia $groom->name dan $bride->name, mengundang Saudara/Saudari untuk hadir di pernikah kami, pada:
         
         Hari dan Tanggal\t:	$date
         Pukul\t\t:	$event->start_time

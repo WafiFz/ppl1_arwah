@@ -6,7 +6,7 @@
 Yth.
 Saudara/Saudari {{ $data['guest']->name }}
 
-Kami yang berbahagia {{ $data['wedding']->groom->name }} dan {{ $data['wedding']->bride->name }}, mengundang Saudara/Saudari untuk hadir di pemberkatan nikah kami, pada:
+Kami yang berbahagia {{ $data['wedding']->groom->name }} dan {{ $data['wedding']->bride->name }}, mengundang Saudara/Saudari untuk hadir di pernikahan kami, pada:
 
 <table style="border-collapse: collapse;">
     <tr>

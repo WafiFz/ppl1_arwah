@@ -296,7 +296,7 @@
                                 <input type="text" name="bride_father"
                                     value="{{ $data['order']->invitation->wedding->bride->father }}"
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Masukkan Nama Ayah Pengantin Pria"
+                                    placeholder="Masukkan Nama Ayah Pengantin Wanita"
                                     :disabled="edit ? false : true"
                                     :class="edit == false && 'bg-neutral-100 '" />
                             </div>
@@ -309,7 +309,7 @@
                                 <input type="text" name="bride_mother"
                                     value="{{ $data['order']->invitation->wedding->bride->mother }}"
                                     class="block min-h-[auto] rounded border border-gray-300 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear motion-reduce:transition-none w-full"
-                                    placeholder="Masukkan Nama Ibu Pengantin Pria" :disabled="edit ? false : true"
+                                    placeholder="Masukkan Nama Ibu Pengantin Wanita" :disabled="edit ? false : true"
                                     :class="edit == false && 'bg-neutral-100 '" />
                             </div>
                         </div>
@@ -321,7 +321,7 @@
                                 <textarea :disabled="edit ? false : true" :class="edit == false && 'bg-neutral-100 '"
                                     name="bride_address" rows="4" value="{{ $data['order']->invitation->wedding->bride->address }}"
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Masukkan Alamat Pengantin Pria">{{ $data['order']->invitation->wedding->bride->address }}</textarea>
+                                    placeholder="Masukkan Alamat Pengantin Wanita">{{ $data['order']->invitation->wedding->bride->address }}</textarea>
                             </div>
                         </div>
                         <div class="flex flex-col gap-1.5 py-4 border-t border-gray-200 sm:flex-row">
